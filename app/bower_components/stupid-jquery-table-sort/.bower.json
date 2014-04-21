@@ -1,0 +1,15 @@
+{
+  "name": "stupid-jquery-table-sort",
+  "homepage": "https://github.com/joequery/Stupid-Table-Plugin",
+  "_release": "4942677587",
+  "main": "./stupidtable.js",  
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4942677587c72308d3983f0e7b183a4916750c3c"
+  },
+  "_source": "git://github.com/joequery/Stupid-Table-Plugin.git",
+  "_target": "*",
+  "_originalSource": "stupid-jquery-table-sort",
+  "_direct": true
+}
