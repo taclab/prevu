@@ -10,7 +10,9 @@
     "angular-resource": "1.2.15",
     "angular-cookies": "1.2.15",
     "angular-sanitize": "1.2.15",
-    "angular-route": "1.2.15"
+    "angular-route": "1.2.15",
+    "miso.dataset": "~0.4.1",
+    "stupid-jquery-table-sort": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
