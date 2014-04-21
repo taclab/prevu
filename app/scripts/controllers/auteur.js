@@ -11,11 +11,11 @@ angular.module('prevuApp')
 
 
     $scope.search = function() {
-    		if ($scope.queryTerm.length > 4) {
-	    	  var books = new Books();
-	    		books.$get({auteurName: $scope.queryTerm});
-	    		$scope.books = books;
-    		};
-    }
+      if ($scope.queryTerm.length > 4) {
+          var books = new Books();
+          books.$get({auteurName: $scope.queryTerm});
+          $scope.books = books;
+    		}
+    };
 
   });
