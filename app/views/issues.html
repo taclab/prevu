@@ -1,0 +1,49 @@
+<div class="row">
+  <form role="form" class="col-md-6">
+      <input type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" ng-change="search()">
+  </form>
+</div>
+
+
+<table class="table table-bordered table-striped table-condensed result" stupid-table>
+	<thead>
+		<tr>
+			<th data-sort='int'>biblionumber</th>
+			<th data-sort='string'>timestamp</th>
+			<th data-sort='string'>issuedate</th>
+			<th data-sort='string'>returndate</th>
+			<th data-sort='string'>lastreneweddate</th>
+			<th data-sort='int'>renewals</th>
+			<th data-sort='int'>borrowernumber</th>
+			<th data-sort='int'>userid</th>
+			<th data-sort='string'>firstname</th>
+			<th data-sort='string'>surname</th>
+			<th data-sort='string'>sex</th>
+			<th data-sort='int'>barcode</th>
+			<th data-sort='string'>title</th>
+			<th data-sort='string'>description</th>
+			<th data-sort='string'>Ufr</th>
+			<th data-sort='string'>Niveau</th>
+			<th data-sort='string'>Etape</th>
+		</tr>
+	</thead>
+	<tr ng-repeat="issue in issues">
+		<td>{{issue.biblionumber}}</td>
+		<td>{{issue.timestamp}}</td>
+		<td>{{issue.issuedate}}</td>
+		<td>{{issue.returndate}}</td>
+		<td>{{issue.lastreneweddate}}</td>
+		<td>{{issue.renewals}}</td>
+		<td>{{issue.borrowernumber}}</td>
+		<td>{{issue.userid}}</td>
+		<td>{{issue.firstname}}</td>
+		<td>{{issue.surname}}</td>
+		<td>{{issue.sex}}</td>
+		<td>{{issue.barcode}}</td>
+		<td>{{issue.title}}</td>
+		<td>{{issue.description}}</td>
+		<td>{{issue.Ufr}}</td>
+		<td>{{issue.Niveau}}</td>
+		<td>{{issue.Etape}}</td>
+	</tr>
+</table>

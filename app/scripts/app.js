@@ -17,6 +17,14 @@ angular
         templateUrl: 'views/auteur.html',
         controller: 'AuteurCtrl'
       })
+      .when('/auteur/:search', {
+        templateUrl: 'views/auteur.html',
+        controller: 'AuteurCtrl'
+      })
+      .when('/livre', {
+        templateUrl: 'views/issues.html',
+        controller: 'IssuesCtrl'
+      })      
       .otherwise({
         redirectTo: '/'
       });

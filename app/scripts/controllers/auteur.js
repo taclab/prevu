@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('prevuApp')
-  .controller('AuteurCtrl', function ($scope, Books, prevuAPIservice) {
+  .controller('AuteurCtrl', function ($scope, $routeParams, Books, prevuAPIservice) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
+    console.log($routeParams.search);
     var getStats = function() {
       prevuAPIservice.searchAuthor($scope.queryTerm).success(function (response) {
         // Init Miso.DataSet
