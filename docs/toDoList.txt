@@ -1,0 +1,2 @@
+- Créer un controleur Header
+http://stackoverflow.com/questions/16199418/how-do-i-implement-the-bootstrap-navbar-active-class-with-angular-js
