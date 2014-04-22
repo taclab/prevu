@@ -2,7 +2,7 @@
   "name": "miso.dataset",
   "homepage": "https://github.com/misoproject/dataset",
   "version": "0.4.1",
-  "main": "dist/miso.ds.deps.0.4.1.js",
+  "main": "dist/miso.ds.deps.min.0.4.1_hack.js",
   "_release": "0.4.1",
   "_resolution": {
     "type": "version",
