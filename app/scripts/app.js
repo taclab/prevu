@@ -24,7 +24,7 @@ angular
       .when('/livre', {
         templateUrl: 'views/issues.html',
         controller: 'IssuesCtrl'
-      })      
+      })
       .otherwise({
         redirectTo: '/'
       });

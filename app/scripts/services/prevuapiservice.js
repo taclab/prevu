@@ -8,12 +8,14 @@ angular.module('prevuApp')
       return $http({
         url : 'http://localhost:8888/prevu/application/api/search/'+author
       });
-    }
+    };
+
     prevuAPI.searchIssuesByTitle =  function(title) {
       return $http({
         url : 'http://localhost:8888/prevu/application/api/issues/title/'+title
       });
-    }
+    };
+    
     return prevuAPI;
 
   });
