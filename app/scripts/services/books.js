@@ -10,6 +10,5 @@ angular.module('prevuApp')
         params: { bookId: '@bookId' },
         isArray: false
       }
-      /* , method2: { ... } */
     });
   }]);

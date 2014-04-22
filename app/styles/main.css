@@ -29,3 +29,16 @@ input {
     -o-transition: color .2s ease-in-out,opacity .2s ease-in-out;
     transition: color .2s ease-in-out,opacity .2s ease-in-out;
 }
+
+/* STATS */
+
+.stat {
+  font-weight: 200;
+  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.value {
+  font-size: 4em;
+  color: #febd17;
+}

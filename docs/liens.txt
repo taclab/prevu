@@ -1,1 +1,6 @@
 http://blog.kaliop.com/blog/2014/01/13/angularjs-presentation/
+http://briantford.com/blog/angular-d3.html
+http://gavindraper.com/2013/07/30/google-charts-in-angularjs/
+
+<!-- http://www.toptal.com/angular-js/a-step-by-step-guide-to-your-first-angularjs-app -->
+<!-- http://blog.comperiosearch.com/blog/2013/10/24/instant-search-with-angularjs-and-elasticsearch/ -->
