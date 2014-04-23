@@ -1,2 +1,12 @@
 - Créer un controleur Header
 http://stackoverflow.com/questions/16199418/how-do-i-implement-the-bootstrap-navbar-active-class-with-angular-js
+- Recupérer les Auteurs en 700 et les issues en +1
+
+
+=========
+Créer une page Bibliothèque avec un résumé des données en cours 
+
+
+=== BUG ===
+- les variables non reconnu par Jshint
+- 
