@@ -11,5 +11,6 @@ angular.module('prevuApp')
 					$scope.issues = response.issues;
 				});
 		  }
+		  
     };
   });
