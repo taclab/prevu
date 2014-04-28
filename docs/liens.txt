@@ -4,6 +4,7 @@ http://gavindraper.com/2013/07/30/google-charts-in-angularjs/
 
 <!-- http://www.toptal.com/angular-js/a-step-by-step-guide-to-your-first-angularjs-app -->
 <!-- http://blog.comperiosearch.com/blog/2013/10/24/instant-search-with-angularjs-and-elasticsearch/ -->
+https://github.com/Siyfion/angular-typeahead
 
 Effets
 https://github.com/Hendrixer/ng-Fx

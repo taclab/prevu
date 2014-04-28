@@ -1,11 +1,27 @@
 <div class="row">
-  <form role="form" class="col-md-6">
-      <input type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" ng-change="search()">
-  </form>
+	<form name="searchForm" class="col-md-6 search-author">
+		<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in getLocation($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()">
+	</form>
+	<div class="col-md-6">		
+		<i ng-show="isLoading" class="glyphicon glyphicon-refresh"></i>
+	</div>
+	
+	<p ng-show="searchForm.searchAuthor.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
 </div>
 
+<script type="text/ng-template" id="resultAuthorTemplate.html">
+  <a>
+    <span bind-html-unsafe="match.model.author_nom | typeaheadHighlight:query"></span>
+	<span bind-html-unsafe="match.model.author_prenom"></span>
+	<i class='resultDate' bind-html-unsafe="match.model.author_date"></i>
+  </a>
+</script>
 
 <div class="result" ng-show="stats">
+	<div  class="row statAuthor result">
+		<div class="col-md-6">{{queryTerm.author_prenom}}</div>
+		<div class="col-md-6">{{queryTerm.author_date}}</div>		
+	</div>
 	<div  class="row stat result">
 	  <div class="col-md-2">
 	    <h3>Documents</h3>

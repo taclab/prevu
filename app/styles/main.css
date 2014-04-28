@@ -19,9 +19,7 @@ input {
     border: 0;
     background: 0 0;
     display: block-inline;
-    height: 2em;
     float: left;
-    padding: 0 2%;
     position: relative;
     z-index: 0;
     -webkit-transition: color .2s ease-in-out,opacity .2s ease-in-out;
@@ -30,12 +28,62 @@ input {
     transition: color .2s ease-in-out,opacity .2s ease-in-out;
 }
 
+.glyphicon-refresh {
+  font-size: 50px;
+  color: #a9a9a9;
+  padding: 20px 0px 0px 20px;
+}
+
+
+
+
+/*Search */
+
+.resultDate {
+  color: #a9a9a9;
+}
+
+.loadingSearch {
+/*  border-color: #febd17 !important;
+  -moz-box-shadow: inset 0 1px 1px #febd17;
+  -webkit-box-shadow: inset 0 1px 1px #febd17;
+  -o-box-shadow: inset 0 1px 1px #febd17;
+  box-shadow: inset 0 1px 1px #febd17;*/
+}
+
+.dropdown-menu {
+  width: 580px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.dropdown-menu > li > a {
+  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+  font-size: 1.6em;
+  font-weight: 200;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #febd17;
+  outline: 0;
+}
+
 /* STATS */
 
 .stat {
   font-weight: 200;
   font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
   text-align: center;
+}
+
+.statAuthor {
+  font-weight: 200;
+  font-size: 2.7em;
+  color: #a9a9a9;
 }
 
 .value {

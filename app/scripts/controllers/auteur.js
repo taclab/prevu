@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('prevuApp')
-  .controller('AuteurCtrl', function ($scope, $routeParams, Books, prevuAPIservice) {
+  .controller('AuteurCtrl', function ($scope, $routeParams, $http, Books, prevuAPIservice) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -9,7 +9,7 @@ angular.module('prevuApp')
     ];
     console.log($routeParams.search);
     var getStats = function() {
-      prevuAPIservice.searchAuthor($scope.queryTerm).success(function (response) {
+      prevuAPIservice.searchAuthor($scope.queryTerm.author_nom).success(function (response) {
         // Init Miso.DataSet
         var ds = new Miso.Dataset({data: response.search});
         ds.fetch({
@@ -31,13 +31,23 @@ angular.module('prevuApp')
 
     // SEARCH 
     $scope.search = function() {
-      if ($scope.queryTerm.length > 4) {
-        var books = new Books();
-        books.$get({auteurName: $scope.queryTerm});
-        $scope.books = books;
-        getStats();
-      }
+      console.log($scope.queryTerm.author_nom);
+      var books = new Books();
+      books.$get({auteurName: $scope.queryTerm.author_nom});
+      $scope.books = books;
+      getStats();
     };
 
-
+    $scope.getLocation = function(val) {
+      return $http.get('http://localhost:8888/prevu/application/api/author/search/'+val
+        ).then(function(res){
+          console.log(res);
+          var authors = [];
+          angular.forEach(res.data.search, function(item){
+            authors.push(item);
+          });
+          console.log(authors);
+          return authors;
+        });
+    };
   });
