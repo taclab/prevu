@@ -58,6 +58,25 @@
 	    <span class="value">{{stats.years}}</span>
 	  </div>           
 	</div>
+	<div class="row stat result">
+		<div class="col-md-2">
+			<h3>Langue</h3>
+			<span class="value-small">
+				<ul ng-repeat="langue in stats.langue">
+					<li>{{langue.langue}} : {{langue.count}}</li>
+				</ul>
+			</span>
+		</div>
+		<div class="col-md-2">
+			<h3>Pays</h3>
+			<span class="value-small">
+				<ul ng-repeat="pays in stats.pays">
+					<li>{{pays.pays}} : {{pays.count}}</li>
+				</ul>
+			</span>
+		</div>
+	</div>
+
 
 	<table class="table table-bordered table-striped table-condensed result" stupid-table>
 		<thead>

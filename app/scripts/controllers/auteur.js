@@ -22,7 +22,9 @@ angular.module('prevuApp')
               renewals : this.sum('renewals'),
               male : this.sum('Male'),
               female : this.sum('Female'),
-              years : this.mean('publicationyear').toFixed(2)
+              years : this.mean('publicationyear').toFixed(2),
+              pays : this.countBy('pays').toJSON(),
+              langue : this.countBy('langue').toJSON()
             };
           }
         });

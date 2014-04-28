@@ -90,3 +90,10 @@ input {
   font-size: 4em;
   color: #febd17;
 }
+
+.value-small {
+  font-size: 2em;
+  color: #febd17; 
+  text-align: left;
+
+}
