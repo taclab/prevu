@@ -5,11 +5,9 @@ angular.module('prevuApp')
 
     var getStats = function(data) {
       // Init Miso.DataSet
-      console.log(data.issues);
       var ds = new Miso.Dataset({data: data.issues});
       ds.fetch({
         success: function() {
-
           $scope.stats = {
             issues : this.length,
             sex : this.countBy('sex').toJSON(),
@@ -17,10 +15,7 @@ angular.module('prevuApp')
             niveau : this.countBy('Niveau').toJSON(),
             etape : this.countBy('Etape').toJSON(),
             description : this.countBy('description').toJSON()
-
           };
-		console.log($scope.stats);
-
         }
       });
     };

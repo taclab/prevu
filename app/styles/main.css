@@ -97,3 +97,25 @@ input {
   text-align: left;
 
 }
+
+/* VIS TIMELINE */
+
+.vis.timeline .item.E {
+  border-color: #dddddd;
+  background-color: #C44D58;
+}
+
+.vis.timeline .item.D {
+  border-color: #dddddd;
+  background-color: #556270;
+}
+
+.vis.timeline .item.L1, .vis.timeline .item.L2, .vis.timeline .item.L3 {
+  border-color: #dddddd;
+  background-color: #C7F464;
+}
+
+.vis.timeline .item.M1, .vis.timeline .item.M2, .vis.timeline .item.M3 {
+  border-color: #dddddd;
+  background-color: #4ECDC4;
+}

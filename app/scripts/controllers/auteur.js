@@ -5,6 +5,7 @@ angular.module('prevuApp')
 
     console.log($routeParams.search);
 
+
     var getStats = function(data) {
       // Init Miso.DataSet
       var ds = new Miso.Dataset({data: data.search});
