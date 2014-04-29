@@ -1,49 +1,144 @@
-<div class="row">
+<!-- <div class="row">
   <form role="form" class="col-md-6">
       <input type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" ng-change="search()">
   </form>
+</div> -->
+
+<div class="row">
+	<form name="searchForm" class="col-md-6 search-book">
+		<input name="searchBook" type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" typeahead="books as books.title  for books in suggestBooks($viewValue) | filter:{title:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultBookTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()">
+	</form>
+	<div class="col-md-6">		
+		<i ng-show="isLoading" class="glyphicon glyphicon-refresh"></i>
+	</div>
+	<p ng-show="searchForm.searchBook.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
 </div>
 
+<script type="text/ng-template" id="resultBookTemplate.html">
+  <a>
+    <span bind-html-unsafe="match.model.title | typeaheadHighlight:query"></span>
+  </a>
+</script>
 
-<table class="table table-bordered table-striped table-condensed result" stupid-table>
-	<thead>
-		<tr>
-			<th data-sort='int'>biblionumber</th>
-			<th data-sort='string'>timestamp</th>
-			<th data-sort='string'>issuedate</th>
-			<th data-sort='string'>returndate</th>
-			<th data-sort='string'>lastreneweddate</th>
-			<th data-sort='int'>renewals</th>
-			<th data-sort='int'>borrowernumber</th>
-			<th data-sort='int'>userid</th>
-			<th data-sort='string'>firstname</th>
-			<th data-sort='string'>surname</th>
-			<th data-sort='string'>sex</th>
-			<th data-sort='int'>barcode</th>
-			<th data-sort='string'>title</th>
-			<th data-sort='string'>description</th>
-			<th data-sort='string'>Ufr</th>
-			<th data-sort='string'>Niveau</th>
-			<th data-sort='string'>Etape</th>
+<div class="result" ng-show="stats">
+	<div class="row stat result">
+		<div class="col-md-2">
+			<h3>Sexe</h3>
+			<table class="table table-bordered table-striped table-condensed result" stupid-table>
+				<thead>
+					<tr>
+						<th data-sort='string'>sex</th>
+						<th data-sort='int'>count</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="sex in stats.sex">
+					<td>{{sex.sex}}</td>
+					<td>{{sex.count}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-2">
+			<h3>Niveau</h3>
+			<table class="table table-bordered table-striped table-condensed result" stupid-table>
+				<thead>
+					<tr>
+						<th data-sort='string'>Niveau</th>
+						<th data-sort='int'>count</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="niveau in stats.niveau">
+					<td>{{niveau.Niveau}}</td>
+					<td>{{niveau.count}}</td>
+				</tr>
+			</table>			
+		</div>
+		<div class="col-md-2">
+			<h3>UFR</h3>
+			<table class="table table-bordered table-striped table-condensed result" stupid-table>
+				<thead>
+					<tr>
+						<th data-sort='string'>Ufr</th>
+						<th data-sort='int'>count</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="ufr in stats.ufr">
+					<td>{{ufr.Ufr}}</td>
+					<td>{{ufr.count}}</td>
+				</tr>
+			</table>			
+		</div>
+		<div class="col-md-2">
+			<h3>Niveau</h3>
+			<table class="table table-bordered table-striped table-condensed result" stupid-table>
+				<thead>
+					<tr>
+						<th data-sort='string'>Etape</th>
+						<th data-sort='int'>count</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="etape in stats.etape">
+					<td>{{etape.Etape}}</td>
+					<td>{{etape.count}}</td>
+				</tr>
+			</table>			
+		</div>
+		<div class="col-md-2">
+			<h3>Description</h3>
+			<table class="table table-bordered table-striped table-condensed result" stupid-table>
+				<thead>
+					<tr>
+						<th data-sort='string'>description</th>
+						<th data-sort='int'>count</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="description in stats.description">
+					<td>{{description.description}}</td>
+					<td>{{description.count}}</td>
+				</tr>
+			</table>			
+		</div>		
+	</div>
+
+	<table class="table table-bordered table-striped table-condensed result" stupid-table>
+		<thead>
+			<tr>
+				<th data-sort='int'>biblionumber</th>
+				<th data-sort='string'>timestamp</th>
+				<th data-sort='string'>issuedate</th>
+				<th data-sort='string'>returndate</th>
+				<th data-sort='string'>lastreneweddate</th>
+				<th data-sort='int'>renewals</th>
+				<th data-sort='int'>borrowernumber</th>
+<!-- 				<th data-sort='int'>userid</th>
+				<th data-sort='string'>firstname</th>
+				<th data-sort='string'>surname</th> -->
+				<th data-sort='string'>sex</th>
+				<th data-sort='int'>barcode</th>
+				<th data-sort='string'>title</th>
+				<th data-sort='string'>description</th>
+				<th data-sort='string'>Ufr</th>
+				<th data-sort='string'>Niveau</th>
+				<th data-sort='string'>Etape</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="issue in issues">
+			<td>{{issue.biblionumber}}</td>
+			<td>{{issue.timestamp}}</td>
+			<td>{{issue.issuedate}}</td>
+			<td>{{issue.returndate}}</td>
+			<td>{{issue.lastreneweddate}}</td>
+			<td>{{issue.renewals}}</td>
+			<td>{{issue.borrowernumber}}</td>
+<!-- 			<td>{{issue.userid}}</td>
+			<td>{{issue.firstname}}</td>
+			<td>{{issue.surname}}</td> -->
+			<td>{{issue.sex}}</td>
+			<td>{{issue.barcode}}</td>
+			<td>{{issue.title}}</td>
+			<td>{{issue.description}}</td>
+			<td>{{issue.Ufr}}</td>
+			<td>{{issue.Niveau}}</td>
+			<td>{{issue.Etape}}</td>
 		</tr>
-	</thead>
-	<tr ng-repeat="issue in issues">
-		<td>{{issue.biblionumber}}</td>
-		<td>{{issue.timestamp}}</td>
-		<td>{{issue.issuedate}}</td>
-		<td>{{issue.returndate}}</td>
-		<td>{{issue.lastreneweddate}}</td>
-		<td>{{issue.renewals}}</td>
-		<td>{{issue.borrowernumber}}</td>
-		<td>{{issue.userid}}</td>
-		<td>{{issue.firstname}}</td>
-		<td>{{issue.surname}}</td>
-		<td>{{issue.sex}}</td>
-		<td>{{issue.barcode}}</td>
-		<td>{{issue.title}}</td>
-		<td>{{issue.description}}</td>
-		<td>{{issue.Ufr}}</td>
-		<td>{{issue.Niveau}}</td>
-		<td>{{issue.Etape}}</td>
-	</tr>
-</table>
+	</table>
+</div>

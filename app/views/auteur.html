@@ -1,6 +1,6 @@
 <div class="row">
 	<form name="searchForm" class="col-md-6 search-author">
-		<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in getLocation($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()">
+		<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in suggestAuthors($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()">
 	</form>
 	<div class="col-md-6">		
 		<i ng-show="isLoading" class="glyphicon glyphicon-refresh"></i>
@@ -84,6 +84,8 @@
 				<th data-sort='int' >biblionumber</th>
 				<th data-sort='string'>title</th>
 				<th data-sort='string'>author</th>
+				<th data-sort='string'>author_nom</th>
+				<th data-sort='string'>author_prenom</th>
 				<th data-sort='int'>publicationyear</th>
 				<th data-sort='string'>ccode</th>
 				<th data-sort='string'>isbn</th>
@@ -108,6 +110,8 @@
 			<td>{{book.biblionumber}}</td>
 			<td>{{book.title}}</td>
 			<td>{{book.author}}</td>
+			<td>{{book.author_nom}}</td>
+			<td>{{book.author_prenom}}</td>
 			<td>{{book.publicationyear}}</td>
 			<td>{{book.ccode}}</td>
 			<td>{{book.isbn}}</td>
