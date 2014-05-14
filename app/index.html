@@ -39,10 +39,14 @@
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="HeadernavCtrl">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/auteur">Auteur</a></li>
-              <li><a href="#/livre">Livre</a></li>
+              <li ng-class="{ active: isActive('/auteur')}">
+                <a href="#/auteur">Auteur</a>
+              </li>
+              <li ng-class="{ active: isActive('/livre')}">
+                <a href="#/livre">Livre</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -50,7 +54,11 @@
     </div>
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container" ng-view="">
+      <div class="spinner" ng-show="loading">
+        <img src="images/loader.gif">
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

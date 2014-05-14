@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('prevuApp')
-  .controller('HeadernavCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('HeadernavCtrl', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
     
   });

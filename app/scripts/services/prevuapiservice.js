@@ -30,6 +30,12 @@ angular.module('prevuApp')
       });
     };
     
+    prevuAPI.getTopBooks =  function() {
+      return $http({
+        url : 'http://localhost:8888/prevu/application/api/books/top/'
+      });
+    };
+
     return prevuAPI;
 
   });
