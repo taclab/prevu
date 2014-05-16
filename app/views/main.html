@@ -1,12 +1,14 @@
 
 <!-- ng-controller="MainCtrl" -->
-<div class="jumbotron" ng-controller="MainCtrl" >
+<div class="">
   <h1>Prevu - Prototype</h1>
-   <h5>{{ clock }}</h5>
-    <li ng-repeat="book in topBooks.books" >
-        <div>{{book.title}}</div>        
-    </li>
+  <ul class="row">
+    <li class="col-lg-4 col-md-4" ng-repeat="book in topBooks.books" >
+        <div>{{book.title}}</div> 
 
+        <img width="250px" src='{{book.LargeImage}}'>      
+    </li>
+  </ul>
 
 </div>
 
