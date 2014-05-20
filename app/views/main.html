@@ -1,14 +1,23 @@
 
 <!-- ng-controller="MainCtrl" -->
 <div class="">
-  <h1>Prevu - Prototype</h1>
-  <ul class="row">
-    <li class="col-lg-4 col-md-4" ng-repeat="book in topBooks.books" >
-        <div>{{book.title}}</div> 
+  <h1>Top des prêts</h1>
 
-        <img width="250px" src='{{book.LargeImage}}'>      
-    </li>
-  </ul>
+  <select ng-model="selecteds[name]">
+      <option ng-repeat="ccode in stats.ccode"  value="'{{ccode.ccode}}'">pick a {{ccode.ccode}}</option>
+  </select>
 
+  <div ng-repeat="topBooks in topBooksGroup" class="row">
+    <div class="col-lg-4 col-md-4" ng-repeat="book in topBooks | filter:{ccode: h}" >
+        <h4>{{book.top}} - {{book.title}}</h4>
+        <h6>{{book.author_nom}}, {{book.author_prenom}} - {{book.author_date}}</h6>
+        <img width="250px" src='{{book.LargeImage}}'>
+        <p>
+        	<span>Date de publication : {{book.publicationyear}}</span><br/>
+        	<span>Prêts : {{book.issues}}</span>
+        </p>
+        <br/><br/>  
+    </div>
+  </div>
 </div>
 
