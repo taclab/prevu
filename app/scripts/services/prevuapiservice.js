@@ -28,6 +28,12 @@ angular.module('prevuApp')
         url : prevuAPI_url+'api/issues/title/'+title
       });
     };
+
+    prevuAPI.searchIssuesByBiblionumber =  function(biblionumber) {
+      return $http({
+        url : prevuAPI_url+'api/issues/biblionumber/'+biblionumber
+      });
+    };
     
     prevuAPI.getTopBooks =  function() {
       return $http({
