@@ -19,13 +19,19 @@ angular.module('prevuApp')
 
     prevuAPI.searchBookByAuthor =  function(author) {
       return $http({
-        url : prevuAPI_url+'api/search/'+author
+        url : prevuAPI_url+'api/books/author/search/'+author
       });
     };
 
     prevuAPI.searchIssuesByTitle =  function(title) {
       return $http({
         url : prevuAPI_url+'api/issues/title/'+title
+      });
+    };
+
+    prevuAPI.searchIssuesByBiblionumber =  function(biblionumber) {
+      return $http({
+        url : prevuAPI_url+'api/issues/biblionumber/'+biblionumber
       });
     };
     

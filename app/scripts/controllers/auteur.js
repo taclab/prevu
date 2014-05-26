@@ -8,7 +8,7 @@ angular.module('prevuApp')
 
     var getStats = function(data) {
       // Init Miso.DataSet
-      var ds = new Miso.Dataset({data: data.search});
+      var ds = new Miso.Dataset({data: data});
       ds.fetch({
         success: function() {
           $scope.stats = {
@@ -30,8 +30,9 @@ angular.module('prevuApp')
     // Recherche des livres par auteur 
     $scope.search = function() {
       prevuAPIservice.searchBookByAuthor($scope.queryTerm.author_nom).success(function (response) {
-        $scope.books = response;
-        getStats(response);
+        console.log(response)
+        $scope.books = response.search;
+        getStats(response.search);
       });
     };
 

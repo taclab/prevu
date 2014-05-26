@@ -16,7 +16,9 @@
 
 <script type="text/ng-template" id="resultBookTemplate.html">
   <a>
-    <span bind-html-unsafe="match.model.title | typeaheadHighlight:query"></span>
+    <span bind-html-unsafe="match.model.title | typeaheadHighlight:query"></span> -
+   	<i class='resultDate' bind-html-unsafe="match.model.author_nom"></i> -
+	<i class='resultDate' bind-html-unsafe="match.model.publicationyear"></i>
   </a>
 </script>
 

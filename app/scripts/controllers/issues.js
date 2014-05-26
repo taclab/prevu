@@ -5,7 +5,7 @@ angular.module('prevuApp')
 
     var getStats = function(data) {
       // Init Miso.DataSet
-      var ds = new Miso.Dataset({data: data.issues});
+      var ds = new Miso.Dataset({data: data});
       ds.fetch({
         success: function() {
           $scope.stats = {
@@ -14,7 +14,7 @@ angular.module('prevuApp')
             ufr : this.countBy('Ufr').toJSON(),
             niveau : this.countBy('Niveau').toJSON(),
             etape : this.countBy('Etape').toJSON(),
-            description : this.countBy('description').toJSON()
+            description : this.countBy('categorycode').toJSON()
           };
         }
       });
@@ -22,8 +22,13 @@ angular.module('prevuApp')
 
 
     $scope.search = function() {
-      prevuAPIservice.searchIssuesByTitle($scope.queryTerm.title).success(function (response) {
-        $scope.issues = response.issues;
+      // prevuAPIservice.searchIssuesByTitle($scope.queryTerm.title).success(function (response) {
+      //   $scope.issues = response.issues;
+      //   getStats(response);
+      // });
+      prevuAPIservice.searchIssuesByBiblionumber($scope.queryTerm.biblionumber).success(function (response) {
+        console.log(response);
+        $scope.issues = response;
         getStats(response);
       });
     };
