@@ -20,6 +20,7 @@ angular.module('prevuApp')
             counter++
         });
         $scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);
+        //$scope.topBooks = responseBook.books;
 
         // GET STATS
         var ds = new Miso.Dataset({data: responseBook.books});
