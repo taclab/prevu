@@ -16,15 +16,13 @@ angular
       })
       .when('/auteur', {
         templateUrl: 'views/auteur.html',
-        controller: 'AuteurCtrl'
-      })
-      .when('/auteur/:search', {
-        templateUrl: 'views/auteur.html',
-        controller: 'AuteurCtrl'
+        controller: 'AuteurCtrl',
+        reloadOnSearch: false
       })
       .when('/livre', {
         templateUrl: 'views/issues.html',
-        controller: 'IssuesCtrl'
+        controller: 'IssuesCtrl',
+        reloadOnSearch: false
       })
       .otherwise({
         redirectTo: '/'

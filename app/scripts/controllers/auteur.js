@@ -1,9 +1,18 @@
 'use strict';
 
 angular.module('prevuApp')
-  .controller('AuteurCtrl', function ($scope, $routeParams, $http, Books, prevuAPIservice) {
+  .controller('AuteurCtrl', function ($scope, $routeParams, $location, $http, Books, prevuAPIservice) {
 
-    console.log($routeParams.search);
+    // Si parametre URL
+    var authorUrl = $location.search();
+    if (authorUrl.nom) {
+      prevuAPIservice.getBookByAuthor({author_nom : authorUrl.nom, author_prenom : authorUrl.prenom}).success(function (response) {
+        // Recupération des livres
+        $scope.books = response.search;
+        // Génération des stats
+        getStats(response.search);
+      });
+    }
 
 
     var getStats = function(data) {
@@ -29,10 +38,15 @@ angular.module('prevuApp')
 
     // Recherche des livres par auteur 
     $scope.search = function() {
+      console.log($scope.queryTerm);
       prevuAPIservice.getBookByAuthor($scope.queryTerm).success(function (response) {
-        console.log(response);
+        // Recupération des livres
         $scope.books = response.search;
+        // Génération des stats
         getStats(response.search);
+        // Modification de l'url
+        $location.search('nom', $scope.queryTerm.author_nom);
+        $location.search('prenom', $scope.queryTerm.author_prenom);
       });
     };
 
