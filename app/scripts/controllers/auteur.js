@@ -29,8 +29,8 @@ angular.module('prevuApp')
 
     // Recherche des livres par auteur 
     $scope.search = function() {
-      prevuAPIservice.searchBookByAuthor($scope.queryTerm.author_nom).success(function (response) {
-        console.log(response)
+      prevuAPIservice.getBookByAuthor($scope.queryTerm).success(function (response) {
+        console.log(response);
         $scope.books = response.search;
         getStats(response.search);
       });

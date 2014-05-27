@@ -22,6 +22,20 @@ angular.module('prevuApp')
         url : prevuAPI_url+'api/books/author/search/'+author
       });
     };
+    prevuAPI.getBookByAuthor =  function(author) {
+      // return $http({
+      //   method : 'POST',
+      //   url : prevuAPI_url+'api/books/author',
+      //   headers: {'Content-Type': 'application/json'},
+      //   data : JSON.stringify(author)
+      // });
+        return $http({
+          method : 'POST',
+          url : prevuAPI_url+'api/books/author',
+          headers: {'Content-Type': 'application/json'},
+          data : author
+        });
+    };
 
     prevuAPI.searchIssuesByTitle =  function(title) {
       return $http({
