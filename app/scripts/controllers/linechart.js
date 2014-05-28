@@ -25,7 +25,5 @@ angular.module('prevuApp').controller('LinechartCtrl', function($scope) {
       return d3.format(',d')(d);
     }
   }
-  $scope.$watch('svg', function() {
-    alert('hey, myVar has changed!');
-  });
+
 });

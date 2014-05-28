@@ -25,4 +25,5 @@ angular.module('prevuApp').controller('LinefocuschartCtrl', function($scope) {
       return d3.format(',d')(d);
     }
   }
+
 });

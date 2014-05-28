@@ -1,1 +1,20 @@
-<!-- ng-controller="MainCtrl" --><div class=""><div><nvd3-line-chart data="exampleData" id="exampleId" xaxistickformat="xAxisTickFormatFunction()" yaxistickformat="yAxisTickFormatFunction()" width="550" height="350" showxaxis="true" showyaxis="true"><svg></svg></nvd3-line-chart></div><h1>Top des prêts</h1>Filtrer par discipline :<select ng-model="selecteds"><option ng-repeat="ccode in stats.ccode" value="{{ccode.ccode}}">{{ccode.ccode}}</select><div ng-repeat="topBooks in topBooksGroup" class="row"><div class="col-lg-4 col-md-4" ng-repeat="book in topBooks | filter:{ccode: selecteds}"><h4>{{book.top}} - {{book.title}}</h4><h6>{{book.author_nom}}, {{book.author_prenom}} - {{book.author_date}}</h6><img width="250px" src="{{book.LargeImage}}"><p><span>Date de publication : {{book.publicationyear}}</span><br><span>Prêts : {{book.issues}}</span><br><span>ccode : {{book.ccode}}</span></p><br><br></div></div></div>
+<!-- ng-controller="MainCtrl" --><div class=""><!--   <div ng-controller="LinechartCtrl">
+    <nvd3-line-chart
+        data="statsIssuesYearsAll"
+          id="exampleId"
+          xAxisTickFormat="xAxisTickFormatFunction()"
+          yAxisTickFormat="yAxisTickFormatFunction()"
+          width="900"
+          height="650"
+          y="yFunction()"
+          x="xFunction()"
+          showXAxis="true"
+          showYAxis="true"
+          interactive="true"
+          tooltips="true"
+          useInteractiveGuideLine="true"
+          forcey="[0,1700]">
+
+            <svg></svg>
+      </nvd3-line-chart>
+  </div> --><h2>Historique des prêts</h2><h3>Par Mois</h3><div ng-controller="DiscretebarchartCtrl"><nvd3-discrete-bar-chart data="statsIssuesAllByMonth" id="yExample" margin="{left:80,top:50,bottom:30,right:50}" showxaxis="true" showyaxis="true" showvalues="true" staggerlabels="true" height="300" tooltips="true" y="yFunction()" x="xFunction()" yaxistickformat="yAxisTickFormatFunction()" forcey="[2000,20000]" useinteractiveguideline="true"><svg></svg></nvd3-discrete-bar-chart></div><h3>Par jour</h3><div ng-controller="LinefocuschartCtrl"><nvd3-line-with-focus-chart data="statsIssuesAllByDay" id="" height="400" height2="50" y="yFunction()" x="xFunction()" margin="{left:80,top:50,bottom:30,right:50}" yaxistickformat="yAxisTickFormatFunction()" xaxistickformat="xAxisTickFormatFunction()" x2axistickformat="xAxisTickFormatFunction()" forcey="[0,1700]" interactive="true" tooltips="true" useinteractiveguideline="true"><svg></svg></nvd3-line-with-focus-chart></div><hr><h2>Top des prêts</h2>Filtrer par discipline :<select ng-model="selecteds"><option ng-repeat="ccode in stats.ccode" value="{{ccode.ccode}}">{{ccode.ccode}}</select><div ng-repeat="topBooks in topBooksGroup" class="row"><div class="col-lg-4 col-md-4" ng-repeat="book in topBooks | filter:{ccode: selecteds}"><h4>{{book.top}} - {{book.title}}</h4><h6>{{book.author_nom}}, {{book.author_prenom}} - {{book.author_date}}</h6><img width="250px" src="{{book.LargeImage}}"><p><span>Date de publication : {{book.publicationyear}}</span><br><span>Prêts : {{book.issues}}</span><br><span>ccode : {{book.ccode}}</span></p><br><br></div></div></div>
