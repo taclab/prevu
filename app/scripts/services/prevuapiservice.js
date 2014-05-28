@@ -54,5 +54,15 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
       url: prevuAPI_url + 'api/book/cover/' + id
     });
   };
+  prevuAPI.getStatsIssuesAllByMonth = function() {
+    return $http({
+      url: prevuAPI_url + 'api/stats/issues/years/month'
+    });
+  };
+  prevuAPI.getStatsIssuesAllByDay = function() {
+    return $http({
+      url: prevuAPI_url + 'api/stats/issues/years/day'
+    });
+  };
   return prevuAPI;
 });

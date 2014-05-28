@@ -4,7 +4,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   // GET TOP BOOKS
   prevuAPIservice.getTopBooks().success(function(responseBook) {
     var counter = 1; // Counter pour le top
-
     // Ajout des metas données Amazon ResponseBook
     angular.forEach(responseBook.books, function(book) {
       book.top = counter;
@@ -60,4 +59,58 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   //   });
   // };
   //topBooks();
+
+
+  prevuAPIservice.getStatsIssuesAllByMonth().success(function(response) {
+    console.log(response);
+    $scope.statsIssuesAllByMonth = [{
+    key: "Prêts",
+    values : response.stats
+    }]
+  });
+
+  prevuAPIservice.getStatsIssuesAllByDay().success(function(response) {
+    console.log(response);
+    $scope.statsIssuesAllByDay = [{
+    key: "Prêts",
+    values : response.stats
+    }]
+  });
+
+
+
+ $scope.exampleData2 = [{
+    key: "Cumulative Return",
+    values: [{
+      "label": "A Label",
+      "value": -29.765957771107
+    }, {
+      "label": "B Label",
+      "value": 0
+    }, {
+      "label": "C Label",
+      "value": 32.807804682612
+    }, {
+      "label": "D Label",
+      "value": 196.45946739256
+    }, {
+      "label": "E Label",
+      "value": 0.19434030906893
+    }, {
+      "label": "F Label",
+      "value": -98.079782601442
+    }, {
+      "label": "G Label",
+      "value": -13.925743130903
+    }, {
+      "label": "H Label",
+      "value": -5.1387322875705
+    }]
+  }]
+
+
+
+
+  
+
 });
