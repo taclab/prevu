@@ -35,6 +35,60 @@
 
 
 	<div class="row stat result">
+
+		<div ng-controller="PiechartCtrl">
+			<nvd3-pie-chart
+				data="stats.sex"
+			    id="pieSex"
+				margin="{left:0,top:10,bottom:0,right:0}"
+			    x="xFunction()"
+			    y="yFunction()"
+			    width="340"
+			    tooltips="true"
+			    showValues="true"
+			    showLabels="true"
+			    donut="true"
+			    donutLabelsOutside="true">
+			    <svg></svg>
+			</nvd3-pie-chart>
+		</div>
+
+		<div ng-controller="MultibarhorizchartCtrl">
+			<nvd3-multi-bar-horizontal-chart
+		    	data="statsIssueUfr"
+		        id="ufrBarChart"
+		        width="550"
+		        height="300"
+		        x="xFunction()"
+			    y="yFunction()"
+		        xAxisTickFormat="xAxisTickFormatFunction()"
+		        yAxisTickFormat="yAxisTickFormatFunction()"
+		        showValues="true">
+		        	<svg></svg>
+		    </nvd3-multi-bar-horizontal-chart>
+		</div>
+
+<div ng-controller="DiscretebarchartCtrl">
+    <nvd3-discrete-bar-chart 
+          data="statsIssueUfr"
+          id="yExample"
+          margin="{left:80,top:30,bottom:30,right:50}"
+          showXAxis="true"
+          showYAxis="true"
+          showValues="true"
+          staggerLabels="true"
+          height="300"
+          tooltips="true"
+          y="yFunctionUfr()"
+          x="xFunctionUfr()"
+          yAxisTickFormat="yAxisTickFormatFunction()"
+          useInteractiveGuideLine="true">
+            <svg ></svg>
+    </nvd3-discrete-bar-chart>
+</div>
+
+
+
 		<div class="col-md-2">
 			<h3>Sexe</h3>
 			<table class="table table-bordered table-striped table-condensed result" stupid-table>

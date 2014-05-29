@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('prevuApp')
-  .controller('PiechartCtrl', function ($scope) {
+  .controller('MultibarhorizchartCtrl', function ($scope) {
+
   $scope.xFunction = function() {
     return function(d) {
-      return d.sex;
+      return d._id;
     };
   }
   $scope.yFunction = function(t) {
@@ -12,4 +13,9 @@ angular.module('prevuApp')
       return d.count;
     };
   }
- });
+   $scope.yAxisTickFormatFunction = function() {
+    return function(d) {
+      return d.ufr;
+    }
+  }
+});

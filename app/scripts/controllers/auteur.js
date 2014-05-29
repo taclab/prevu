@@ -34,8 +34,8 @@ angular.module('prevuApp')
           };
 
           $scope.sexPie = [
-            { label : "Femme", y : $scope.stats.female }, 
-            { label : "Homme", y : $scope.stats.male }  
+            { sex : "Femme", count : $scope.stats.female }, 
+            { sex : "Homme", count : $scope.stats.male }  
           ]
           // $scope.paysPie = [
           //   {pays : 'fr', count : 5},

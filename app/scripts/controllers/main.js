@@ -62,7 +62,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
 
 
   prevuAPIservice.getStatsIssuesAllByMonth().success(function(response) {
-    console.log(response);
     $scope.statsIssuesAllByMonth = [{
     key: "Prêts",
     values : response.stats
@@ -70,7 +69,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   });
 
   prevuAPIservice.getStatsIssuesAllByDay().success(function(response) {
-    console.log(response);
     $scope.statsIssuesAllByDay = [{
     key: "Prêts",
     values : response.stats

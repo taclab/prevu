@@ -22,9 +22,30 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
           etape: this.countBy('Etape').toJSON(),
           description: this.countBy('categorycode').toJSON()
         };
+
+
+        $scope.statsIssueUfr = [{
+          key: "Ufr",
+          values : $scope.stats.ufr
+        }]
+        console.log($scope.statsIssueUfr);
+
       }
     });
   };
+
+ $scope.exampleData = [
+                {
+                    "key": "Series 1",
+                    "values": [ [ 1025409600000 , 0] , [ 1028088000000 , -6.3382185140371] , [ 1030766400000 , -5.9507873460847] , [ 1033358400000 , -11.569146943813] , [ 1036040400000 , -5.4767332317425] , [ 1038632400000 , 0.50794682203014] , [ 1041310800000 , -5.5310285460542] , [ 1043989200000 , -5.7838296963382] , [ 1046408400000 , -7.3249341615649] , [ 1049086800000 , -6.7078630712489] , [ 1051675200000 , 0.44227126150934] , [ 1054353600000 , 7.2481659343222] , [ 1056945600000 , 9.2512381306992] ]
+                }
+            ];
+
+
+
+  console.log($scope.exampleData);
+
+
 
   $scope.search = function() {
     prevuAPIservice.searchIssuesByBiblionumber($scope.queryTerm.biblionumber).success(function(response) {
