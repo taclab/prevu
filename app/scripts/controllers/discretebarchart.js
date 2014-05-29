@@ -20,6 +20,16 @@ angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
       return d3.round(d.count);
     };
   }
+  $scope.xFunctionNiveau = function() {
+    return function(d) {
+      return d.Niveau;
+    };
+  }
+  $scope.yFunctionNiveau = function(t) {
+    return function(d) {
+      return d3.round(d.count);
+    };
+  }  
   $scope.yAxisTickFormatFunction = function() {
     return function(d) {
       var fmt = d3.format('r0');

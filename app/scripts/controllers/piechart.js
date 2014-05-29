@@ -7,6 +7,12 @@ angular.module('prevuApp')
       return d.sex;
     };
   }
+  $scope.xFunctionCatCode = function() {
+    return function(d) {
+      return d.categorycode;
+    };
+  }
+
   $scope.yFunction = function(t) {
     return function(d) {
       return d.count;

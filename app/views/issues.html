@@ -28,15 +28,42 @@
 
 <div class="result" ng-show="stats">
 
-	<div class="profil">
+	<div class="profil statAuthor">
 		<span>{{queryTerm.author_nom}} - {{queryTerm.author_prenom}}</span></br>
 		<span>{{queryTerm.publicationyear}}</span>
 	</div>
 
 
 	<div class="row stat result">
+		<div class="col-md-2">
+			<h3>Nombre d'emprunt</h3>
+			<span class="value">{{stats.issues}}</span>
+		</div>
+		<div class="col-md-2">
+			<h3>Nombre de renouvelement</h3>
+			<span class="value">{{stats.renewals}}</span>
+		</div>
+		<div ng-controller="PiechartCtrl" class="col-md-4">
+			<h3>Type de prêts</h3>
 
-		<div ng-controller="PiechartCtrl">
+			<nvd3-pie-chart
+				data="stats.description"
+			    id="pieCateogrycode"
+				margin="{left:0,top:10,bottom:0,right:0}"
+			    x="xFunctionCatCode()"
+			    y="yFunction()"
+			    width="340"
+			    tooltips="true"
+			    showValues="true"
+			    showLabels="true"
+			    donut="true"
+			    donutLabelsOutside="true">
+			    <svg></svg>
+			</nvd3-pie-chart>
+		</div>
+		<div ng-controller="PiechartCtrl" class="col-md-4">
+			<h3>Sexe</h3>
+
 			<nvd3-pie-chart
 				data="stats.sex"
 			    id="pieSex"
@@ -52,7 +79,7 @@
 			    <svg></svg>
 			</nvd3-pie-chart>
 		</div>
-
+<!-- 
 		<div ng-controller="MultibarhorizchartCtrl">
 			<nvd3-multi-bar-horizontal-chart
 		    	data="statsIssueUfr"
@@ -66,30 +93,48 @@
 		        showValues="true">
 		        	<svg></svg>
 		    </nvd3-multi-bar-horizontal-chart>
-		</div>
+		</div> -->
+	<div ng-controller="DiscretebarchartCtrl" class="col-md-6">
+		<h3>UFR</h3>
+	    <nvd3-discrete-bar-chart 
+	          data="statsIssueUfr"
+	          id="statsIssueUfr"
+	          margin="{left:80,top:30,bottom:30,right:50}"
+	          showXAxis="true"
+	          showYAxis="true"
+	          showValues="true"
+	          staggerLabels="true"
+	          height="300"
+	          tooltips="true"
+	          y="yFunctionUfr()"
+	          x="xFunctionUfr()"
+	          yAxisTickFormat="yAxisTickFormatFunction()"
+	          useInteractiveGuideLine="true">
+	            <svg ></svg>
+	    </nvd3-discrete-bar-chart>
+	</div>
+	<div ng-controller="DiscretebarchartCtrl" class="col-md-6">
+		<h3>Niveau</h3>
+	    <nvd3-discrete-bar-chart 
+	          data="statsIssueNiveau"
+	          id="statsIssueNiveau"
+	          margin="{left:80,top:30,bottom:30,right:50}"
+	          showXAxis="true"
+	          showYAxis="true"
+	          showValues="true"
+	          staggerLabels="true"
+	          height="300"
+	          tooltips="true"
+	          y="yFunctionNiveau()"
+	          x="xFunctionNiveau()"
+	          yAxisTickFormat="yAxisTickFormatFunction()"
+	          useInteractiveGuideLine="true">
+	            <svg ></svg>
+	    </nvd3-discrete-bar-chart>
+	</div>
 
-<div ng-controller="DiscretebarchartCtrl">
-    <nvd3-discrete-bar-chart 
-          data="statsIssueUfr"
-          id="yExample"
-          margin="{left:80,top:30,bottom:30,right:50}"
-          showXAxis="true"
-          showYAxis="true"
-          showValues="true"
-          staggerLabels="true"
-          height="300"
-          tooltips="true"
-          y="yFunctionUfr()"
-          x="xFunctionUfr()"
-          yAxisTickFormat="yAxisTickFormatFunction()"
-          useInteractiveGuideLine="true">
-            <svg ></svg>
-    </nvd3-discrete-bar-chart>
-</div>
 
-
-
-		<div class="col-md-2">
+<!-- 		<div class="col-md-2">
 			<h3>Sexe</h3>
 			<table class="table table-bordered table-striped table-condensed result" stupid-table>
 				<thead>
@@ -103,8 +148,8 @@
 					<td>{{sex.count}}</td>
 				</tr>
 			</table>
-		</div>
-		<div class="col-md-2">
+		</div> -->
+<!-- 		<div class="col-md-2">
 			<h3>Niveau</h3>
 			<table class="table table-bordered table-striped table-condensed result" stupid-table>
 				<thead>
@@ -133,10 +178,13 @@
 					<td>{{ufr.count}}</td>
 				</tr>
 			</table>			
-		</div>
-		<div class="col-md-2">
-			<h3>Niveau</h3>
-			<table class="table table-bordered table-striped table-condensed result" stupid-table>
+		</div> -->
+		<div class="col-md-12">
+			<h3>Etape</h3>
+			<div >
+					<span ng-repeat="etape in stats.etape">{{etape.Etape}} ({{etape.count}}) | </span>
+			</div>
+<!-- 			<table class="table table-bordered table-striped table-condensed result" stupid-table>
 				<thead>
 					<tr>
 						<th data-sort='string'>Etape</th>
@@ -147,23 +195,9 @@
 					<td>{{etape.Etape}}</td>
 					<td>{{etape.count}}</td>
 				</tr>
-			</table>			
+			</table> -->			
 		</div>
-		<div class="col-md-2">
-			<h3>Description</h3>
-			<table class="table table-bordered table-striped table-condensed result" stupid-table>
-				<thead>
-					<tr>
-						<th data-sort='string'>description</th>
-						<th data-sort='int'>count</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="description in stats.description">
-					<td>{{description.description}}</td>
-					<td>{{description.count}}</td>
-				</tr>
-			</table>			
-		</div>		
+	
 	</div>
 	<div class="row result">
 		<h3>Prêt historique</h3>

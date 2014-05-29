@@ -16,19 +16,24 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
       success: function() {
         $scope.stats = {
           issues: this.length,
+          renewals : this.sum('renewals'),
           sex: this.countBy('sex').toJSON(),
           ufr: this.countBy('Ufr').toJSON(),
           niveau: this.countBy('Niveau').toJSON(),
           etape: this.countBy('Etape').toJSON(),
           description: this.countBy('categorycode').toJSON()
         };
-
+        console.log(this.countBy('categorycode').toJSON())
 
         $scope.statsIssueUfr = [{
           key: "Ufr",
           values : $scope.stats.ufr
         }]
-        console.log($scope.statsIssueUfr);
+        
+        $scope.statsIssueNiveau = [{
+          key: "Niveau",
+          values : $scope.stats.niveau
+        }]
 
       }
     });
