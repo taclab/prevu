@@ -14,7 +14,7 @@ angular.module('prevuApp')
       });
     }
 
-
+    // Recupération des stats
     var getStats = function(data) {
       // Init Miso.DataSet
       var ds = new Miso.Dataset({data: data});
@@ -32,6 +32,18 @@ angular.module('prevuApp')
             pays : this.countBy('pays').toJSON(),
             langue : this.countBy('langue').toJSON()
           };
+
+          $scope.sexPie = [
+            { label : "Femme", y : $scope.stats.female }, 
+            { label : "Homme", y : $scope.stats.male }  
+          ]
+          // $scope.paysPie = [
+          //   {pays : 'fr', count : 5},
+          //   {pays : 'en', count : 5}
+          // ]
+          // $scope.langue = $scope.stats.langue;
+          // console.log($scope.stats.langue);
+
         }
       });
     };
@@ -61,4 +73,15 @@ angular.module('prevuApp')
           return authors;
         });
     };
+
+  $scope.exampleData = [
+       { key: "One", y: 5 },
+          { key: "Two", y: 2 },
+          { key: "Three", y: 9 },
+          { key: "Four", y: 7 },
+          { key: "Five", y: 4 },
+          { key: "Six", y: 3 },
+          { key: "Seven", y: 9 }
+      ];
+
   });

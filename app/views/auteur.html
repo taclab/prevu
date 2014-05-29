@@ -22,6 +22,8 @@
 		<div class="col-md-6">{{queryTerm.author_prenom}}</div>
 		<div class="col-md-6">{{queryTerm.author_date}}</div>		
 	</div>
+
+
 	<div  class="row stat result">
 	  <div class="col-md-2">
 	    <h3>Documents</h3>
@@ -59,6 +61,63 @@
 	  </div>           
 	</div>
 	<div class="row stat result">
+		<div class="col-md-4">
+			<h3>Sexe</h3>
+			<div ng-controller="PiechartCtrl">
+				<nvd3-pie-chart
+					data="sexPie"
+				    id="exampleId"
+					margin="{left:0,top:10,bottom:0,right:0}"
+				    x="xFunction()"
+				    y="yFunction()"
+				    width="340"
+				    tooltips="true"
+				    showValues="true"
+				    showLabels="true"
+				    donut="true"
+				    donutLabelsOutside="true">
+				    <svg></svg>
+				</nvd3-pie-chart>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<h3>Langue</h3>
+			<div ng-controller="PiechartlangueCtrl">
+				<nvd3-pie-chart
+					data="stats.langue"
+				    id="langue"
+				    margin="{left:0,top:10,bottom:0,right:0}"
+				    x="xFunction()"
+				    y="yFunction()"
+				    width="340"
+				    tooltips="true"
+				    showValues="true"
+				    showLabels="true"
+				    donut="true"
+				    donutLabelsOutside="true">
+				    <svg></svg>
+				</nvd3-pie-chart>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<h3>Pays</h3>
+			<div ng-controller="PiechartpaysCtrl">
+				<nvd3-pie-chart
+					data="stats.pays"
+				    id="pays"
+				    margin="{left:0,top:10,bottom:0,right:0}"
+				    x="xFunction()"
+				    y="yFunction()"
+				    width="340"
+				    tooltips="true"
+				    showValues="true"
+				    showLabels="true"
+				    donut="true"
+				    donutLabelsOutside="true">
+				    <svg></svg>
+				</nvd3-pie-chart>
+			</div>
+		</div>		
 		<div class="col-md-2">
 			<h3>Langue</h3>
 			<span class="value-small">
@@ -66,6 +125,7 @@
 					<li>{{langue.langue}} : {{langue.count}}</li>
 				</ul>
 			</span>
+
 		</div>
 		<div class="col-md-2">
 			<h3>Pays</h3>
