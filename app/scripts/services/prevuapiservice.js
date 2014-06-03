@@ -2,6 +2,11 @@
 angular.module('prevuApp').factory('prevuAPIservice', function($http) {
   var prevuAPI = {};
   var prevuAPI_url = 'http://localhost:8888/prevu/application/';
+  prevuAPI.getBookByBiblionumber = function(biblionumber) {
+    return $http({
+      url: prevuAPI_url + 'api//book/' + biblionumber
+    });
+  };
   prevuAPI.searchAuthor = function(author) {
     return $http({
       url: prevuAPI_url + 'api/author/search/' + author
@@ -18,12 +23,6 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
     });
   };
   prevuAPI.getBookByAuthor = function(author) {
-    // return $http({
-    //   method : 'POST',
-    //   url : prevuAPI_url+'api/books/author',
-    //   headers: {'Content-Type': 'application/json'},
-    //   data : JSON.stringify(author)
-    // });
     return $http({
       method: 'POST',
       url: prevuAPI_url + 'api/books/author',
@@ -49,6 +48,11 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
     });
   };
   // GET COVER IMAGE
+  prevuAPI.getCoverBookAmazon = function(biblionumber) {
+    return $http({
+      url: prevuAPI_url + 'api/amazon/getCover.php?biblionumber=' + biblionumber
+    });
+  };
   prevuAPI.getCoverBook = function(id) {
     return $http({
       url: prevuAPI_url + 'api/book/cover/' + id

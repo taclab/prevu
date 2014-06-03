@@ -119,3 +119,58 @@ input {
   border-color: #dddddd;
   background-color: #4ECDC4;
 }
+
+
+/* ISSUES PAGES */
+
+body {
+  background-color: #f7f7f7;
+}
+
+.headBibli {
+/*  border: 1px solid black;
+*/  margin: 10px 0px;
+/*  background-color: white;
+*/}
+
+.headBibli h2 {
+  color: #febd17;
+  font-weight: 100;
+  font-size: 4em;
+}
+.headBibli h2 span {
+  color: #a9a9a9;
+  font-weight: 100;
+  font-size: 0.6em;
+
+}
+.headBibli h4 {
+  font-weight: 200;
+  font-size: 2em;
+}
+
+.infoBibli {
+  border: 1px solid #dfe1e8;
+  background-color: white;
+  margin: 15px 0px;
+  padding: 10px 0px;
+  font-size: 1.3em;
+
+}
+
+.statsBibli {
+  border: 1px solid #dfe1e8;
+  margin: 15px 0px;
+  background-color: white;
+
+}
+
+.timelineWarp {
+  padding: 20px 15px;
+
+}
+
+.cartouche {
+  border: 1px solid #dfe1e8;
+  background-color: white;
+}
