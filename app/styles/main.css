@@ -4,7 +4,12 @@ body {
   padding-bottom: 20px;
   font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
 }
-
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+}
+svg text {
+    font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+}
 /*Input Auteur*/
 
 input {
@@ -127,6 +132,8 @@ body {
   background-color: #f7f7f7;
 }
 
+
+
 .headBibli {
 /*  border: 1px solid black;
 */  margin: 10px 0px;
@@ -137,6 +144,7 @@ body {
   color: #febd17;
   font-weight: 100;
   font-size: 4em;
+  margin-top :0px;
 }
 .headBibli h2 span {
   color: #a9a9a9;
@@ -166,11 +174,23 @@ body {
 }
 
 .timelineWarp {
-  padding: 20px 15px;
+  padding: 0px 15px 20px 15px;
+}
 
+.timelineWarp .itemInfos {
+  font-size: 1.1em;
+  padding: 10px 0px 0px 0px;
+}
+
+
+.vis.timeline .item.selected {
+border-color: black;
+opacity: 0.5;
+z-index: 999;
 }
 
 .cartouche {
   border: 1px solid #dfe1e8;
   background-color: white;
+  margin-bottom: 15px;
 }

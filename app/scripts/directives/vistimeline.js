@@ -36,9 +36,14 @@ angular.module('prevuApp').directive('visTimeline', function() {
           angular.forEach(issues, function(item) {
             items.add({
               id: number++,
-              content: item.Niveau + ' ' + item.sex,
+              content: item.Niveau,
+              niveau : item.Niveau,
+              sex : item.sex,
               start: new Date(item.issuedate),
+              startDate : item.issuedate,
               end: new Date(item.returndate),
+              endDate : item.returndate,
+              ufr : item.Ufr,              
               className: item.Niveau,
               group: item.itemnumber
             });
@@ -55,10 +60,28 @@ angular.module('prevuApp').directive('visTimeline', function() {
             align: 'center',
             zoomMin: 1000 * 60 * 60 * 144
           };
+
+
           var timeline = new vis.Timeline(container);
           timeline.setOptions(options);
           timeline.setGroups(groups);
           timeline.setItems(items);
+
+          timeline.on('select', function (properties) {
+            console.log(properties.items[0]);
+            console.log(items.data[properties.items[0]]);
+            // var dateStartD = new Date(items.data[properties.items[0]].start);
+            // var dateStartF = dateStartD.toDateString();
+            // var dateEndD = new Date(items.data[properties.items[0]].end);
+            // var dateF = dateStartD.toDateString()
+            // console.log(dateStartF);
+            $('.itemInfos .niveau').html('<strong>Niveau : </strong>'+items.data[properties.items[0]].niveau);
+            $('.itemInfos .sex').html('<strong>Sex : </strong>'+items.data[properties.items[0]].sex);
+            $('.itemInfos .ufr').html('<strong>Ufr : </strong>'+items.data[properties.items[0]].ufr);
+            $('.itemInfos .dateStart').html('<strong>Date de début : </strong>'+items.data[properties.items[0]].startDate);
+            $('.itemInfos .dateEnd').html('<strong>Date de fin : </strong>'+items.data[properties.items[0]].endDate);
+
+          });
         }
       });
     }

@@ -3,6 +3,7 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
 
   /*== GET STATS ==*/
   var getStats = function(data) {
+    console.log(data);
     // Init Miso.DataSet
     var ds = new Miso.Dataset({
       data: data

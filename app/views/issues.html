@@ -107,6 +107,10 @@
 			    <svg></svg>
 			</nvd3-pie-chart>
 		</div>
+		<div class="col-md-4 cartouche">
+		<h3>Moyenne d'âge des lecteurs</h3>
+				<span class="value">{{stats.dateofbirth}}</span>		
+		</div>
 	</div>	
 <!-- 
 		<div ng-controller="MultibarhorizchartCtrl">
@@ -208,6 +212,20 @@
 				</tr>
 			</table>			
 		</div> -->
+
+	
+	</div>
+	<div class="row result cartouche timelineWarp text-center">
+		<h3>Historique des prêts</h3>		{{itemsTimeline.id}}
+		<div id="visualization" vis-timeline value="issues"></div>
+		<div class="itemInfos">
+			<span class="dateStart"></span>
+			<span class="dateEnd"></span>
+			<span class="niveau"></span>
+			<span class="ufr"></span>
+			<span class="sex"></span>
+		</div>
+	</div>
 		<div class="col-md-12">
 			<h3>Etape</h3>
 			<div >
@@ -226,13 +244,9 @@
 				</tr>
 			</table> -->			
 		</div>
+
 	
-	</div>
-	<div class="row result cartouche timelineWarp">
-		<h3>Historique des prêts</h3>
-		<div id="visualization" vis-timeline value="issues"></div>
-	</div>
-	<h3>Liste des prêts</h3>
+<!-- 	<h3>Liste des prêts</h3>
 	<table class="table table-bordered table-striped table-condensed result" stupid-table>
 		<thead>
 			<tr>
@@ -243,9 +257,6 @@
 				<th data-sort='string'>lastreneweddate</th>
 				<th data-sort='int'>renewals</th>
 				<th data-sort='int'>borrowernumber</th>
-<!-- 				<th data-sort='int'>userid</th>
-				<th data-sort='string'>firstname</th>
-				<th data-sort='string'>surname</th> -->
 				<th data-sort='string'>sex</th>
 				<th data-sort='int'>barcode</th>
 				<th data-sort='string'>title</th>
@@ -263,9 +274,6 @@
 			<td>{{issue.lastreneweddate}}</td>
 			<td>{{issue.renewals}}</td>
 			<td>{{issue.borrowernumber}}</td>
-<!-- 			<td>{{issue.userid}}</td>
-			<td>{{issue.firstname}}</td>
-			<td>{{issue.surname}}</td> -->
 			<td>{{issue.sex}}</td>
 			<td>{{issue.barcode}}</td>
 			<td>{{issue.title}}</td>
@@ -274,5 +282,5 @@
 			<td>{{issue.Niveau}}</td>
 			<td>{{issue.Etape}}</td>
 		</tr>
-	</table>
+	</table> -->
 </div>
