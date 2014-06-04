@@ -10,6 +10,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 svg text {
     font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
 }
+
+
+/* NAV BAR*/
+
+.navbar-default {
+  background-color: white;
+}
 /*Input Auteur*/
 
 input {
@@ -103,6 +110,30 @@ input {
 
 }
 
+/* AUTHOR PAGES */
+
+.bookFront {
+    width: 155px;
+    height: 250px;
+}
+.bookWarp {
+  padding-top: 15px;
+
+}
+.bookWarp:hover {
+  background-color: white;
+  border: 1px solid #dfe1e8;
+
+}
+
+
+/*.bookFront:hover {
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    -webkit-transform: translateX(-36px) rotateY(90deg);
+    transform: translateX(-36px) rotateY(90deg);
+}
+*/
 /* VIS TIMELINE */
 
 .vis.timeline .item.E {

@@ -17,45 +17,47 @@
   </a>
 </script>
 
+<hr />
+
 <div class="result" ng-show="stats">
 	<div  class="row statAuthor result">
-		<div class="col-md-6">{{queryTerm.author_prenom}}</div>
-		<div class="col-md-6">{{queryTerm.author_date}}</div>		
+		<div class="col-md-6">{{info.author_nom}} - {{info.author_prenom}}</div>
+		<div class="col-md-6">{{info.author_date}}</div>		
 	</div>
 
 
 	<div  class="row stat result">
-	  <div class="col-md-2">
+	  <div class="col-md-3">
 	    <h3>Documents</h3>
 	    <span class="value">{{stats.docs}}</span>
 	  </div> 
-	  <div class="col-md-2">
+	  <div class="col-md-3">
 	    <h3>Prêt Total</h3>
 	    <span class="value">{{stats.issues}}</span>
 	  </div>  
-	  <div class="col-md-2">
+	  <div class="col-md-3">
 	    <h3>Prêt Max</h3>
 	    <span class="value">{{stats.issuesMax}}</span>
 	  </div>
-	  <div class="col-md-2">
+	  <div class="col-md-3">
 	    <h3>Prêt Min</h3>
 	    <span class="value">{{stats.issuesMin}}</span>
 	  </div>   
 	</div>
 	<div class="row stat result">
-	    <div class="col-md-2">
+	    <div class="col-md-3">
 	    <h3>Renouvèlement‎</h3>
 	    <span class="value">{{stats.renewals}}</span>
 	  </div>           
-	   <div class="col-md-2">
+	   <div class="col-md-3">
 	    <h3>Prêt Homme</h3>
 	    <span class="value">{{stats.male}}</span>
 	  </div>           
-	   <div class="col-md-2">
+	   <div class="col-md-3">
 	    <h3>Prêt Femme</h3>
 	    <span class="value">{{stats.female}}</span>
 	  </div>                  
-	   <div class="col-md-2">
+	   <div class="col-md-3">
 	    <h3>Moyenne Années de publication</h3>
 	    <span class="value">{{stats.years}}</span>
 	  </div>           
@@ -70,12 +72,13 @@
 					margin="{left:0,top:10,bottom:0,right:0}"
 				    x="xFunction()"
 				    y="yFunction()"
-				    width="340"
+				    width="300"
+				    height="300"
 				    tooltips="true"
 				    showValues="true"
 				    showLabels="true"
 				    donut="true"
-				    donutLabelsOutside="true">
+				    donutLabelsOutside="false">
 				    <svg></svg>
 				</nvd3-pie-chart>
 			</div>
@@ -89,12 +92,13 @@
 				    margin="{left:0,top:10,bottom:0,right:0}"
 				    x="xFunction()"
 				    y="yFunction()"
-				    width="340"
+				    width="300"
+				    height="300"
 				    tooltips="true"
 				    showValues="true"
 				    showLabels="true"
 				    donut="true"
-				    donutLabelsOutside="true">
+				    donutLabelsOutside="false">
 				    <svg></svg>
 				</nvd3-pie-chart>
 			</div>
@@ -108,34 +112,34 @@
 				    margin="{left:0,top:10,bottom:0,right:0}"
 				    x="xFunction()"
 				    y="yFunction()"
-				    width="340"
+				    width="300"
+				    height="300"
 				    tooltips="true"
 				    showValues="true"
 				    showLabels="true"
 				    donut="true"
-				    donutLabelsOutside="true">
+				    donutLabelsOutside="false">
 				    <svg></svg>
 				</nvd3-pie-chart>
 			</div>
 		</div>		
-		<div class="col-md-2">
-			<h3>Langue</h3>
-			<span class="value-small">
-				<ul ng-repeat="langue in stats.langue">
-					<li>{{langue.langue}} : {{langue.count}}</li>
-				</ul>
-			</span>
+	</div>
+	<div class="row">
+	<h3>Livres</h3>
 
-		</div>
-		<div class="col-md-2">
-			<h3>Pays</h3>
-			<span class="value-small">
-				<ul ng-repeat="pays in stats.pays">
-					<li>{{pays.pays}} : {{pays.count}}</li>
-				</ul>
-			</span>
+		<div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="bookCover in booksCovers | orderBy: 'item.issues':true">
+		<a href="#/livre?biblionumber={{bookCover.item.biblionumber}}">
+			<div class="bookFront center-block" style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{bookCover.cover.LargeImage}}) center, #febd17; background-size:cover;">
+			</div>
+			<h4>{{bookCover.item.title}}</h4>
+
+			Prêts : {{bookCover.item.issues}}
+			<h6>({{bookCover.item.publicationyear}})</h6>
+<!-- 			<p>{{bookCover.item.biblionumber}} | {{bookCover.item.isbn}}, {{bookCover.item.itemcallnumber}}, {{bookCover.item.pages}}</p> -->
+		</a>
 		</div>
 	</div>
+
 
 
 	<table class="table table-bordered table-striped table-condensed result" stupid-table>

@@ -3,7 +3,6 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
 
   /*== GET STATS ==*/
   var getStats = function(data) {
-    console.log(data);
     // Init Miso.DataSet
     var ds = new Miso.Dataset({
       data: data
@@ -52,7 +51,6 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
   var getInfoBook = function(biblionumber) {
     prevuAPIservice.getBookByBiblionumber(biblionumber).success(function(response) {
       $scope.info = response;
-      console.log(response);
     });
   }
 
@@ -72,7 +70,6 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
   $scope.search = function() {
     getIssuesBook($scope.queryTerm.biblionumber); // GET ISSUES BOOKS
     getInfoBook($scope.queryTerm.biblionumber); // GET INFO BOOKS
-    console.log($scope.queryTerm);
   };
 
   // URL 
