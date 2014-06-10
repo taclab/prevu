@@ -42,6 +42,11 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
       url: prevuAPI_url + 'api/issues/biblionumber/' + biblionumber
     });
   };
+  prevuAPI.getAverageByBiblionumber = function(biblionumber) {
+    return $http({
+      url: prevuAPI_url + 'api/issues/biblionumber/' + biblionumber + '/averageAge'
+    });
+  };
   prevuAPI.getTopBooks = function() {
     return $http({
       url: prevuAPI_url + 'api/books/top/'

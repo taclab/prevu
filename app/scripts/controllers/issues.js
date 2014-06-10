@@ -44,7 +44,13 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
     // GET Cover
     prevuAPIservice.getCoverBookAmazon(biblionumber).success(function(response) {
       $scope.covers = response;
-    });    
+    });
+    // GET Average Age
+    prevuAPIservice.getAverageByBiblionumber(biblionumber).success(function(response) {
+      console.log(response[0].averageAge);
+      $scope.averageAge = response[0].averageAge;
+    });
+
   }
 
   /*== GET INFO BOOK FCT ==*/
