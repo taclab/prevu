@@ -59,56 +59,78 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   //   });
   // };
   //topBooks();
-
-
   prevuAPIservice.getStatsIssuesAllByMonth().success(function(response) {
     $scope.statsIssuesAllByMonth = [{
-    key: "Prêts",
-    values : response.stats
+      key: "Prêts",
+      values: response.stats
     }]
   });
-
   prevuAPIservice.getStatsIssuesAllByDay().success(function(response) {
     $scope.statsIssuesAllByDay = [{
-    key: "Prêts",
-    values : response.stats
+      key: "Prêts",
+      values: response.stats
     }]
   });
 
+  prevuAPIservice.getStatsIssuesAllByMonthAverageNiveau().success(function(response) {
+    function transformArr(orig) {
+      var newArr = [],
+        types = {},
+        newItem, i, j, cur;
+      for (i = 0, j = orig.length; i < j; i++) {
+        cur = orig[i];
+        if (!(cur.niveau in types)) {
+          types[cur.niveau] = {
+            key: cur.niveau,
+            values: []
+          };
+          newArr.push(types[cur.niveau]);
+        }
+        types[cur.niveau].values.push({
+          issues: cur.issues,
+          month: cur.month,
+          year: cur.year,
+          timestamp: cur.issuesdate
+        });
+      }
+      return newArr;
+    }
+    $scope.statsIssuesAllByMonthAverageNiveau = transformArr(response.stats);
+  });
+  prevuAPIservice.getStatsIssuesAllByDayAverageNiveau().success(function(response) {
+    function transformArr(orig) {
+      var newArr = [],
+        types = {},
+        newItem, i, j, cur;
+      for (i = 0, j = orig.length; i < j; i++) {
+        cur = orig[i];
+        if (!(cur.niveau in types)) {
+          types[cur.niveau] = {
+            key: cur.niveau,
+            values: []
+          };
+          newArr.push(types[cur.niveau]);
+        }
+        types[cur.niveau].values.push({
+          issues: cur.issues,
+          month: cur.month,
+          year: cur.year,
+          timestamp: cur.issuesdate
+        });
+      }
+      return newArr;
+    }
+    $scope.statsIssuesAllByDayAverageNiveau = transformArr(response.stats);
+  });
+  
+  prevuAPIservice.getTopIssuesByUfr('DROIT').success(function(response) {
+    console.log(response);
 
+  });
 
- $scope.exampleData2 = [{
-    key: "Cumulative Return",
-    values: [{
-      "label": "A Label",
-      "value": -29.765957771107
-    }, {
-      "label": "B Label",
-      "value": 0
-    }, {
-      "label": "C Label",
-      "value": 32.807804682612
-    }, {
-      "label": "D Label",
-      "value": 196.45946739256
-    }, {
-      "label": "E Label",
-      "value": 0.19434030906893
-    }, {
-      "label": "F Label",
-      "value": -98.079782601442
-    }, {
-      "label": "G Label",
-      "value": -13.925743130903
-    }, {
-      "label": "H Label",
-      "value": -5.1387322875705
-    }]
-  }]
-
-
-
-
+  prevuAPIservice.getTopIssuesByUfr('ARTS').success(function(response) {
+    console.log(response);
+  });
   
 
 });

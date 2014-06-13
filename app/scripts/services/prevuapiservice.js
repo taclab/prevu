@@ -73,5 +73,20 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
       url: prevuAPI_url + 'api/stats/issues/years/day'
     });
   };
+  prevuAPI.getStatsIssuesAllByMonthAverageNiveau = function() {
+    return $http({
+      url: prevuAPI_url + 'api/stats/issues/years/month/niveau'
+    });
+  };
+  prevuAPI.getStatsIssuesAllByDayAverageNiveau = function() {
+    return $http({
+      url: prevuAPI_url + 'api/stats/issues/years/day/niveau'
+    });
+  };
+  prevuAPI.getTopIssuesByUfr = function(ufr) {
+    return $http({
+      url: prevuAPI_url + 'api/stats/issues/ufr/'+ufr
+    });
+  };  
   return prevuAPI;
 });

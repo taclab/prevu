@@ -1,7 +1,34 @@
+La grande question : c'est pour la page main, est ce que je fais un seule JSON ou je reste sur 20 requetes. 
+Et si je fais un seul json commant je le compose, de façon automatique
+
 - Faire une requete sql pour les Issues -> avec classemtn par mois pour l'evolution des emprunts
 - Compter les auteurs les plus populaires
 - moyenne du durée de prêt (moment.js)
 - ajout des auteurs les plus lus
+- ajout des variables globales : nombres d'ouvrage, nombre de lecteurs actif, moyenne d'age
+
+VARIABLEs GLOBALEs
+-- Nombre de bouquin prix pour l'année scolaire 2012-2013 --
+SELECT pr_issues.biblionumber, count(*) as issues FROM pr_issues WHERE issuedate BETWEEN "2012-09-01" AND "2013-08-31" GROUP BY biblionumber ORDER BY issues DESC
+* 67377 ouvrages *
+-- Nombre de prêts pour l'année scolaire 2012-2013 --
+SELECT count(*) as issues FROM pr_issues WHERE issuedate BETWEEN "2012-09-01" AND "2013-08-31" 
+* 163420 prêts *
+-- Nombre de Lecteurs actif pour l'année scolaire 2012-2013 --
+SELECT borrowernumber, count(*) as issues FROM pr_issues WHERE issuedate BETWEEN "2012-09-01" AND "2013-08-31" GROUP BY borrowernumber ORDER BY issues DESC
+* 13053 lecteurs *
+
+-- Répartition du sexe des Lecteurs actif pour l'année scolaire 2012-2013 --
+SELECT sex, count(*) as issues FROM pr_issues WHERE issuedate BETWEEN "2012-09-01" AND "2013-08-31" GROUP BY sex ORDER BY issues DESC
+"sex","issues"
+"F",103807
+"M",56224
+NULL,1848
+"",1541
+
+
+
+
 
 http://stackoverflow.com/questions/16199418/how-do-i-implement-the-bootstrap-navbar-active-class-with-angular-js
 - Recupérer les Auteurs en 700 et les issues en +1
@@ -15,3 +42,6 @@ Créer une page Bibliothèque avec un résumé des données en cours
 === BUG ===
 - les variables non reconnu par Jshint
 - les vedettes matières en sql
+
+
+
