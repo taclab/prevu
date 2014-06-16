@@ -1,11 +1,14 @@
 La grande question : c'est pour la page main, est ce que je fais un seule JSON ou je reste sur 20 requetes. 
 Et si je fais un seul json commant je le compose, de façon automatique
+Comprendre comment angular charge les éléments
+
 
 - Faire une requete sql pour les Issues -> avec classemtn par mois pour l'evolution des emprunts
 - Compter les auteurs les plus populaires
 - moyenne du durée de prêt (moment.js)
 - ajout des auteurs les plus lus
-- ajout des variables globales : nombres d'ouvrage, nombre de lecteurs actif, moyenne d'age
+- ajout des variables globales : nombres d'ouvrage, nombre de lecteurs actif, moyenne d'age // Ajouter ces variables globales dans toutes les viz
+Le nombre de lecteur en M1,M2,ect/
 
 VARIABLEs GLOBALEs
 -- Nombre de bouquin prix pour l'année scolaire 2012-2013 --
@@ -26,6 +29,17 @@ SELECT sex, count(*) as issues FROM pr_issues WHERE issuedate BETWEEN "2012-09-0
 NULL,1848
 "",1541
 
+-- Moyenne d'age des lecteurs 
+SELECT ROUND(AVG(DATEDIFF(CURDATE(), dateofbirth)/365), 2) AS 'averageAge' FROM pr_issues
+30,73
+
+REPARTTION DES PRETS
+-- Par UFR // soucis chaque mois pas forcement de pret
+Select Ufr as Ufr, count(*) as issues, year(issuedate) as year, month(issuedate) as month, UNIX_TIMESTAMP(concat(year(issuedate),'-',month(issuedate),'-01')) as issuesdate FROM pr_issues GROUP BY Ufr DESC, year(issuedate),  month(issuedate)
+
+-- Par category code // soucis chaque mois pas forcement de pret
+Select categorycode as categorycode, count(*) as issues, year(issuedate) as year, month(issuedate) as month, UNIX_TIMESTAMP(concat(year(issuedate),'-',month(issuedate),'-01')) as issuesdate FROM pr_issues GROUP BY categorycode DESC, year(issuedate),  month(issuedate)
+
 
 
 
@@ -37,6 +51,7 @@ http://stackoverflow.com/questions/16199418/how-do-i-implement-the-bootstrap-nav
 
 =========
 Créer une page Bibliothèque avec un résumé des données en cours 
+Commencer à faire le boulot d'iconographie
 
 
 === BUG ===

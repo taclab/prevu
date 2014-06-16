@@ -87,6 +87,12 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
     return $http({
       url: prevuAPI_url + 'api/stats/issues/ufr/'+ufr
     });
+  };
+  prevuAPI.getStatsMain = function(ufr) {
+    return $http({
+      url: prevuAPI_url + 'api/statsJson/stats.json'
+    });
   };  
+
   return prevuAPI;
 });

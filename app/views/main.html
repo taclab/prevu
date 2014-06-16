@@ -2,7 +2,37 @@
 <!-- ng-controller="MainCtrl" -->
 <div class="">
 
+  <div ng-repeat="statMain in statsMain" class="row">
 
+<!--     <select ng-model="selected_book_count">
+      <option ng-repeat="date in statMain.books_count"  value="{{date.id}}">{{date.name}}
+      </option>
+    </select> -->
+    <div class="col-md-4">
+      <h3>Livres empruntés</h3>
+      <h4><span class="value">153 331</span></h4>
+      <div ng-repeat="books in statMain.books_count | orderBy:value">
+        <h6>{{books.name}} </h6>
+        <span class="value">{{books.value}}</span>
+
+      </div>   
+    </div>
+    <div class="col-md-4">
+      <h3>Nombre de Prêts</h3>
+      <h4><span class="value">324 401</span></h4>
+      <div ng-repeat="issues in statMain.issues_count | orderBy:value">
+        <h6>{{issues.name}} </h6>
+        <span class="value">{{issues.value}}</span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Lecteurs Actifs</h3>
+      <h4><span class="value">32 449</span></h4>     
+      <div ng-repeat="books in statMain.borrowers_count | orderBy:value">
+        <h6>{{books.name}}</h6> <span class="value">{{books.value}}</span>
+      </div>
+    </div>
+  </div>
 <!--   <div ng-controller="LinechartCtrl">
     <nvd3-line-chart
         data="statsIssuesYearsAll"

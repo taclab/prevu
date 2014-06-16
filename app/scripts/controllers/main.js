@@ -15,6 +15,7 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
         book.Edito = responseCover.Edito;
       });
       counter++;
+      
     });
     $scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);
     //$scope.topBooks = responseBook.books;
@@ -127,6 +128,11 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
     console.log(response);
 
   });
+  prevuAPIservice.getStatsMain().success(function(response) {
+    console.log(response);
+    $scope.statsMain = response;
+  });
+
 
   prevuAPIservice.getTopIssuesByUfr('ARTS').success(function(response) {
     console.log(response);
