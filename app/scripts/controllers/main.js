@@ -73,56 +73,56 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
     }]
   });
 
-  prevuAPIservice.getStatsIssuesAllByMonthAverageNiveau().success(function(response) {
-    function transformArr(orig) {
-      var newArr = [],
-        types = {},
-        newItem, i, j, cur;
-      for (i = 0, j = orig.length; i < j; i++) {
-        cur = orig[i];
-        if (!(cur.niveau in types)) {
-          types[cur.niveau] = {
-            key: cur.niveau,
-            values: []
-          };
-          newArr.push(types[cur.niveau]);
-        }
-        types[cur.niveau].values.push({
-          issues: cur.issues,
-          month: cur.month,
-          year: cur.year,
-          timestamp: cur.issuesdate
-        });
-      }
-      return newArr;
-    }
-    $scope.statsIssuesAllByMonthAverageNiveau = transformArr(response.stats);
-  });
-  prevuAPIservice.getStatsIssuesAllByDayAverageNiveau().success(function(response) {
-    function transformArr(orig) {
-      var newArr = [],
-        types = {},
-        newItem, i, j, cur;
-      for (i = 0, j = orig.length; i < j; i++) {
-        cur = orig[i];
-        if (!(cur.niveau in types)) {
-          types[cur.niveau] = {
-            key: cur.niveau,
-            values: []
-          };
-          newArr.push(types[cur.niveau]);
-        }
-        types[cur.niveau].values.push({
-          issues: cur.issues,
-          month: cur.month,
-          year: cur.year,
-          timestamp: cur.issuesdate
-        });
-      }
-      return newArr;
-    }
-    $scope.statsIssuesAllByDayAverageNiveau = transformArr(response.stats);
-  });
+  // prevuAPIservice.getStatsIssuesAllByMonthAverageNiveau().success(function(response) {
+  //   function transformArr(orig) {
+  //     var newArr = [],
+  //       types = {},
+  //       newItem, i, j, cur;
+  //     for (i = 0, j = orig.length; i < j; i++) {
+  //       cur = orig[i];
+  //       if (!(cur.niveau in types)) {
+  //         types[cur.niveau] = {
+  //           key: cur.niveau,
+  //           values: []
+  //         };
+  //         newArr.push(types[cur.niveau]);
+  //       }
+  //       types[cur.niveau].values.push({
+  //         issues: cur.issues,
+  //         month: cur.month,
+  //         year: cur.year,
+  //         timestamp: cur.issuesdate
+  //       });
+  //     }
+  //     return newArr;
+  //   }
+  //   $scope.statsIssuesAllByMonthAverageNiveau = transformArr(response.stats);
+  // });
+  // prevuAPIservice.getStatsIssuesAllByDayAverageNiveau().success(function(response) {
+  //   function transformArr(orig) {
+  //     var newArr = [],
+  //       types = {},
+  //       newItem, i, j, cur;
+  //     for (i = 0, j = orig.length; i < j; i++) {
+  //       cur = orig[i];
+  //       if (!(cur.niveau in types)) {
+  //         types[cur.niveau] = {
+  //           key: cur.niveau,
+  //           values: []
+  //         };
+  //         newArr.push(types[cur.niveau]);
+  //       }
+  //       types[cur.niveau].values.push({
+  //         issues: cur.issues,
+  //         month: cur.month,
+  //         year: cur.year,
+  //         timestamp: cur.issuesdate
+  //       });
+  //     }
+  //     return newArr;
+  //   }
+  //   $scope.statsIssuesAllByDayAverageNiveau = transformArr(response.stats);
+  // });
   
   prevuAPIservice.getTopIssuesByUfr('DROIT').success(function(response) {
     //console.log(response);
@@ -130,6 +130,9 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   });
   prevuAPIservice.getStatsMain().success(function(response) {
     //$scope.statsMain = response;
+    $scope.books_count = response[0].books_count;
+    $scope.issues_count = response[0].issues_count;
+    $scope.borrowers_count = response[0].borrowers_count;
     $scope.issues_ufr = response[0].issues_ufr;
     $scope.issues_niveau = response[0].issues_niveau;
     $scope.issues_niveau_light = response[0].issues_niveau_light;

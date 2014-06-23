@@ -2,13 +2,11 @@
 angular.module('prevuApp').controller('StackedareachartCtrl', function($scope) {
   $scope.xFunction = function() {
     return function(d) {
-      console.log(d.issuesdate);
       return d.issuesdate;
     };
   }
   $scope.yFunction = function() {
     return function(d) {
-      console.log(d.issues);
       return d.issues;
     };
   }
