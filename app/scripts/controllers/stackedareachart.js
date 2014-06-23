@@ -2,16 +2,19 @@
 angular.module('prevuApp').controller('StackedareachartCtrl', function($scope) {
   $scope.xFunction = function() {
     return function(d) {
-      return d.timestamp;
+      console.log(d.issuesdate);
+      return d.issuesdate;
     };
   }
   $scope.yFunction = function() {
     return function(d) {
-      return parseInt(d.issues);
+      console.log(d.issues);
+      return d.issues;
     };
   }
   $scope.xAxisTickFormatFunction = function() {
     return function(d) {
+
       return d3.time.format('%b-%y')(new Date(d * 1000));
     }
   }

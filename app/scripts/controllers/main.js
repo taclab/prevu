@@ -125,17 +125,21 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   });
   
   prevuAPIservice.getTopIssuesByUfr('DROIT').success(function(response) {
-    console.log(response);
+    //console.log(response);
 
   });
   prevuAPIservice.getStatsMain().success(function(response) {
-    console.log(response);
-    $scope.statsMain = response;
+    //$scope.statsMain = response;
+    $scope.issues_ufr = response[0].issues_ufr;
+    $scope.issues_niveau = response[0].issues_niveau;
+    $scope.issues_niveau_light = response[0].issues_niveau_light;
+
+
   });
 
 
   prevuAPIservice.getTopIssuesByUfr('ARTS').success(function(response) {
-    console.log(response);
+    //console.log(response);
   });
   
 

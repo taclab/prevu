@@ -9,6 +9,7 @@ Comprendre comment angular charge les éléments
 - ajout des auteurs les plus lus
 - ajout des variables globales : nombres d'ouvrage, nombre de lecteurs actif, moyenne d'age // Ajouter ces variables globales dans toutes les viz
 Le nombre de lecteur en M1,M2,ect/
+- statistiques sur le FOND documentaire : combien selon le secteurs, moyenne de publication des documents,  moyenne du durée de prêt 
 
 VARIABLEs GLOBALEs
 -- Nombre de bouquin prix pour l'année scolaire 2012-2013 --
@@ -36,6 +37,8 @@ SELECT ROUND(AVG(DATEDIFF(CURDATE(), dateofbirth)/365), 2) AS 'averageAge' FROM 
 REPARTTION DES PRETS
 -- Par UFR // soucis chaque mois pas forcement de pret
 Select Ufr as Ufr, count(*) as issues, year(issuedate) as year, month(issuedate) as month, UNIX_TIMESTAMP(concat(year(issuedate),'-',month(issuedate),'-01')) as issuesdate FROM pr_issues GROUP BY Ufr DESC, year(issuedate),  month(issuedate)
+
+http://stackoverflow.com/questions/21203101/for-nvd3-linechart-remove-missing-values-to-be-able-to-interpolate
 
 -- Par category code // soucis chaque mois pas forcement de pret
 Select categorycode as categorycode, count(*) as issues, year(issuedate) as year, month(issuedate) as month, UNIX_TIMESTAMP(concat(year(issuedate),'-',month(issuedate),'-01')) as issuesdate FROM pr_issues GROUP BY categorycode DESC, year(issuedate),  month(issuedate)

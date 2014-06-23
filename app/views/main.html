@@ -14,7 +14,6 @@
       <div ng-repeat="books in statMain.books_count | orderBy:value">
         <h6>{{books.name}} </h6>
         <span class="value">{{books.value}}</span>
-
       </div>   
     </div>
     <div class="col-md-4">
@@ -32,27 +31,55 @@
         <h6>{{books.name}}</h6> <span class="value">{{books.value}}</span>
       </div>
     </div>
+
+
+
+
   </div>
-<!--   <div ng-controller="LinechartCtrl">
-    <nvd3-line-chart
-        data="statsIssuesYearsAll"
-          id="exampleId"
-          xAxisTickFormat="xAxisTickFormatFunction()"
-          yAxisTickFormat="yAxisTickFormatFunction()"
-          width="900"
-          height="650"
+
+  <div ng-controller="StackedareachartCtrl">
+        <nvd3-stacked-area-chart
+        data="issues_ufr" 
+          id="statMain_issues_ufr"
+        showXAxis="true"
+        showYAxis="true"
           y="yFunction()"
           x="xFunction()"
-          showXAxis="true"
-          showYAxis="true"
+          height="400"
+          margin="{left:80,top:50,bottom:30,right:50}"
           interactive="true"
+          yAxisTickFormat="yAxisTickFormatFunction()"
+          xAxisTickFormat="xAxisTickFormatFunction()"
           tooltips="true"
-          useInteractiveGuideLine="true"
-          forcey="[0,1700]">
-
+                  showLegend="true"
+        showControls="true"
+        useInteractiveGuideLine="true"
+        >
             <svg></svg>
-      </nvd3-line-chart>
-  </div> -->
+        </nvd3-stacked-area-chart>
+
+                <nvd3-stacked-area-chart
+        data="issues_niveau" 
+          id="statMain_issues_niveau"
+        showXAxis="true"
+        showYAxis="true"
+          y="yFunction()"
+          x="xFunction()"
+          height="400"
+          margin="{left:80,top:50,bottom:30,right:50}"
+          interactive="true"
+          yAxisTickFormat="yAxisTickFormatFunction()"
+          xAxisTickFormat="xAxisTickFormatFunction()"
+          tooltips="true"
+                  showLegend="true"
+        showControls="true"
+        useInteractiveGuideLine="true"
+        >
+            <svg></svg>
+        </nvd3-stacked-area-chart>
+    </div>
+  
+
   <h2>Historique des prêts</h2>
 
   <h3>Par Mois</h3>
@@ -107,26 +134,8 @@
   <h3>Répartitions des Niveaux par Mois</h3>
   <div ng-controller="StackedareachartCtrl">
 
-  <!-- 
-   <nvd3-stacked-area-chart
-      data="statsIssuesAllByMonthAverageNiveau"
-        id="exampleId"
-        showXAxis="true"
-        showYAxis="true"
-        y="yFunction()"
-        x="xFunction()"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        tooltips="true"       
-        interactive="true"
-        width="550"
-        height="350"
-        showLegend="true"
-        showControls="true">
-          <svg></svg>
-      </nvd3-stacked-area-chart>  -->
       <nvd3-stacked-area-chart
-        data="statsIssuesAllByMonthAverageNiveau" 
+        data="issues_niveau_light" 
           id="statsIssuesAllByDayAverageNiveau"
         showXAxis="true"
         showYAxis="true"
@@ -146,7 +155,7 @@
         </nvd3-stacked-area-chart>
 
         <nvd3-multi-bar-chart
-        data="statsIssuesAllByMonthAverageNiveau"
+        data="issues_niveau_light"
         showXAxis="true"
         showYAxis="true"
         y="yFunction()"
@@ -185,6 +194,6 @@
         </p>
         <br/><br/>  
     </div>
-  </div>
+  </div> 
 </div>
 
