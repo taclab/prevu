@@ -154,7 +154,23 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
        ];       
     $scope.issues_ufr = response[0].issues_ufr;
     $scope.issues_niveau = response[0].issues_niveau;
-    $scope.issues_niveau_light = response[0].issues_niveau_light;
+    console.log(response[0].issues_niveau_light);
+
+    $scope.selectedSemestre = {name:'Semestre 1 - 2013', id: 'Semestre2012-2013_1'};
+    $scope.semestres = [
+      {name:'Semestre 2 - 2012', id: 'Semestre2012'}, 
+      {name:'Semestre 1 - 2013', id: 'Semestre2012-2013_1'}, 
+      {name:'Semestre 2 - 2013', id: 'Semestre2012-2013_2'}, 
+      {name:'Semestre 1 - 2014', id: 'Semestre2013-2014'}, 
+    ];
+
+    $scope.issues_niveau_light = response[0].issues_niveau_light['Semestre2012'];
+
+
+    $scope.setSemestre_issues_niveau_light= function(sem){
+      $scope.issues_niveau_light = response[0].issues_niveau_light[sem.id];
+    };
+
 
 
   });

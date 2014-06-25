@@ -166,7 +166,9 @@
   </div>
   <h3>Répartitions des Niveaux par Mois</h3>
   <div ng-controller="StackedareachartCtrl">
-
+      <select ng-model="selectedColor" ng-options="semestre as semestre.name for semestre in semestres" ng-change="setSemestre_issues_niveau_light(selectedColor)">
+          <option value="">Choisir un semestre</option>
+      </select>
       <nvd3-stacked-area-chart
         data="issues_niveau_light" 
           id="statsIssuesAllByDayAverageNiveau"
@@ -186,7 +188,6 @@
         >
             <svg></svg>
         </nvd3-stacked-area-chart>
-
         <nvd3-multi-bar-chart
         data="issues_niveau_light"
         showXAxis="true"
@@ -203,7 +204,8 @@
         showLegend="true"
         showControls="true">
           <svg></svg>
-    </nvd3-multi-bar-chart>
+        </nvd3-multi-bar-chart>
+
   </div>
 
 
