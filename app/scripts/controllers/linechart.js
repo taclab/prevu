@@ -2,12 +2,12 @@
 angular.module('prevuApp').controller('LinechartCtrl', function($scope) {
   $scope.xFunction = function() {
     return function(d) {
-      return d.timestamp;
+      return d.id;
     };
   }
   $scope.yFunction = function(t) {
     return function(d) {
-      return d.issues;
+      return d.value;
     };
   }
   $scope.xAxisTickFormatFunction = function() {
@@ -16,8 +16,9 @@ angular.module('prevuApp').controller('LinechartCtrl', function($scope) {
     }
   }
   $scope.toolTipContentFunction = function() {
-    return function(key) {
-      return 'Super New Tooltip' + '<h1>' + key + '</h1>'
+    return function(key, x, y, e, graph) {
+      console.log(e);
+      return  '<h3>' + e.point.name + '</h3>'+e.point.value
     }
   }
   $scope.yAxisTickFormatFunction = function() {

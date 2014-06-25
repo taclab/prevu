@@ -8,27 +8,61 @@
       <option ng-repeat="date in statMain.books_count"  value="{{date.id}}">{{date.name}}
       </option>
     </select> -->
-    <div class="col-md-4">
+    <div class="col-md-4 text-center">
       <h3>Livres empruntés</h3>
       <h4><span class="value">153 331</span></h4>
-      <div ng-repeat="books in books_count | orderBy:value">
-        <h6>{{books.name}} </h6>
-        <span class="value">{{books.value}}</span>
-      </div>   
-    </div>
-    <div class="col-md-4">
-      <h3>Nombre de Prêts</h3>
-      <h4><span class="value">324 401</span></h4>
-      <div ng-repeat="issues in issues_count | orderBy:value">
-        <h6>{{issues.name}} </h6>
-        <span class="value">{{issues.value}}</span>
+      <div ng-controller="LinechartCtrl">
+        <nvd3-line-chart
+        data="books_count_graph"
+        height="130"
+        y="yFunction()"
+        x="xFunction()"
+        margin="{left:10,top:5,bottom:0,right:10}"
+        interactive="true"
+        forcey="[41500,45000]"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()"
+        >
+        <svg></svg>
+        </nvd3-line-chart>      
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 text-center">
+      <h3>Nombre de Prêts</h3>
+      <h4><span class="value">324 401</span></h4>
+      <div ng-controller="LinechartCtrl">
+        <nvd3-line-chart
+        data="issues_count_graph"
+        height="130"
+        y="yFunction()"
+        x="xFunction()"
+        margin="{left:10,top:5,bottom:0,right:10}"
+        interactive="true"
+        forcey="[75000,85000]"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()"
+        >
+        <svg></svg>
+        </nvd3-line-chart> 
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
       <h3>Lecteurs Actifs</h3>
-      <h4><span class="value">32 449</span></h4>     
-      <div ng-repeat="books in borrowers_count | orderBy:value">
-        <h6>{{books.name}}</h6> <span class="value">{{books.value}}</span>
+      <h4><span class="value">32 449</span></h4>
+      <div ng-controller="LinechartCtrl">
+        <nvd3-line-chart
+        data="borrowers_count_graph"
+        height="130"
+        y="yFunction()"
+        x="xFunction()"
+        margin="{left:10,top:5,bottom:0,right:10}"
+        interactive="true"
+        forcey="[9300,10500]"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()"
+        >
+        <svg></svg>
+        </nvd3-line-chart> 
       </div>
     </div>
   </div>
@@ -74,6 +108,8 @@
         >
             <svg></svg>
         </nvd3-stacked-area-chart>
+
+
     </div>
   
 

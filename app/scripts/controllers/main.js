@@ -130,9 +130,28 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   });
   prevuAPIservice.getStatsMain().success(function(response) {
     //$scope.statsMain = response;
-    $scope.books_count = response[0].books_count;
-    $scope.issues_count = response[0].issues_count;
-    $scope.borrowers_count = response[0].borrowers_count;
+
+    $scope.books_count_graph = [
+           {
+               "key": "books_count_graph",
+               "area": true,
+                "values": response[0].books_count_graph
+         }
+       ];
+    $scope.issues_count_graph = [
+           {
+               "key": "issues_count_graph",
+               "area": true,
+                "values": response[0].issues_count_graph
+         }
+       ];
+    $scope.borrowers_count_graph = [
+           {
+               "key": "borrowers_count_graph",
+               "area": true,
+                "values": response[0].borrowers_count_graph
+         }
+       ];       
     $scope.issues_ufr = response[0].issues_ufr;
     $scope.issues_niveau = response[0].issues_niveau;
     $scope.issues_niveau_light = response[0].issues_niveau_light;
