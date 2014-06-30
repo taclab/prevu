@@ -47,7 +47,6 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
     });
     // GET Average Age
     prevuAPIservice.getAverageByBiblionumber(biblionumber).success(function(response) {
-      console.log(response[0].averageAge);
       $scope.averageAge = response[0].averageAge;
     });
 

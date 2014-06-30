@@ -15,7 +15,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
         book.Edito = responseCover.Edito;
       });
       counter++;
-      
     });
     $scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);
     //$scope.topBooks = responseBook.books;
@@ -72,113 +71,117 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
       values: response.stats
     }]
   });
-
-  // prevuAPIservice.getStatsIssuesAllByMonthAverageNiveau().success(function(response) {
-  //   function transformArr(orig) {
-  //     var newArr = [],
-  //       types = {},
-  //       newItem, i, j, cur;
-  //     for (i = 0, j = orig.length; i < j; i++) {
-  //       cur = orig[i];
-  //       if (!(cur.niveau in types)) {
-  //         types[cur.niveau] = {
-  //           key: cur.niveau,
-  //           values: []
-  //         };
-  //         newArr.push(types[cur.niveau]);
-  //       }
-  //       types[cur.niveau].values.push({
-  //         issues: cur.issues,
-  //         month: cur.month,
-  //         year: cur.year,
-  //         timestamp: cur.issuesdate
-  //       });
-  //     }
-  //     return newArr;
-  //   }
-  //   $scope.statsIssuesAllByMonthAverageNiveau = transformArr(response.stats);
-  // });
-  // prevuAPIservice.getStatsIssuesAllByDayAverageNiveau().success(function(response) {
-  //   function transformArr(orig) {
-  //     var newArr = [],
-  //       types = {},
-  //       newItem, i, j, cur;
-  //     for (i = 0, j = orig.length; i < j; i++) {
-  //       cur = orig[i];
-  //       if (!(cur.niveau in types)) {
-  //         types[cur.niveau] = {
-  //           key: cur.niveau,
-  //           values: []
-  //         };
-  //         newArr.push(types[cur.niveau]);
-  //       }
-  //       types[cur.niveau].values.push({
-  //         issues: cur.issues,
-  //         month: cur.month,
-  //         year: cur.year,
-  //         timestamp: cur.issuesdate
-  //       });
-  //     }
-  //     return newArr;
-  //   }
-  //   $scope.statsIssuesAllByDayAverageNiveau = transformArr(response.stats);
-  // });
-  
   prevuAPIservice.getTopIssuesByUfr('DROIT').success(function(response) {
     //console.log(response);
-
   });
+  //==== REQUETES STATS MAIN ====//
   prevuAPIservice.getStatsMain().success(function(response) {
-    //$scope.statsMain = response;
-
-    $scope.books_count_graph = [
-           {
-               "key": "books_count_graph",
-               "area": true,
-                "values": response[0].books_count_graph
-         }
-       ];
-    $scope.issues_count_graph = [
-           {
-               "key": "issues_count_graph",
-               "area": true,
-                "values": response[0].issues_count_graph
-         }
-       ];
-    $scope.borrowers_count_graph = [
-           {
-               "key": "borrowers_count_graph",
-               "area": true,
-                "values": response[0].borrowers_count_graph
-         }
-       ];       
-    $scope.issues_ufr = response[0].issues_ufr;
-    $scope.issues_niveau = response[0].issues_niveau;
-    console.log(response[0].issues_niveau_light);
-
-    $scope.selectedSemestre = {name:'Semestre 1 - 2013', id: 'Semestre2012-2013_1'};
-    $scope.semestres = [
-      {name:'Semestre 2 - 2012', id: 'Semestre2012'}, 
-      {name:'Semestre 1 - 2013', id: 'Semestre2012-2013_1'}, 
-      {name:'Semestre 2 - 2013', id: 'Semestre2012-2013_2'}, 
-      {name:'Semestre 1 - 2014', id: 'Semestre2013-2014'}, 
-    ];
-
-    $scope.issues_niveau_light = response[0].issues_niveau_light['Semestre2012'];
-
-
-    $scope.setSemestre_issues_niveau_light= function(sem){
+    // ==================    
+    // BOOK COUNT GRAPH
+    $scope.books_count_graph = [{
+      "key": "books_count_graph",
+      "area": true,
+      "values": response[0].books_count_graph
+    }];
+    // ==================
+    // ISSUES COUNT GRAPH
+    $scope.issues_count_graph = [{
+      "key": "issues_count_graph",
+      "area": true,
+      "values": response[0].issues_count_graph
+    }];
+    // ==================
+    // BORROWERS COUNT GRAPH
+    $scope.borrowers_count_graph = [{
+      "key": "borrowers_count_graph",
+      "area": true,
+      "values": response[0].borrowers_count_graph
+    }];
+    // ==================
+    // PRETS NIVEAU
+    // Génération des input selecteur pour les durées
+    $scope.semestres = [{
+      name: 'Semestre 2 - 2012',
+      id: 'Semestre2012'
+    }, {
+      name: 'Semestre 1 - 2013',
+      id: 'Semestre2012-2013_1'
+    }, {
+      name: 'Semestre 2 - 2013',
+      id: 'Semestre2012-2013_2'
+    }, {
+      name: 'Semestre 1 - 2014',
+      id: 'Semestre2013-2014'
+    }];
+    $scope.selectedSemestre = $scope.semestres[1]; // Par default
+    // Premier test pour le choix de données
+    $scope.issues_niveau_light = response[0].issues_niveau_light[$scope.semestres[1].id]; // Par défault 
+    $scope.setSemestre_issues_niveau_light = function(sem) {
       $scope.issues_niveau_light = response[0].issues_niveau_light[sem.id];
     };
+    // ==================
+    // ALL ISSUES GROUPED UFR & NIVEAU
+    $scope.issues_ufr = response[0].issues_ufr;
+    $scope.issues_niveau = response[0].issues_niveau;
+    function getArrayByKey(arr, key) {
+      for (var d = 0, len = arr.length; d < len; d += 1) {
+        if (arr[d].key === key) {
+          return arr[d];
+        }
+      }
+    }
+    // ==================
+    // CARTOUCHE UFR -> Livres + populaires
+    $scope.ByUfr_books = response[0].ByUfr.books; // Les 10 livres les plus populaires dans une ufr
+    $scope.ByUfr_ccode = response[0].ByUfr.ccode; // Les Ccode les plus populaires
+    // Génération des Selects pour les UFR
+    var ufrKeys = new Array();
+    angular.forEach(response[0].ByUfr.books, function(ufr) {
+      ufrKeys.push({
+        name: ufr.key,
+        key: ufr.key
+      });
+    });
+    $scope.ufrKeys = ufrKeys;
+    $scope.selectedUFR = $scope.ufrKeys[1]; // Select par défault
+    // Données pour le horizontal bar
+    $scope.ByUfr_ccode = [{
+      key: $scope.ufrKeys[1].key,
+      values: response[0].ByUfr.ccode[$scope.ufrKeys[1].key].values.slice(0, 10)
+    }];
+    $scope.ByUfr_books = response[0].ByUfr.books[$scope.ufrKeys[1].key];
+    $scope.issues_ufrOnlyUfr = [getArrayByKey(response[0].issues_ufr, $scope.ufrKeys[1].key)];
+    $scope.ByUfr_borrowers_sex = response[0].ByUfr.borrowers_sex[$scope.ufrKeys[1].key].values;
+    $scope.ByUfr_borrowers_age = response[0].ByUfr.borrowers_age[$scope.ufrKeys[1].key];
+    $scope.ByUfr_issues_numbers = response[0].ByUfr.issues_numbers[$scope.ufrKeys[1].key];
+    $scope.ByUfr_borrowers_numbers = response[0].ByUfr.borrowers_numbers[$scope.ufrKeys[1].key];
 
 
+    // Changement des données apres SELECT
+    $scope.setUfr = function(ufr) {
+      $scope.ByUfr_books = response[0].ByUfr.books[ufr.key];
+      $scope.ByUfr_ccode = [{
+        key: ufr.key,
+        values: response[0].ByUfr.ccode[ufr.key].values.slice(0, 10)
+      }];
+      $scope.issues_ufrOnlyUfr = [getArrayByKey(response[0].issues_ufr, ufr.key)];
+      $scope.ByUfr_borrowers_sex = response[0].ByUfr.borrowers_sex[ufr.key].values;
+      $scope.ByUfr_borrowers_age = response[0].ByUfr.borrowers_age[ufr.key];
+      $scope.ByUfr_issues_numbers = response[0].ByUfr.issues_numbers[ufr.key];
+      $scope.ByUfr_borrowers_numbers = response[0].ByUfr.borrowers_numbers[ufr.key];
 
+    }
   });
-
-
-  prevuAPIservice.getTopIssuesByUfr('ARTS').success(function(response) {
-    //console.log(response);
-  });
-  
-
+});
+// filtre
+angular.module('prevuApp').filter('objectByKeyValFilter', function() {
+  return function(input, filterKey, filterVal) {
+    var filteredInput = {};
+    angular.forEach(input, function(value, key) {
+      if (value[filterKey] && value[filterKey] == filterVal) {
+        filteredInput[key] = value;
+      }
+    });
+    return filteredInput;
+  }
 });

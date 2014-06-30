@@ -5,12 +5,12 @@ angular.module('prevuApp')
 
   $scope.xFunction = function() {
     return function(d) {
-      return d._id;
+      return d.label;
     };
   }
   $scope.yFunction = function(t) {
     return function(d) {
-      return d.count;
+      return d3.round(d.value);
     };
   }
    $scope.yAxisTickFormatFunction = function() {

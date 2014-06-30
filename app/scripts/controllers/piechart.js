@@ -12,6 +12,11 @@ angular.module('prevuApp')
       return d.categorycode;
     };
   }
+  $scope.yFunctionBorrowersUfr = function() {
+    return function(d) {
+      return d.value;
+    };
+  }
 
   $scope.yFunction = function(t) {
     return function(d) {

@@ -22,7 +22,7 @@ angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
   }
   $scope.xFunctionNiveau = function() {
     return function(d) {
-      return d.Niveau;
+      return d.ccode;
     };
   }
   $scope.yFunctionNiveau = function(t) {
