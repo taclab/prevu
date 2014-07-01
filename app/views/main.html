@@ -1,11 +1,7 @@
 <!-- ng-controller="MainCtrl" -->
 <div class="">
     <div  class="row">
-        <!--     <select ng-model="selected_book_count">
-                <option ng-repeat="date in statMain.books_count"  value="{{date.id}}">{{date.name}}
-                </option>
-        </select> -->
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center cartouche">
             <h3>Livres empruntés</h3>
             <h4><span class="value">153 331</span></h4>
             <div ng-controller="LinechartCtrl">
@@ -24,7 +20,7 @@
                 </nvd3-line-chart>
             </div>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center cartouche">
             <h3>Nombre de Prêts</h3>
             <h4><span class="value">324 401</span></h4>
             <div ng-controller="LinechartCtrl">
@@ -43,7 +39,7 @@
                 </nvd3-line-chart>
             </div>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center cartouche">
             <h3>Lecteurs Actifs</h3>
             <h4><span class="value">32 449</span></h4>
             <div ng-controller="LinechartCtrl">
@@ -64,206 +60,173 @@
         </div>
     </div>
     <hr />
-    <div ng-controller="StackedareachartCtrl">
-        <nvd3-stacked-area-chart
-        data="issues_ufr"
-        id="statMain_issues_ufr"
-        showXAxis="true"
-        showYAxis="true"
-        y="yFunction()"
-        x="xFunction()"
-        height="400"
-        margin="{left:80,top:50,bottom:30,right:50}"
-        interactive="true"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        tooltips="true"
-        showLegend="true"
-        showControls="true"
-        useInteractiveGuideLine="true"
-        >
-        <svg></svg>
-        </nvd3-stacked-area-chart>
-        <nvd3-stacked-area-chart
-        data="issues_niveau"
-        id="statMain_issues_niveau"
-        showXAxis="true"
-        showYAxis="true"
-        y="yFunction()"
-        x="xFunction()"
-        height="400"
-        margin="{left:80,top:50,bottom:30,right:50}"
-        interactive="true"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        tooltips="true"
-        showLegend="true"
-        showControls="true"
-        useInteractiveGuideLine="true"
-        >
-        <svg></svg>
-        </nvd3-stacked-area-chart>
-    </div>
 
-    <h2>Historique des prêts</h2>
-    <h3>Par Mois</h3>
-    <div ng-controller="DiscretebarchartCtrl">
-        <nvd3-discrete-bar-chart
-        data="statsIssuesAllByMonth"
-        id="yExample"
-        margin="{left:80,top:50,bottom:30,right:50}"
-        showXAxis="true"
-        showYAxis="true"
-        showValues="true"
-        staggerLabels="true"
-        height="300"
-        tooltips="true"
-        y="yFunction()"
-        x="xFunction()"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        forcey="[2000,20000]"
-        useInteractiveGuideLine="true">
-        <svg ></svg>
-        </nvd3-discrete-bar-chart>
+    <div class="row">
+        <h2>Historique des prêts</h2>
+        <h3>Par Mois</h3>
+        <div ng-controller="DiscretebarchartCtrl">
+            <nvd3-discrete-bar-chart
+            data="statsIssuesAllByMonth"
+            id="yExample"
+            margin="{left:80,top:50,bottom:30,right:50}"
+            showXAxis="true"
+            showYAxis="true"
+            showValues="true"
+            staggerLabels="true"
+            height="300"
+            tooltips="true"
+            y="yFunction()"
+            x="xFunction()"
+            yAxisTickFormat="yAxisTickFormatFunction()"
+            forcey="[2000,20000]"
+            useInteractiveGuideLine="true">
+            <svg ></svg>
+            </nvd3-discrete-bar-chart>
+        </div>
+
     </div>
-    <h3>Par jour</h3>
-    <div ng-controller="LinefocuschartCtrl">
-        <nvd3-line-with-focus-chart
-        data="statsIssuesAllByDay"
-        id=""
-        height="400"
-        height2="50"
-        y="yFunction()"
-        x="xFunction()"
-        margin="{left:80,top:50,bottom:30,right:50}"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        x2AxisTickFormat="xAxisTickFormatFunction()"
-        forcey="[0,1700]"
-        interactive="true"
-        tooltips="true"
-        useInteractiveGuideLine="true">
-        <svg ></svg>
-        </nvd3-line-with-focus-chart>
-    </div>
-    <h3>Répartitions des Niveaux par Mois</h3>
-    <div ng-controller="StackedareachartCtrl">
-        <select ng-model="selectedSemestre" ng-options="semestre as semestre.name for semestre in semestres" ng-change="setSemestre_issues_niveau_light(selectedSemestre)">
-            <option value="">Choisir un semestre</option>
-        </select>
-        <!--       <nvd3-stacked-area-chart
-                data="issues_niveau_light"
-                id="statsIssuesAllByDayAverageNiveau"
-                showXAxis="true"
-                showYAxis="true"
-                y="yFunction()"
-                x="xFunction()"
-                height="400"
-                margin="{left:80,top:50,bottom:30,right:50}"
-                interactive="true"
-                yAxisTickFormat="yAxisTickFormatFunction()"
-                xAxisTickFormat="xAxisTickFormatFunction()"
-                tooltips="true"
-                        showLegend="true"
-                showControls="true"
-                useInteractiveGuideLine="true"
-                >
-                    <svg></svg>
-        </nvd3-stacked-area-chart> -->
-        <nvd3-multi-bar-chart
-        data="issues_niveau_light"
-        showXAxis="true"
-        showYAxis="true"
-        y="yFunction()"
-        x="xFunction()"
-        height="400"
-        margin="{left:80,top:50,bottom:50,right:50}"
-        interactive="true"
-        staggerLabels="true"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        tooltips="true"
-        showLegend="true"
-        showControls="true">
-        <svg></svg>
-        </nvd3-multi-bar-chart>
-    </div>
-    <hr/>
-    <h2>STATS PAR UFR :
-    <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select>
-    </h2>
-    <div ng-repeat="topBookByUfr in ByUfr_books.values">
-        <h4>{{topBookByUfr.title}} - {{topBookByUfr.issuesTotal}}</h4>
-    </div>
-    <div ng-controller="MultibarhorizchartCtrl">
-        <nvd3-multi-bar-horizontal-chart
-        data="ByUfr_ccode"
-        id="ByUfr_ccode"
-        height="400"
-        margin="{left:40,top:5,bottom:50,right:50}"
-        y="yFunction()"
-        x="xFunction()"
-        showXAxis="true"
-        showValues="true">
-        <svg></svg>
-        </nvd3-multi-bar-horizontal-chart>
-    </div>
-    <div ng-controller="LinechartCtrl">
-        <nvd3-line-chart
-        data="issues_ufrOnlyUfr"
-        height="150"
-        y="yFunctionUFR()"
-        x="xFunctionUFR()"
-        margin="{left:80,top:15,bottom:30,right:80}"
-        interactive="true"
-        tooltips="true"
-        showXAxis="true"
-        showYAxis="true"
-        tooltipcontent="toolTipContentFunctionUFR()"
-        >
-        <svg></svg>
-        </nvd3-line-chart>
-    </div>
-    <div ng-controller="PiechartCtrl" class="col-md-4">
-         <nvd3-pie-chart
-             data="ByUfr_borrowers_sex"
-             id="ByUfr_borrowers_sex"
-             margin="{left:0,top:10,bottom:10,right:0}"
-             x="xFunction()"
-             y="yFunctionBorrowersUfr()"
-             width="350"
-             height="350"
-             tooltips="true"
-             showValues="true"
-             showLabels="true"
-             donut="true"
-             interactive="true"
-             donutLabelsOutside="false"
-             >
-             <svg></svg>
-         </nvd3-pie-chart>
-    </div>
-    <h2>age</h2>{{ByUfr_borrowers_age}}
-    <h2>Numbers</h2>{{ByUfr_issues_numbers}}
-    <h2>borrowers_numbers</h2>{{ByUfr_borrowers_numbers}}
-    <hr/>
-    <h2>Top des prêts</h2>
-    Filtrer par discipline :
-    <select ng-model="selecteds">
-        <option ng-repeat="ccode in stats.ccode"  value="{{ccode.ccode}}">{{ccode.ccode}}
-        </option>
-    </select>
-    <div ng-repeat="topBooks in topBooksGroup" class="row">
-        <div class="col-lg-4 col-md-4" ng-repeat="book in topBooks | filter:{ccode: selecteds}" >
-            <h4>{{book.top}} - {{book.title}}</h4>
-            <h6>{{book.author_nom}}, {{book.author_prenom}} - {{book.author_date}}</h6>
-            <img width="250px" src='{{book.LargeImage}}'>
-            <p>
-            <span>Date de publication : {{book.publicationyear}}</span><br/>
-            <span>Prêts : {{book.issues}}</span><br/>
-            <span>ccode : {{book.ccode}}</span>
-            </p>
-            <br/><br/>
+    <div class="row">
+        <h3>Répartitions des Niveaux par Mois</h3>
+        <div ng-controller="StackedareachartCtrl">
+            <select ng-model="selectedSemestre" ng-options="semestre as semestre.name for semestre in semestres" ng-change="setSemestre_issues_niveau_light(selectedSemestre)">
+                <option value="">Choisir un semestre</option>
+            </select>
+            <!--       <nvd3-stacked-area-chart
+                    data="issues_niveau_light"
+                    id="statsIssuesAllByDayAverageNiveau"
+                    showXAxis="true"
+                    showYAxis="true"
+                    y="yFunction()"
+                    x="xFunction()"
+                    height="400"
+                    margin="{left:80,top:50,bottom:30,right:50}"
+                    interactive="true"
+                    yAxisTickFormat="yAxisTickFormatFunction()"
+                    xAxisTickFormat="xAxisTickFormatFunction()"
+                    tooltips="true"
+                            showLegend="true"
+                    showControls="true"
+                    useInteractiveGuideLine="true"
+                    >
+                        <svg></svg>
+            </nvd3-stacked-area-chart> -->
+            <nvd3-multi-bar-chart
+            data="issues_niveau_light"
+            showXAxis="true"
+            showYAxis="true"
+            y="yFunction()"
+            x="xFunction()"
+            height="400"
+            margin="{left:80,top:50,bottom:50,right:50}"
+            interactive="true"
+            staggerLabels="true"
+            yAxisTickFormat="yAxisTickFormatFunction()"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            tooltips="true"
+            showLegend="true"
+            showControls="true">
+            <svg></svg>
+            </nvd3-multi-bar-chart>
         </div>
     </div>
+    <hr/>
+    <div class="row cartouche">
+        <h2>STATS PAR UFR :
+        <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select>
+        </h2>
+    <!--     <div ng-repeat="topBookByUfr in ByUfr_books.values"> -->
+    <!--         <h4>{{topBookByUfr.title}} - {{topBookByUfr.issuesTotal}}</h4> -->
+    <!--     </div> -->
+        <h4>Livres les plus populaires</h4>
+        <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="topBookByUfr in ByUfr_books.values | limitTo:4">
+            <a href="#/livre?biblionumber=">
+                <div class="bookFront center-block" style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{bookCover.cover.LargeImage}}) center, #febd17; background-size:cover;">
+                </div>
+                <h4>{{topBookByUfr.title}}</h4>
+                Prêts : {{topBookByUfr.issuesTotal}}        
+            </a>
+        </div>
+
+            
+        <div class="col-md-2"><h5>Numbers</h5>{{ByUfr_issues_numbers}}</div>
+        <div ng-controller="LinechartCtrl" class="col-md-10">
+            <nvd3-line-chart
+            data="issues_ufrOnlyUfr"
+            height="150"
+            y="yFunctionUFR()"
+            x="xFunctionUFR()"
+            margin="{left:80,top:15,bottom:30,right:80}"
+            interactive="true"
+            tooltips="true"
+            showXAxis="true"
+            showYAxis="true"
+            tooltipcontent="toolTipContentFunctionUFR()"
+            >
+            <svg></svg>
+            </nvd3-line-chart>
+        </div>
+        <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
+            <h4>Nombre de prêts par secteur</h4>
+            <nvd3-multi-bar-horizontal-chart
+            data="ByUfr_ccode"
+            id="ByUfr_ccode"
+            height="400"
+            margin="{left:40,top:5,bottom:50,right:50}"
+            y="yFunction()"
+            x="xFunction()"
+            showXAxis="true"
+            showValues="true">
+            <svg></svg>
+            </nvd3-multi-bar-horizontal-chart>
+        </div>
+        <div ng-controller="PiechartCtrl" class="col-md-6">
+            <h4>Profil lecteurs</h4>
+            <p>Nombre de lecteurs : {{ByUfr_borrowers_numbers}}</p>
+             <nvd3-pie-chart
+                 data="ByUfr_borrowers_sex"
+                 id="ByUfr_borrowers_sex"
+                 margin="{left:0,top:10,bottom:10,right:0}"
+                 x="xFunction()"
+                 y="yFunctionBorrowersUfr()"
+                 width="300"
+                 tooltips="true"
+                 showValues="true"
+                 showLabels="true"
+                 donut="true"
+                 interactive="true"
+                 donutLabelsOutside="false"
+                 >
+                 <svg></svg>
+             </nvd3-pie-chart>
+             <p>âge moyen : {{ByUfr_borrowers_age}}</p>            
+        </div>
+
+
+        <hr/>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Top des prêts</h2>    
+            Filtrer par discipline :
+            <select ng-model="selecteds">
+                <option ng-repeat="ccode in stats.ccode"  value="{{ccode.ccode}}">{{ccode.ccode}}
+                </option>
+            </select>
+        </div>
+        <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds}">
+            <a href="#/livre?biblionumber=">
+                <h4>{{book.top}} - {{book.title}}</h4>
+                <h6>{{book.author_nom}}, {{book.author_prenom}} - {{book.author_date}}</h6>
+                <div class="bookFront center-block" style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{book.LargeImage}}) center, #febd17; background-size:cover;">
+                </div>
+                <p>
+                <span>Date de publication : {{book.publicationyear}}</span><br/>
+                <span>Prêts : {{book.issues}}</span><br/>
+                <span>ccode : {{book.ccode}}</span>
+                </p>    
+            </a>
+        </div>
+    </div>
+
+
 </div>

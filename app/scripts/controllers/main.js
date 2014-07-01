@@ -16,7 +16,8 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
       });
       counter++;
     });
-    $scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);
+    $scope.topBooks = responseBook.books;
+    //$scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);
     //$scope.topBooks = responseBook.books;
     // GET STATS
     var ds = new Miso.Dataset({
@@ -61,12 +62,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   //topBooks();
   prevuAPIservice.getStatsIssuesAllByMonth().success(function(response) {
     $scope.statsIssuesAllByMonth = [{
-      key: "Prêts",
-      values: response.stats
-    }]
-  });
-  prevuAPIservice.getStatsIssuesAllByDay().success(function(response) {
-    $scope.statsIssuesAllByDay = [{
       key: "Prêts",
       values: response.stats
     }]
@@ -119,10 +114,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
     $scope.setSemestre_issues_niveau_light = function(sem) {
       $scope.issues_niveau_light = response[0].issues_niveau_light[sem.id];
     };
-    // ==================
-    // ALL ISSUES GROUPED UFR & NIVEAU
-    $scope.issues_ufr = response[0].issues_ufr;
-    $scope.issues_niveau = response[0].issues_niveau;
     function getArrayByKey(arr, key) {
       for (var d = 0, len = arr.length; d < len; d += 1) {
         if (arr[d].key === key) {
