@@ -131,9 +131,17 @@
                     <h3>Livres les plus populaires par Ufr</h3>
                 </div>
                 <div class="col-md-2">
-                    <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select>
+<!--                     <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select> -->
+                    <ui-select ng-model="selectedUFR" theme="selectize"   ng-change="setUfr(selectedUFR)"> 
+                      <ui-select-match placeholder="Choisir une UFR dans la liste...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
+                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>                    
                 </div>
             </head>
+
+
             <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="topBookByUfr in ByUfr_books.values | limitTo:4">
                 <a href="#/livre?biblionumber=">
                     <div class="bookFront center-block" style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{bookCover.cover.LargeImage}}) center, #febd17; background-size:cover;">

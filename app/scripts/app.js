@@ -7,6 +7,7 @@ angular
     'ngSanitize',
     'ngRoute',
     'ui.bootstrap',
+    'ui.select',
     'nvd3ChartDirectives'
   ])
   .config(function ($routeProvider) {
