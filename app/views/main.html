@@ -140,9 +140,12 @@
                     <h3>Répartitions des Niveaux par Mois</h3>
                 </div>
                 <div class="col-md-2">
-                    <select ng-model="selectedSemestre" ng-options="semestre as semestre.name for semestre in semestres" ng-change="setSemestre_issues_niveau_light(selectedSemestre)">
-                        <option value="">Choisir un semestre</option>
-                    </select>                    
+                    <ui-select ng-model="selectedSemestre" theme="selectize"  ng-change="setSemestre_issues_niveau_light(selectedSemestre)" style="width: 150px;"> 
+                      <ui-select-match placeholder="Choisir un semestre...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="semestre in semestres| filter: $select.search">
+                        <span ng-bind-html="semestre.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>     
                 </div>
             </head>
             <div ng-controller="StackedareachartCtrl">
@@ -155,7 +158,6 @@
                 height="400"
                 margin="{left:80,top:50,bottom:50,right:50}"
                 interactive="true"
-                staggerLabels="true"
                 yAxisTickFormat="yAxisTickFormatFunction()"
                 xAxisTickFormat="xAxisTickFormatFunction()"
                 tooltips="true"
@@ -175,8 +177,8 @@
                 </div>
                 <div class="col-md-2">
 <!--                     <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select> -->
-                    <ui-select ng-model="selectedUFR" theme="selectize"   ng-change="setUfr(selectedUFR)"> 
-                      <ui-select-match placeholder="Choisir une UFR dans la liste...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 150px;"> 
+                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
                       <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
                         <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
                       </ui-select-choices>
@@ -201,7 +203,12 @@
                 <h3>Stats par Ufr</h3>
             </div>
             <div class="col-md-2">
-                <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select>
+                <ui-select ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 150px;"> 
+                  <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
+                    <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>                      
             </div>
         </head>
         <div class="col-md-12">                

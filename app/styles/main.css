@@ -236,3 +236,7 @@ z-index: 999;
   background-color: white;
   margin-bottom: 15px;
 }
+
+.selectize-control {
+  margin-top: 15px;
+}
