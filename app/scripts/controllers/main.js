@@ -1,6 +1,31 @@
 'use strict';
 //http://stackoverflow.com/questions/14748449/angular-js-using-bootstrap-and-dynamically-creating-rows
 angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prevuAPIservice) {
+    $scope.listUfr = {
+    "AESECOGES" : "UFR AES, ÉCONOMIE ET GESTION",
+    "ARTS" : "UFR ARTS, PHILOSOHIE, ESTHÉTIQUE",
+    "CC" : "UFR CULTURE ET COMMUNICATION",
+    "DROIT" : "UFR DROIT",
+    "ED 031" : "ED PRATIQUES ET THÉORIES DU SENS",
+    "ED 159" : "ED ESTHÉTIQUE, SC. ET TECHNO. DES ARTS",
+    "ED 224" : "ED COGNITION, LANGAGE, INTERACTION",
+    "ED 401" : "ED SCIENCES SOCIALES",
+    "Form. perm" : "FORMATION PERMANENTE",
+    "IED" : "INSTITUT D'ENSEIGNEMENT À DISTANCE",
+    "IEE" : "INSTITUT D'ETUDES EUROPÉENNES",
+    "IFG" : "INSTITUT FRANÇAIS DE GÉOPOLITIQUE",
+    "IPT" : "INFORMATIQUE POUR TOUS",
+    "IUT MONTR" : "IUT DE MONTREUIL",
+    "IUT TREMBL" : "IUT DE TREMBLAY-EN-FRANCE",
+    "LLCE-LEA" : "UFR LLCE-LEA",
+    "MITSIC" : "UFR M.I.T.S.I.C",
+    "PSYCHO" : "UFR DE PSYCHOLOGIE",
+    "SDL" : "UFR SCIENCES DU LANGAGE",
+    "SEPF" : "UFR SCIENCES ÉDUCATION, PSYCHANALYSE,FLE",
+    "SUFICE" : "SUFICE",
+    "T&S" : "UFR TEXTES ET SOCIÉTÉS.",
+    "TES" : "UFR TERRITOIRES, ENVIRONNEMENTS,SOCIÉTÉS"
+    };
   // GET TOP BOOKS
   prevuAPIservice.getTopBooks().success(function(responseBook) {
     var counter = 1; // Counter pour le top
@@ -38,7 +63,6 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
           langue: this.countBy('langue').toJSON(),
           ccode: this.countBy('ccode').toJSON()
         };
-        console.log($scope.stats);
       }
     });
   });
@@ -63,6 +87,7 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   prevuAPIservice.getStatsIssuesAllByMonth().success(function(response) {
     $scope.statsIssuesAllByMonth = [{
       key: "Prêts",
+      "area": true,
       values: response.stats
     }]
   });
@@ -129,14 +154,13 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
     var ufrKeys = new Array();
     angular.forEach(response[0].ByUfr.books, function(ufr) {
       ufrKeys.push({
-        name: ufr.key,
+        name: ($scope.listUfr[ufr.key]) ? $scope.listUfr[ufr.key] : ufr.key ,
         key: ufr.key
       });
     });
     $scope.ufrKeys = ufrKeys;
     $scope.selectedUFR = {};
     $scope.selectedUFR.selected = $scope.ufrKeys[1]; // Select par défault
-    console.log($scope.selectedUFR.selected);
     // Données pour le horizontal bar
     $scope.ByUfr_ccode = [{
       key: $scope.ufrKeys[1].key,

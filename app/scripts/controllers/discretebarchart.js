@@ -20,6 +20,16 @@ angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
       return d3.round(d.count);
     };
   }
+  $scope.xFunctionIssues = function() {
+    return function(d) {
+      return parseInt(d.issuesdate);
+    };
+  }
+  $scope.yFunctionIssues = function(t) {
+    return function(d) {
+      return parseInt(d.issues);
+    };
+  }  
   $scope.xFunctionNiveau = function() {
     return function(d) {
       return d.ccode;
@@ -30,10 +40,14 @@ angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
       return d3.round(d.count);
     };
   }  
-  $scope.yAxisTickFormatFunction = function() {
+  $scope.xAxisTickFormatFunction = function() {
     return function(d) {
-      var fmt = d3.format('r0');
-      return fmt(d);
+      return d3.time.format('%b-%y')(new Date(d * 1000));
+    }
+  }
+  $scope.toolTipContentFunction = function() {
+    return function(key, x, y, e, graph) {
+      return  '<h3>' + d3.time.format('%b-%y')(new Date(e.point.issuesdate * 1000)) + '</h3>'+e.point.issues
     }
   }
   $scope.format = function() {

@@ -22,62 +22,80 @@
         </div>
     </div>
     <div  class="row">
-        <div class="col-md-4 text-center cartouche">
-            <h3>Livres empruntés</h3>
-            <h4><span class="value">153 331</span></h4>
-            <div ng-controller="LinechartCtrl">
-                <nvd3-line-chart
-                data="books_count_graph"
-                height="130"
-                y="yFunction()"
-                x="xFunction()"
-                margin="{left:10,top:5,bottom:0,right:10}"
-                interactive="true"
-                forcey="[41500,45000]"
-                tooltips="true"
-                tooltipcontent="toolTipContentFunction()"
-                >
-                <svg></svg>
-                </nvd3-line-chart>
+        <div class="col-md-4 text-center">
+            <div class="cartouche abstract">
+                <h3>Livres empruntés</h3>
+                <h4><span class="value">153 331</span></h4>
+                <div ng-controller="LinechartCtrl">
+                    <nvd3-line-chart
+                    data="books_count_graph"
+                    height="130"
+                    y="yFunction()"
+                    x="xFunction()"
+                    margin="{left:7,top:5,bottom:0,right:7}"
+                    interactive="true"
+                    forcey="[41500,45000]"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunction()"
+                    >
+                    <svg></svg>
+                    </nvd3-line-chart>
+                </div>
             </div>
+            <footer>
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
         </div>
-        <div class="col-md-4 text-center cartouche">
-            <h3>Nombre de Prêts</h3>
-            <h4><span class="value">324 401</span></h4>
-            <div ng-controller="LinechartCtrl">
-                <nvd3-line-chart
-                data="issues_count_graph"
-                height="130"
-                y="yFunction()"
-                x="xFunction()"
-                margin="{left:10,top:5,bottom:0,right:10}"
-                interactive="true"
-                forcey="[75000,85000]"
-                tooltips="true"
-                tooltipcontent="toolTipContentFunction()"
-                >
-                <svg></svg>
-                </nvd3-line-chart>
+        <div class="col-md-4 text-center">
+            <div class="cartouche abstract">
+                <h3>Nombre de Prêts</h3>
+                <h4><span class="value">324 401</span></h4>
+                <div ng-controller="LinechartCtrl">
+                    <nvd3-line-chart
+                    data="issues_count_graph"
+                    height="130"
+                    y="yFunction()"
+                    x="xFunction()"
+                    margin="{left:7,top:5,bottom:0,right:7}"
+                    interactive="true"
+                    forcey="[75000,85000]"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunction()"
+                    >
+                    <svg></svg>
+                    </nvd3-line-chart>
+                </div>
             </div>
+            <footer>
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
         </div>
-        <div class="col-md-4 text-center cartouche">
-            <h3>Lecteurs Actifs</h3>
-            <h4><span class="value">32 449</span></h4>
-            <div ng-controller="LinechartCtrl">
-                <nvd3-line-chart
-                data="borrowers_count_graph"
-                height="130"
-                y="yFunction()"
-                x="xFunction()"
-                margin="{left:10,top:5,bottom:0,right:10}"
-                interactive="true"
-                forcey="[9300,10500]"
-                tooltips="true"
-                tooltipcontent="toolTipContentFunction()"
-                >
-                <svg></svg>
-                </nvd3-line-chart>
+        <div class="col-md-4 text-center">
+            <div class="cartouche abstract">
+                <h3>Lecteurs Actifs</h3>
+                <h4><span class="value">32 449</span></h4>
+                <div ng-controller="LinechartCtrl">
+                    <nvd3-line-chart
+                    data="borrowers_count_graph"
+                    height="130"
+                    y="yFunction()"
+                    x="xFunction()"
+                    margin="{left:7,top:5,bottom:0,right:7}"
+                    interactive="true"
+                    forcey="[9300,10500]"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunction()"
+                    >
+                    <svg></svg>
+                    </nvd3-line-chart>
+                </div>
             </div>
+            <footer>
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>             
         </div>
     </div>
     <div class="row head-line">
@@ -110,7 +128,7 @@
                 <h3>Historique des prêts</h3>
             </head>
             <div ng-controller="DiscretebarchartCtrl">
-                <nvd3-discrete-bar-chart
+<!--                 <nvd3-discrete-bar-chart
                 data="statsIssuesAllByMonth"
                 id="yExample"
                 margin="{left:80,top:50,bottom:50,right:50}"
@@ -122,16 +140,31 @@
                 tooltips="true"
                 y="yFunction()"
                 x="xFunction()"
-                yAxisTickFormat="yAxisTickFormatFunction()"
                 forcey="[2000,20000]"
                 useInteractiveGuideLine="true">
                 <svg ></svg>
-                </nvd3-discrete-bar-chart>
+                </nvd3-discrete-bar-chart> -->
+                <nvd3-line-chart
+                data="statsIssuesAllByMonth"
+                height="300"
+                y="yFunctionIssues()"
+                x="xFunctionIssues()"
+                margin="{left:80,top:15,bottom:30,right:80}"
+                interactive="true"
+                tooltips="true"
+                showXAxis="true"
+                showYAxis="true"
+                xAxisTickFormat="xAxisTickFormatFunction()"
+                tooltipcontent="toolTipContentFunction()"
+                >
+                <svg></svg>
+                </nvd3-line-chart>
             </div>
-            <footer>
-                <span>Par Mois</span>
-            </footer>
         </div>
+        <footer class="col-md-12">
+            <span class="legend">Période : </span>
+            <span class="period">2012-02-01 - 2014-02-01</span>
+        </footer>
     </div>
     <div class="row">
         <div class="col-md-12 cartouche">
@@ -167,17 +200,21 @@
                 </nvd3-multi-bar-chart>
             </div>
         </div>
+        <footer class="col-md-12">
+            <span class="legend">Période : </span>
+            <span class="period">2012-02-01 - 2014-02-01</span>
+        </footer>
     </div>
     <hr/>
-    <div class="row cartouche">
-        <div class="col-md-12">
+    <div class="row ">
+        <div class="col-md-12 cartouche">
             <head>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <h3>Livres les plus populaires par Ufr</h3>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
 <!--                     <select ng-model="selectedUFR" ng-options="ufrKey.name for ufrKey in ufrKeys" ng-change="setUfr(selectedUFR)"><option value="">Choisir une UFR</option></select> -->
-                    <ui-select ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 150px;"> 
+                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
                       <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
                       <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
                         <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
@@ -196,78 +233,94 @@
                 </a>
             </div>
         </div>
+        <footer class="col-md-12">
+            <span class="legend">Période : </span>
+            <span class="period">2012-02-01 - 2014-02-01</span>
+        </footer>
     </div>
-    <div class="row cartouche">
-        <head>
-            <div class="col-md-10">
-                <h3>Stats par Ufr</h3>
-            </div>
-            <div class="col-md-2">
-                <ui-select ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 150px;"> 
-                  <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
-                  <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
-                    <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
-                  </ui-select-choices>
-                </ui-select>                      
-            </div>
-        </head>
-        <div class="col-md-12">                
-            <div class="col-md-2"><h5>Numbers</h5>{{ByUfr_issues_numbers}}</div>
-            <div ng-controller="LinechartCtrl" class="col-md-10">
-                <nvd3-line-chart
-                data="issues_ufrOnlyUfr"
-                height="150"
-                y="yFunctionUFR()"
-                x="xFunctionUFR()"
-                margin="{left:80,top:15,bottom:30,right:80}"
-                interactive="true"
-                tooltips="true"
-                showXAxis="true"
-                showYAxis="true"
-                tooltipcontent="toolTipContentFunctionUFR()"
-                >
-                <svg></svg>
-                </nvd3-line-chart>
-            </div>
-            <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
-                <h4>Nombre de prêts par secteur</h4>
-                <nvd3-multi-bar-horizontal-chart
-                data="ByUfr_ccode"
-                id="ByUfr_ccode"
-                height="400"
-                margin="{left:40,top:5,bottom:50,right:50}"
-                y="yFunction()"
-                x="xFunction()"
-                showXAxis="true"
-                showValues="true">
-                <svg></svg>
-                </nvd3-multi-bar-horizontal-chart>
-            </div>
-            <div ng-controller="PiechartCtrl" class="col-md-6">
-                <h4>Profil lecteurs</h4>
-                <p>Nombre de lecteurs : {{ByUfr_borrowers_numbers}}</p>
-                 <nvd3-pie-chart
-                     data="ByUfr_borrowers_sex"
-                     id="ByUfr_borrowers_sex"
-                     margin="{left:0,top:10,bottom:10,right:0}"
-                     x="xFunction()"
-                     y="yFunctionBorrowersUfr()"
-                     width="300"
-                     tooltips="true"
-                     showValues="true"
-                     showLabels="true"
-                     donut="true"
-                     interactive="true"
-                     donutLabelsOutside="false"
-                     >
-                     <svg></svg>
-                 </nvd3-pie-chart>
-                 <p>âge moyen : {{ByUfr_borrowers_age}}</p>            
+    <div class="row">
+        <div class="col-md-12 cartouche">
+            <head>
+                <div class="col-md-8">
+                    <h3>Stats par Ufr</h3>
+                </div>
+                <div class="col-md-4">
+                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
+                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
+                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>                      
+                </div>
+            </head>
+            <div class="col-md-12">                
+                <div class="col-md-2">
+                    <h5>Nombre de prêts</h5>
+                    <span class="value">{{ByUfr_issues_numbers}}</span>
+                </div>
+                <div ng-controller="LinechartCtrl" class="col-md-10">
+                    <nvd3-line-chart
+                    data="issues_ufrOnlyUfr"
+                    height="150"
+                    y="yFunctionUFR()"
+                    x="xFunctionUFR()"
+                    margin="{left:80,top:15,bottom:30,right:80}"
+                    interactive="true"
+                    tooltips="true"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormatFunction()"
+                    tooltipcontent="toolTipContentFunctionUFR()"
+                    >
+                    <svg></svg>
+                    </nvd3-line-chart>
+                </div>
+                <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
+                    <h4>Nombre de prêts par secteur</h4>
+                    <nvd3-multi-bar-horizontal-chart
+                    data="ByUfr_ccode"
+                    id="ByUfr_ccode"
+                    height="400"
+                    margin="{left:120,top:5,bottom:50,right:50}"
+                    y="yFunction()"
+                    x="xFunction()"
+                    showXAxis="true"
+                    showValues="true">
+                    <svg></svg>
+                    </nvd3-multi-bar-horizontal-chart>
+                </div>
+                <div ng-controller="PiechartCtrl" class="col-md-6">
+                    <h4>Profil lecteurs</h4>
+                    <h5>Nombre de lecteurs </h5>
+                    <span class="value">{{ByUfr_borrowers_numbers}}</span>
+                        <nvd3-pie-chart
+                         data="ByUfr_borrowers_sex"
+                         id="ByUfr_borrowers_sex"
+                         margin="{left:0,top:10,bottom:10,right:0}"
+                         x="xFunction()"
+                         y="yFunctionBorrowersUfr()"
+                         width="300"
+                         tooltips="true"
+                         showValues="true"
+                         showLabels="true"
+                         donut="true"
+                         interactive="true"
+                         donutLabelsOutside="false"
+                         >
+                         <svg></svg>
+                     </nvd3-pie-chart>
+                    <h5>âge moyen du lecteurs </h5>
+                    <span class="value">{{ByUfr_borrowers_age}}</span>
+                </div>
             </div>
         </div>
+        <footer class="col-md-12">
+            <span class="legend">Période : </span>
+            <span class="period">2012-02-01 - 2014-02-01</span>
+        </footer>
     </div>
 
-
+    <hr />
     <div class="row">
         <div class="col-md-12 cartouche">
             <head>

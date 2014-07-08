@@ -1,16 +1,17 @@
 @import url(http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700);
-
+@import url(http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 /* Space out content a bit */
 body {
   padding-top: 20px;
   padding-bottom: 20px;
-  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+  font-family: 'Karla', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+  font-family: 'Vollkorn', serif;
 }
 svg text {
-    font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
+  font-family: 'Droid', sans-serif;
 }
 
 
@@ -23,7 +24,6 @@ svg text {
 
 input {
     font-weight: 200;
-    font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
     color: #febd17;
     font-size: 4em;
     outline: 0;
@@ -72,7 +72,6 @@ input {
 }
 
 .dropdown-menu > li > a {
-  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
   font-size: 1.6em;
   font-weight: 200;
 }
@@ -90,7 +89,6 @@ input {
 
 .stat {
   font-weight: 200;
-  font-family: "Avenir Next",Avenir,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -114,10 +112,8 @@ input {
 
 /* Home page*/
 .head-line {
-  font-family: 'Vollkorn', 'serif';
 }
 .head-line h1 {
-  font-family: 'Vollkorn', 'serif';
   font-size: 3.5em;
 }
 
@@ -232,11 +228,72 @@ z-index: 999;
 }
 
 .cartouche {
-  border: 1px solid #dfe1e8;
   background-color: white;
-  margin-bottom: 15px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+}
+
+footer {
+  font-family: 'Droid', sans-serif;
+  border-top: 1px solid #dfe1e8;
+  background-color: #f9fafa;
+  -webkit-border-radius: 0 0 2px 2px;
+  -moz-border-radius: 0 0 2px 2px;
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  padding: 5px 0;
+  margin-bottom: 20px;
+}
+
+footer .legend {
+  text-transform: uppercase;
+  font-weight: 700;
+  color : #a5b1b9;
+}
+
+footer .period {
+  color : #a5b1b9;
+}
+
+.cartouche.abstract h3 {
+  padding-top: 20px;
 }
 
 .selectize-control {
   margin-top: 15px;
+}
+
+.nvtooltip {
+  background-color: rgba(0,0,0,0.9);
+  border: 1px solid rgba(0,0,0,.2);
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;  
+}
+
+.nvtooltip h3 {
+  margin: 0;
+  padding: 4px 14px;
+  line-height: 18px;
+  font-weight: normal;
+  background-color:transparent; 
+  text-align: center;
+  color: white;
+  font-family: 'Droid', sans-serif;
+
+  border-bottom: 1px solid #ebebeb;
+
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.nvtooltip span {
+  font-family: 'Vollkorn', serif;
+  font-size: 25px;
 }

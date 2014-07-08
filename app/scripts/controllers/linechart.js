@@ -27,12 +27,12 @@ angular.module('prevuApp').controller('LinechartCtrl', function($scope) {
   }
   $scope.toolTipContentFunction = function() {
     return function(key, x, y, e, graph) {
-      return  '<h3>' + e.point.name + '</h3>'+e.point.value
+      return  '<h3>' + e.point.name + '</h3><span>'+e.point.value+'</span>';
     }
   }
   $scope.toolTipContentFunctionUFR = function() {
     return function(key, x, y, e, graph) {
-      return  '<h3>' + e.point.Ufr + '</h3>'+e.point.issues+' '+e.point.issuesdate
+      return  '<h3>' + e.point.Ufr + '</h3>'+e.point.issues+' '+ d3.time.format('%b-%y')(new Date(e.point.issuesdate * 1000))
     }
   }
   $scope.yAxisTickFormatFunction = function() {
