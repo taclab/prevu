@@ -1,7 +1,7 @@
-La grande question : c'est pour la page main, est ce que je fais un seule JSON ou je reste sur 20 requetes. 
-Et si je fais un seul json commant je le compose, de façon automatique
-Comprendre comment angular charge les éléments
 
+
+- Comprendre comment angular charge les éléments
+- Traduction des charts 
 
 - Faire une requete sql pour les Issues -> avec classemtn par mois pour l'evolution des emprunts
 - Compter les auteurs les plus populaires

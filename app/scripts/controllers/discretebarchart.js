@@ -47,7 +47,7 @@ angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
   }
   $scope.toolTipContentFunction = function() {
     return function(key, x, y, e, graph) {
-      return  '<h3>' + d3.time.format('%b-%y')(new Date(e.point.issuesdate * 1000)) + '</h3>'+e.point.issues
+      return  '<h3>'+e.point.issues+' prêts</h3><span>' + d3.time.format('%B-%y')(new Date(e.point.issuesdate * 1000)) + '</span>'; 
     }
   }
   $scope.format = function() {

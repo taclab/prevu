@@ -14,7 +14,17 @@ svg text {
   font-family: 'Droid', sans-serif;
 }
 
-
+a {
+  color: black;
+  -webkit-transition: color .2s ease-in;
+  -moz-transition: color .2s ease-in;
+  -o-transition: color .2s ease-in;
+  transition: color .2s ease-in;
+}
+a:hover {
+  text-decoration: none;
+  color : #febd17;
+}
 /* NAV BAR*/
 
 .navbar-default {
@@ -124,13 +134,13 @@ input {
     height: 250px;
 }
 .bookWarp {
+
   padding-top: 15px;
 
 }
 .bookWarp:hover {
   background-color: white;
-  border: 1px solid #dfe1e8;
-
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 
@@ -266,14 +276,16 @@ footer .period {
 }
 
 .nvtooltip {
-  background-color: rgba(0,0,0,0.9);
-  border: 1px solid rgba(0,0,0,.2);
-  color: white;
+  background-color: rgba(249,250,250,0.9);
+  border: 0px;
+  color: black;
   font-size: 13px;
   text-align: center;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  -moz-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;  
+  -webkit-border-radius: 2px 2px 2px 2px;
+  -moz-border-radius: 2px 2px 2px 2px;
+  border-radius: 2px 2px 2px 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
 }
 
 .nvtooltip h3 {
@@ -283,14 +295,12 @@ footer .period {
   font-weight: normal;
   background-color:transparent; 
   text-align: center;
-  color: white;
+  color: black;
   font-family: 'Droid', sans-serif;
-
   border-bottom: 1px solid #ebebeb;
-
-  -webkit-border-radius: 5px 5px 0 0;
-  -moz-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius:  0;
 }
 
 .nvtooltip span {

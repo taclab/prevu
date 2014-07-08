@@ -27,7 +27,7 @@ angular.module('prevuApp').controller('LinechartCtrl', function($scope) {
   }
   $scope.toolTipContentFunction = function() {
     return function(key, x, y, e, graph) {
-      return  '<h3>' + e.point.name + '</h3><span>'+e.point.value+'</span>';
+      return  '<h3>' + e.point.name + '</h3><span>'+e.point.value+' prêts</span>';
     }
   }
   $scope.toolTipContentFunctionUFR = function() {
