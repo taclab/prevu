@@ -343,3 +343,22 @@ ul
 ul.chart-legende {
   font-size: 1.3em;
 }
+
+.figure {
+  height: 100%;
+  overflow: hidden;
+}
+
+img {
+  opacity: 0.9;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+img:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);  
+}

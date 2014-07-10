@@ -366,14 +366,14 @@ legendColor="color_viz()"
             </div>
 
 
-<div class="col-md-4">
-                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
-                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
-                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select>                     
-</div>
+        <div class="col-md-4">
+            <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
+              <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
+              <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
+                <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
+              </ui-select-choices>
+            </ui-select>                     
+        </div>
 
 
             <div class="col-md-12">
@@ -381,63 +381,66 @@ legendColor="color_viz()"
                     <h5>Nombre de prêts</h5>
                     <span class="value">{{ByUfr_issues_numbers}}</span>
                 </div>
-<div ng-controller="LinechartCtrl" class="col-md-10">
-<nvd3-line-chart
-data="issues_ufrOnlyUfr"
-height="150"
-y="yFunctionUFR()"
-x="xFunctionUFR()"
-margin="{left:80,top:15,bottom:30,right:80}"
-interactive="true"
-tooltips="true"
-showXAxis="true"
-showYAxis="true"
-xAxisTickFormat="xAxisTickFormatFunction()"
-tooltipcontent="toolTipContentFunctionUFR()"
->
-<svg></svg>
-</nvd3-line-chart>
-</div>
-<div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
-<h4>Nombre de prêts par secteur</h4>
-<nvd3-multi-bar-horizontal-chart
-data="ByUfr_ccode"
-id="ByUfr_ccode"
-height="400"
-margin="{left:120,top:5,bottom:50,right:50}"
-y="yFunction()"
-x="xFunction()"
-showXAxis="true"
-showValues="true">
-<svg></svg>
-</nvd3-multi-bar-horizontal-chart>
-</div>
-<div ng-controller="PiechartCtrl" class="col-md-6">
-<h4>Profil lecteurs</h4>
-<h5>Nombre de lecteurs</h5>
-<span class="value">{{ByUfr_borrowers_numbers}}</span>
-<nvd3-pie-chart
-data="ByUfr_borrowers_sex"
-id="ByUfr_borrowers_sex"
-margin="{left:0,top:10,bottom:10,right:0}"
-x="xFunction()"
-y="yFunctionBorrowersUfr()"
-width="300"
-tooltips="true"
-showValues="true"
-showLabels="true"
-donut="true"
-interactive="true"
-donutLabelsOutside="false"
-color="color_schem()"
-legend="true"
->
-<svg></svg>
-</nvd3-pie-chart>
-<h5>âge moyen du lecteurs</h5>
-<span class="value">{{ByUfr_borrowers_age}}</span>
-</div>
-</div>
+                <div ng-controller="LinechartCtrl" class="col-md-10">
+                    <nvd3-line-chart
+                    data="issues_ufrOnlyUfr"
+                    height="150"
+                    y="yFunctionUFR()"
+                    x="xFunctionUFR()"
+                    margin="{left:80,top:15,bottom:30,right:80}"
+                    interactive="true"
+                    tooltips="true"
+                    showXAxis="true"
+                    showYAxis="true"
+                    xAxisTickFormat="xAxisTickFormatFunction()"
+                    tooltipcontent="toolTipContentFunctionUFR()"
+                    color="colorFunction()"
+                    >
+                    <svg></svg>
+                    </nvd3-line-chart>
+                </div>
+                <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
+                    <h4>Nombre de prêts par secteur</h4>
+                    <nvd3-multi-bar-horizontal-chart
+                    data="ByUfr_ccode"
+                    id="ByUfr_ccode"
+                    height="400"
+                    margin="{left:120,top:5,bottom:50,right:50}"
+                    y="yFunction()"
+                    x="xFunction()"
+                    showXAxis="true"
+                    showValues="true"
+                    color="color_schem()"
+                    >
+                    <svg></svg>
+                    </nvd3-multi-bar-horizontal-chart>
+                </div>
+                <div ng-controller="PiechartCtrl" class="col-md-6">
+                    <h4>Profil lecteurs</h4>
+                    <h5>Nombre de lecteurs</h5>
+                    <span class="value">{{ByUfr_borrowers_numbers}}</span>
+                    <nvd3-pie-chart
+                    data="ByUfr_borrowers_sex"
+                    id="ByUfr_borrowers_sex"
+                    margin="{left:0,top:10,bottom:10,right:0}"
+                    x="xFunction()"
+                    y="yFunctionBorrowersUfr()"
+                    width="300"
+                    tooltips="true"
+                    showValues="true"
+                    showLabels="true"
+                    donut="true"
+                    interactive="true"
+                    donutLabelsOutside="false"
+                    color="color_schem()"
+                    legend="true"
+                    >
+                    <svg></svg>
+                    </nvd3-pie-chart>
+                    <h5>âge moyen du lecteurs</h5>
+                    <span class="value">{{ByUfr_borrowers_age}}</span>
+                </div>
+            </div>
 </div>
 
 
@@ -499,17 +502,21 @@ legend="true"
         <div class="col-md-3">
             <a href="#/auteur?nom=Deleuze&prenom=Gilles">
             <h4>Gilles Deleuze</h4>
-            <img class="img-responsive" src="images/auteur/deleuze.jpg"></a>
+            <div class="figure">
+                <img class="img-responsive" src="images/auteur/deleuze.jpg">
+            </div>
+                <p>Prêts : 1208 Documents empruntés : 54</p>
+            </a>
 
-            <p>Prêts : 1208 Documents empruntés : 54</p>
         </div>
 
 
         <div class="col-md-3">
             <a href="#/auteur?nom=Foucault&prenom=Michel">
             <h4>Michel Foucault</h4>
-            <img class="img-responsive" src="images/auteur/foucault.jpg">
-
+            <div class="figure">
+                <img class="img-responsive" src="images/auteur/foucault.jpg">
+            </div>
             <p>Prêts : 1129 Documents empruntés : 55</p></a>
         </div>
 
@@ -517,7 +524,10 @@ legend="true"
         <div class="col-md-3">
             <a href="#/auteur?nom=Lacan&prenom=Jacques">
             <h4>Jacques Lacan</h4>
-            <img class="img-responsive" src="images/auteur/lacan.jpg"></a>
+            <div class="figure">
+                <img class="img-responsive" src="images/auteur/lacan.jpg">
+            </div>
+            </a>
 
             <p>Prêts : 1240 Documents empruntés : 40</p>
         </div>
@@ -526,7 +536,9 @@ legend="true"
         <div class="col-md-3">
             <a href="#/auteur?nom=Bourdieu&prenom=Pierre">
             <h4>Pierre Bourdieu</h4>
-            <img class="img-responsive" src="images/auteur/bourdieu.jpg">
+            <div class="figure">
+                <img class="img-responsive" src="images/auteur/bourdieu.jpg">
+            </div>
 
             <p>Prêts : 1013 Documents empruntés : 65</p></a>
         </div>
