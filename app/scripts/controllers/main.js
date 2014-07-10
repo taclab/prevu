@@ -118,6 +118,16 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
       "values": response[0].borrowers_count_graph
     }];
     // ==================
+    // BORROWERS SEX & AGE general 
+    $scope.borrowers_sex = response[0].borrowers_sex;
+    $scope.borrowers_age = response[0].borrowers_age;
+    $scope.issues_categoryCode = response[0].issues_categoryCode;
+    // REPARTITION UFR
+    $scope.issues_UfrRepartition = [{
+      key: "Ufr",
+      values: response[0].issues_UfrRepartition.slice(0,15)
+    }];
+    // ==================
     // PRETS NIVEAU
     // Génération des input selecteur pour les durées
     $scope.semestres = [{
@@ -166,13 +176,13 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
       key: $scope.ufrKeys[1].key,
       values: response[0].ByUfr.ccode[$scope.ufrKeys[1].key].values.slice(0, 10)
     }];
+    console.log( $scope.ByUfr_ccode);
     $scope.ByUfr_books = response[0].ByUfr.books[$scope.ufrKeys[1].key];
     $scope.issues_ufrOnlyUfr = [getArrayByKey(response[0].issues_ufr, $scope.ufrKeys[1].key)];
     $scope.ByUfr_borrowers_sex = response[0].ByUfr.borrowers_sex[$scope.ufrKeys[1].key].values;
     $scope.ByUfr_borrowers_age = response[0].ByUfr.borrowers_age[$scope.ufrKeys[1].key];
     $scope.ByUfr_issues_numbers = response[0].ByUfr.issues_numbers[$scope.ufrKeys[1].key];
     $scope.ByUfr_borrowers_numbers = response[0].ByUfr.borrowers_numbers[$scope.ufrKeys[1].key];
-
 
     // Changement des données apres SELECT
     $scope.setUfr = function(ufr) {

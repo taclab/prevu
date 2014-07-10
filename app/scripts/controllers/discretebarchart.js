@@ -1,5 +1,11 @@
 'use strict';
 angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
+  var colorArray = ['#2790b0','#79b5ac'];
+  $scope.colorFunction = function() {
+  return function(d, i) {
+      return colorArray[i];
+    };
+  }
   $scope.xFunction = function() {
     return function(d) {
       return d.month + '/' + d.year;

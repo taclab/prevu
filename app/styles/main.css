@@ -25,6 +25,10 @@ a:hover {
   text-decoration: none;
   color : #febd17;
 }
+
+p {
+  font-size: 1.3em;
+}
 /* NAV BAR*/
 
 .navbar-default {
@@ -109,11 +113,19 @@ input {
 }
 
 .value {
+  font-family: 'Vollkorn', serif; 
   font-size: 4em;
   color: #febd17;
 }
 
+.value-text {
+  font-family: 'Vollkorn', serif; 
+  font-size: 2em;
+  color: #febd17;
+}
+
 .value-small {
+  font-family: 'Vollkorn', serif; 
   font-size: 2em;
   color: #febd17; 
   text-align: left;
@@ -306,4 +318,28 @@ footer .period {
 .nvtooltip span {
   font-family: 'Vollkorn', serif;
   font-size: 25px;
+}
+
+nvd3-pie-chart.width-home svg {
+  width: 200px;
+  height: 200px;
+  display: inline;
+}
+
+nvd3-pie-chart.width-400 svg {
+  width: 400px;
+  height: 400px;
+  display: inline;
+}
+
+ul
+{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    display: inline-flex;
+}
+
+ul.chart-legende {
+  font-size: 1.3em;
 }
