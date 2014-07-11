@@ -61,7 +61,7 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
 
   /*== Suggestion des books ==*/
   $scope.suggestBooks = function(val) {
-    return $http.get('http://localhost:8888/prevu/application/api/book/search/' + val).then(function(res) {
+    return $http.get('http://tactiques.org/prevu/application/api/book/search/' + val).then(function(res) {
       var books = [];
       angular.forEach(res.data.search, function(item) {
         books.push(item);

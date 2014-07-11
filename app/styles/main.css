@@ -29,6 +29,11 @@ a:hover {
 p {
   font-size: 1.3em;
 }
+
+p:first-letter {
+  font-size: 2em;
+
+}
 /* NAV BAR*/
 
 .navbar-default {

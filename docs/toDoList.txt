@@ -2,6 +2,8 @@
 
 - Comprendre comment angular charge les éléments
 - Traduction des charts 
+- Ratio lecteurs/prêts -> stats par UFR
+- visaulisation avancée expiremntale -> tags cloud des recherches
 
 - Faire une requete sql pour les Issues -> avec classemtn par mois pour l'evolution des emprunts
 - Compter les auteurs les plus populaires

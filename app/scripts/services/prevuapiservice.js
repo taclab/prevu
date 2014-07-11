@@ -1,7 +1,8 @@
 'use strict';
 angular.module('prevuApp').factory('prevuAPIservice', function($http) {
   var prevuAPI = {};
-  var prevuAPI_url = 'http://localhost:8888/prevu/application/';
+  //var prevuAPI_url = 'http://localhost:8888/prevu/application/';
+  var prevuAPI_url = 'http://tactiques.org/prevu/application/';
   prevuAPI.getBookByBiblionumber = function(biblionumber) {
     return $http({
       url: prevuAPI_url + 'api//book/' + biblionumber

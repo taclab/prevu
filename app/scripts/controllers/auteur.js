@@ -66,7 +66,7 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $routeParam
   };
   /*==  Suggestion des authors ==*/
   $scope.suggestAuthors = function(val) {
-    return $http.get('http://localhost:8888/prevu/application/api/author/search/' + val).then(function(res) {
+    return $http.get('http://tactiques.org/prevu/application/api/author/search/' + val).then(function(res) {
       var authors = [];
       angular.forEach(res.data.search, function(item) {
         authors.push(item);
