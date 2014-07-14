@@ -34,6 +34,40 @@ p:first-letter {
   font-size: 2em;
 
 }
+
+/* General button style (reset) */
+.btn {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 25px 80px;
+  display: inline-block;
+  margin: 15px 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+/* Button 1 */
+.btn-1 {
+  border: 3px solid black;
+  color: black;
+  font-size: 1.3em;
+}
+
+/* Button 1a */
+.btn-1a:hover,
+.btn-1a:active {
+  color: #febd17;
+  background: #fff;
+}
 /* NAV BAR*/
 
 .navbar-default {
@@ -43,6 +77,9 @@ p:first-letter {
 
 input {
     font-weight: 200;
+        color: #febd17;
+
+    font-family: 'Vollkorn', serif;
     color: #febd17;
     font-size: 4em;
     outline: 0;
@@ -260,6 +297,10 @@ z-index: 999;
   -webkit-border-radius: 2px 2px 0 0;
   -moz-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
+}
+
+.cartouche.auteur {
+  padding: 0px 10px;
 }
 
 footer {

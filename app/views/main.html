@@ -118,7 +118,7 @@
 
             <div class="col-md-4 text-center">
                 <div class="cartouche abstract">
-                    <h3>Lecteurs Actifs</h3>
+                    <h3 style="margin-top:0px;">Lecteurs Actifs</h3>
                     <span>ayant pris au moins un livre</span>
                     <h4><span class="value">32 449</span>
                     </h4>
@@ -339,10 +339,9 @@ legendColor="color_viz()"
 
 
 <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="topBookByUfr in ByUfr_books.values | limitTo:4">
-                <a href="#/livre?biblionumber=">
+                <a href="#/livre?biblionumber={{topBookByUfr.biblionumber}}">
                 <div class="bookFront center-block" style=
-                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{bookCover.cover.LargeImage}}) center, #febd17; background-size:cover;">
-
+                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{ByUfr_booksCover[topBookByUfr.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
                 </div>
 
 
@@ -376,12 +375,12 @@ legendColor="color_viz()"
         </div>
 
 
-            <div class="col-md-12">
-                <div class="col-md-2">
+        <div class="col-md-12">
+            <div class="col-md-2">
                     <h5>Nombre de prêts</h5>
                     <span class="value">{{ByUfr_issues_numbers}}</span>
-                </div>
-                <div ng-controller="LinechartCtrl" class="col-md-10">
+            </div>
+            <div ng-controller="LinechartCtrl" class="col-md-10">
                     <nvd3-line-chart
                     data="issues_ufrOnlyUfr"
                     height="150"
@@ -398,8 +397,8 @@ legendColor="color_viz()"
                     >
                     <svg></svg>
                     </nvd3-line-chart>
-                </div>
-                <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
+            </div>
+            <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
                     <h4>Nombre de prêts par secteur</h4>
                     <nvd3-multi-bar-horizontal-chart
                     data="ByUfr_ccode"
@@ -414,8 +413,8 @@ legendColor="color_viz()"
                     >
                     <svg></svg>
                     </nvd3-multi-bar-horizontal-chart>
-                </div>
-                <div ng-controller="PiechartCtrl" class="col-md-6">
+            </div>
+            <div ng-controller="PiechartCtrl" class="col-md-6">
                     <h4>Profil lecteurs</h4>
                     <h5>Ratio bouquin/lecteur</h5>
 
@@ -441,8 +440,8 @@ legendColor="color_viz()"
                     </nvd3-pie-chart>
                     <h5>âge moyen du lecteurs</h5>
                     <span class="value">{{ByUfr_borrowers_age}}</span>
-                </div>
             </div>
+        </div>
 </div>
 
 
@@ -452,9 +451,9 @@ legendColor="color_viz()"
         </footer>
     </div>
 
-    <hr>
+    <hr />
 
-
+<!-- TOP PRETS  -->
     <div class="row col-md-12 cartouche">
         <div class="col-md-10">
             <h2>Top des prêts</h2>
@@ -470,7 +469,7 @@ legendColor="color_viz()"
         </div>
 
 
-<div style="height:400px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
+        <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
 
             <!-- http://jsfiddle.net/JefClaes/HPu9n/9/ -->
             <a href="#/livre?biblionumber={{book.biblionumber}}">
@@ -482,7 +481,7 @@ legendColor="color_viz()"
 
 
             <div class="bookFront center-block" style=
-            "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{book.LargeImage}}) center, #febd17; background-size:cover;">
+            "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
 
             </div>
 
@@ -493,14 +492,12 @@ legendColor="color_viz()"
             </p></a>
         </div>
     </div>
+<!-- END TOP PRETS  -->
 
-    <hr>
-
-
-    <div class="row">
-        <h3>Auteurs</h3>
-
-
+    <hr/>
+<!-- AUTEURS -->
+    <div class="row col-md-12 text-center">
+        <h1>Auteurs</h1>
         <div class="col-md-3">
             <a href="#/auteur?nom=Deleuze&prenom=Gilles">
             <h4>Gilles Deleuze</h4>
@@ -514,12 +511,14 @@ legendColor="color_viz()"
 
 
         <div class="col-md-3">
-            <a href="#/auteur?nom=Foucault&prenom=Michel">
-            <h4>Michel Foucault</h4>
-            <div class="figure">
-                <img class="img-responsive" src="images/auteur/foucault.jpg">
+            <div class="auteur">
+                <a href="#/auteur?nom=Foucault&prenom=Michel">
+                <h4>Michel Foucault</h4>
+                <div class="figure">
+                    <img class="img-responsive" src="images/auteur/foucault.jpg">
+                </div>
+                <p>Prêts : 1129 Documents empruntés : 55</p></a>
             </div>
-            <p>Prêts : 1129 Documents empruntés : 55</p></a>
         </div>
 
 
@@ -544,4 +543,26 @@ legendColor="color_viz()"
 
             <p>Prêts : 1013 Documents empruntés : 65</p></a>
         </div>
+    </div>
+<!-- END AUTEURS -->
+    <hr/>
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h1>Explorer</h1>
+        </div>
+        <div class="col-md-6">
+            
+            <button class="btn btn-1 btn-1a">
+                <a href="#/auteur">Par Auteur</a>
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-1 btn-1a">
+                <a href="#/livre">Par Livre</a>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h4>Soutenu par</h4>
     </div>

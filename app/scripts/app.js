@@ -2,6 +2,7 @@
 
 angular
   .module('prevuApp', [
+    'config',
     'ngCookies',
     'ngResource',
     'ngSanitize',

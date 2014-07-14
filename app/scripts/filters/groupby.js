@@ -21,3 +21,5 @@ angular.module('prevuApp').filter('groupBy', function() {
     }
   };
 });
+
+//$scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);

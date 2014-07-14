@@ -1,11 +1,13 @@
 'use strict';
-angular.module('prevuApp').factory('prevuAPIservice', function($http) {
+angular.module('prevuApp').factory('prevuAPIservice', function($http, ENV) {
   var prevuAPI = {};
   //var prevuAPI_url = 'http://localhost:8888/prevu/application/';
-  var prevuAPI_url = 'http://tactiques.org/prevu/application/';
+  //var prevuAPI_url = 'http://tactiques.org/prevu/application/';
+  var prevuAPI_url = ENV.apiEndpoint;
+  console.log(prevuAPI_url);
   prevuAPI.getBookByBiblionumber = function(biblionumber) {
     return $http({
-      url: prevuAPI_url + 'api//book/' + biblionumber
+      url: prevuAPI_url + 'api/book/' + biblionumber
     });
   };
   prevuAPI.searchAuthor = function(author) {
@@ -62,6 +64,16 @@ angular.module('prevuApp').factory('prevuAPIservice', function($http) {
   prevuAPI.getCoverBook = function(id) {
     return $http({
       url: prevuAPI_url + 'api/book/cover/' + id
+    });
+  };
+  prevuAPI.getMultipleCoverBook = function(biblionumbers) {
+    return $http({
+      method: 'POST',
+      url: prevuAPI_url + 'api/amazon/getMultipleCover.php',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: biblionumbers
     });
   };
   prevuAPI.getStatsIssuesAllByMonth = function() {

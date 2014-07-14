@@ -30,20 +30,10 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
   prevuAPIservice.getTopBooks().success(function(responseBook) {
     var counter = 1; // Counter pour le top
     // Ajout des metas données Amazon ResponseBook
-    angular.forEach(responseBook.books, function(book) {
-      book.top = counter;
-      // GET AMAZON
-      prevuAPIservice.getCoverBook(book.biblionumber).success(function(responseCover) {
-        book.TinyImage = responseCover.TinyImage;
-        book.LargeImage = responseCover.LargeImage;
-        book.MediumImage = responseCover.MediumImage;
-        book.Edito = responseCover.Edito;
-      });
-      counter++;
+    prevuAPIservice.getMultipleCoverBook(responseBook.books.slice(0,10)).success(function(responseCovers) {
+      $scope.topBooksCovers = responseCovers;
     });
     $scope.topBooks = responseBook.books;
-    //$scope.topBooksGroup = $filter('groupBy')(responseBook.books, 3);
-    //$scope.topBooks = responseBook.books;
     // GET STATS
     var ds = new Miso.Dataset({
       data: responseBook.books
@@ -176,8 +166,10 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
       key: $scope.ufrKeys[1].key,
       values: response[0].ByUfr.ccode[$scope.ufrKeys[1].key].values.slice(0, 10)
     }];
-    console.log( $scope.ByUfr_ccode);
     $scope.ByUfr_books = response[0].ByUfr.books[$scope.ufrKeys[1].key];
+    prevuAPIservice.getMultipleCoverBook(response[0].ByUfr.books[$scope.ufrKeys[1].key].values.slice(0, 10)).success(function(responseCovers) {
+      $scope.ByUfr_booksCover = responseCovers;
+    });
     $scope.issues_ufrOnlyUfr = [getArrayByKey(response[0].issues_ufr, $scope.ufrKeys[1].key)];
     $scope.ByUfr_borrowers_sex = response[0].ByUfr.borrowers_sex[$scope.ufrKeys[1].key].values;
     $scope.ByUfr_borrowers_age = response[0].ByUfr.borrowers_age[$scope.ufrKeys[1].key];
@@ -187,6 +179,9 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prev
     // Changement des données apres SELECT
     $scope.setUfr = function(ufr) {
       $scope.ByUfr_books = response[0].ByUfr.books[ufr.key];
+      prevuAPIservice.getMultipleCoverBook(response[0].ByUfr.books[ufr.key].values.slice(0, 10)).success(function(responseCovers) {
+        $scope.ByUfr_booksCover = responseCovers;
+      });
       $scope.ByUfr_ccode = [{
         key: ufr.key,
         values: response[0].ByUfr.ccode[ufr.key].values.slice(0, 10)
