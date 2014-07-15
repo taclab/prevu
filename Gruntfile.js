@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://tactiques.org/prevu/application/'
+            apiEndpoint: 'http://localhost:8888/prevu/application/'
           }
         }
       }
