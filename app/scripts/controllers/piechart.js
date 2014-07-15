@@ -19,6 +19,11 @@ angular.module('prevuApp')
       return d.sex;
     };
   }
+  $scope.xFunctionCatCode = function() {
+    return function(d) {
+      return d.categorycode;
+    };
+  } 
   $scope.xFunctionLabel = function() {
     return function(d) {
       return d.label;

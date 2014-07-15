@@ -1,5 +1,8 @@
 'use strict';
-angular.module('prevuApp').controller('AuteurCtrl', function($scope, $routeParams, $location, $http, Books, prevuAPIservice, ENV) {
+angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope, $routeParams, $location, $http, Books, prevuAPIservice, ENV) {
+  $rootScope.bodyClass = "viewBook";
+  $scope.searchAuthorClass = "search-author-open";
+  $scope.isFocus = true; // Focus de l'input
   // Recupération des stats
   var getStats = function(data) {
     // Init Miso.DataSet
@@ -34,14 +37,10 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $routeParam
   var getBookAuthor = function(authorQuery) {
     $scope.info = authorQuery;
     prevuAPIservice.getBookByAuthor(authorQuery).success(function(response) {
-            console.log(getCoverBooks(response.search));
-
       // Recupération des livres
       $scope.books = response.search;
       // Génération des stats
       getStats(response.search);
-      // Recupération des covers
-      console.log(response.search);
     });
   }
   /*== GET COVER ==*/
@@ -51,18 +50,22 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $routeParam
     angular.forEach(books, function(item) {
       prevuAPIservice.getCoverBookAmazon(item.biblionumber).success(function(response) {
         $scope.booksCovers.push({biblionumber : item.biblionumber, item : item, cover : response});
-        console.log(booksCovers);
       });
-      console.log(booksCovers);
     });
-    console.log($scope.booksCovers);
   }
   // Recherche des livres par auteur 
   $scope.search = function() {
+    //http://tympanus.net/codrops/2013/06/26/expanding-search-bar-deconstructed/
+    // http://tympanus.net/Development/MinimalForm/
     getBookAuthor($scope.queryTerm);
+        $scope.isFocus = false;
+
     // Modification de l'url
     $location.search('nom', $scope.queryTerm.author_nom);
     $location.search('prenom', $scope.queryTerm.author_prenom);
+    // Insertion de l'auteur
+    $scope.queryTerm = $scope.queryTerm.author_nom+' '+$scope.queryTerm.author_prenom;
+    $scope.searchAuthorClass = "search-author-close"; // Ajout de la classe 
   };
   /*==  Suggestion des authors ==*/
   $scope.suggestAuthors = function(val) {
@@ -74,6 +77,13 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $routeParam
       return authors;
     });
   };
+
+  $scope.clearInput = function() {
+    $scope.queryTerm = null;
+    $scope.stats = null;
+    $scope.isFocus = true;
+  }
+
   // URL
   var authorUrl = $location.search();
   if (authorUrl.nom) {
@@ -81,5 +91,30 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $routeParam
       author_nom: authorUrl.nom,
       author_prenom: authorUrl.prenom
     });
+    $scope.searchAuthorClass = "search-author-close"; // Ajout de la classe 
+    $scope.queryTerm = authorUrl.nom+' '+authorUrl.prenom;
+    $scope.isFocus = false;
   }
+});
+
+// A intégrer Angular
+angular.module('prevuApp').directive('focusMe', function($timeout, $parse) {
+  return {
+    //scope: true,   // optionally create a child scope
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.focusMe);
+      scope.$watch(model, function(value) {
+        if(value === true) { 
+          $timeout(function() {
+            element[0].focus(); 
+          });
+        }
+      });
+      // to address @blesh's comment, set attribute value to 'false'
+      // on blur event:
+      element.bind('blur', function() {
+         scope.$apply(model.assign(scope, false));
+      });
+    }
+  };
 });

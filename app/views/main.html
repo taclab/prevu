@@ -1,6 +1,6 @@
 <!-- ng-controller="MainCtrl" -->
 <div class="">
-    <div class="row head-line">
+    <div id="head-home" class="row head-line">
         <div class="col-md-12 text-center">
             <h1>Circulation des livres - P8</h1>
         </div>
@@ -291,7 +291,7 @@
                     </ui-select> 
 </div>
 </head>
-<div ng-controller="StackedareachartCtrl">
+<div ng-controller="StackedareachartCtrl" class="col-md-12">
 <nvd3-multi-bar-chart
 data="issues_niveau_light"
 showXAxis="true"
@@ -493,6 +493,14 @@ legendColor="color_viz()"
         </div>
     </div>
 <!-- END TOP PRETS  -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Carte</h1>
+            <img src="images/heatmap.png" class="img-responsive">
+        </div>
+        
+    </div>
 
     <hr/>
 <!-- AUTEURS -->

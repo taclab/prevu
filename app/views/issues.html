@@ -4,18 +4,19 @@
   </form>
 </div> -->
 
-<div class="row">
-	<form name="searchForm" class="col-md-6 search-book">
-		<input name="searchBook" type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" typeahead="books as books.title  for books in suggestBooks($viewValue) | filter:{title:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultBookTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()">
+<div class="row {{searchLivreClass}}">
+	<form name="searchForm" class="col-md-12 search-book">
+		<input name="searchBook" type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" typeahead="books as books.title  for books in suggestBooks($viewValue) | filter:{title:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultBookTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()" focus-me="isFocus">
+		<span class="search-button">
+			<img ng-hide="isLoading" ng-click="clearInput()"  width="50" height="50" class="loop" alt="search" src="images/search.svg">
+			<img ng-show="isLoading" width="50" height="50" alt="search" src="images/load.svg">
+		</span>
 	</form>
-	<div class="col-md-6">
-		<div class="col-md-2">
-			<i ng-show="isLoading" class="glyphicon glyphicon-refresh"></i>
-		</div>		
-	</div>
+
 
 	<p ng-show="searchForm.searchBook.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
 </div>
+
 
 <script type="text/ng-template" id="resultBookTemplate.html">
   <a>
@@ -27,15 +28,13 @@
   </a>
 </script>
 
-<hr />
-
 <div class="result" ng-show="stats">
 
 <div class="head row">
 	<div class="col-md-8">
 		<div class="headBibli row">
 			<div class="col-md-12">
-				<h2>{{info.title}} <span>({{info.publicationyear}})</span></h2>
+				<h2><span>({{info.publicationyear}})</span></h2>
 				<h4><i>{{info.author_nom}}, {{info.author_prenom}} - <span>({{info.author_date}})</span></i></h4>
 			</div>
 		</div>

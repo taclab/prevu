@@ -1,6 +1,7 @@
 'use strict';
-angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParams, $location, $http, prevuAPIservice, ENV) {
-
+angular.module('prevuApp').controller('IssuesCtrl', function($scope, $rootScope, $routeParams, $location, $http, prevuAPIservice, ENV) {
+  $rootScope.bodyClass = "viewLivre";
+  $scope.searchLivreClass = "search-livre-open";
   /*== GET STATS ==*/
   var getStats = function(data) {
     // Init Miso.DataSet
@@ -50,12 +51,19 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
       $scope.averageAge = response[0].averageAge;
     });
 
+
   }
 
   /*== GET INFO BOOK FCT ==*/
   var getInfoBook = function(biblionumber) {
     prevuAPIservice.getBookByBiblionumber(biblionumber).success(function(response) {
       $scope.info = response;
+      
+      // Si chargement par URL alors title 
+      if (!$scope.queryTerm) {
+        $scope.queryTerm = $scope.info.title;
+        $scope.searchLivreClass = "search-livre-close";
+      };
     });
   }
 
@@ -75,14 +83,24 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $routeParam
   $scope.search = function() {
     getIssuesBook($scope.queryTerm.biblionumber); // GET ISSUES BOOKS
     getInfoBook($scope.queryTerm.biblionumber); // GET INFO BOOKS
+    $scope.searchLivreClass = "search-livre-close";
+    $rootScope.bodyClass = null;
   };
+
+  /*== Clear Input ==*/
+  $scope.clearInput = function() {
+    $scope.queryTerm = null;
+    $scope.stats = null;
+    $scope.isFocus = true;
+  }
 
   // URL 
   var issueUrl = $location.search();
   if (issueUrl.biblionumber) {
     getIssuesBook(issueUrl.biblionumber); // GET ISSUES BOOKS
     getInfoBook(issueUrl.biblionumber); // GET INFO BOOKS
-    //$scope.queryTerm =$scope.info;
+    $rootScope.bodyClass = null;
+
   }
 
 });

@@ -1,11 +1,21 @@
-<div class="row">
-	<form name="searchForm" class="col-md-6 search-author">
-		<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in suggestAuthors($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()">
+<div class="row {{searchAuthorClass}}">
+{{isBlur}}
+	<form name="searchForm" class="col-md-12 search-author">
+		<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in suggestAuthors($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html" focus-me="isFocus" typeahead-min-length='3' typeahead-on-select="search()">
+		<span class="search-button">
+			<img ng-hide="isLoading" ng-click="clearInput()"  width="50" height="50" class="loop" alt="search" src="images/search.svg">
+			<img ng-show="isLoading" width="50" height="50" alt="search" src="images/load.svg">
+
+<!-- 				<object ng-hide="isLoading" width="50" height="50" class="loop" data="images/search.svg" type="image/svg+xml">
+			        <img ng-click="clearInput()" alt="search" src="images/search.svg">
+			    </object>	 
+		    <object ng-show="isLoading" width="50" height="50" class="loop" data="images/load.svg" type="image/svg+xml">
+		        <img alt="search" src="images/load.svg">
+		    </object>-->	
+		</span>
 	</form>
-	<div class="col-md-6">		
-		<i ng-show="isLoading" class="glyphicon glyphicon-refresh"></i>
-	</div>
-	
+
+
 	<p ng-show="searchForm.searchAuthor.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
 </div>
 
@@ -17,11 +27,9 @@
   </a>
 </script>
 
-<hr />
 
 <div class="result" ng-show="stats">
 	<div  class="row statAuthor result">
-		<div class="col-md-6">{{info.author_nom}} - {{info.author_prenom}}</div>
 		<div class="col-md-6">{{info.author_date}}</div>		
 	</div>
 

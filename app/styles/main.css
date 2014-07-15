@@ -6,7 +6,19 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   font-family: 'Karla', sans-serif;
+  background-color: #f7f7f7;
 }
+
+/*.view-livre */
+.viewLivre{
+  background-color: red;
+  background: url(../images/covers/all_opacity.png) no-repeat center fixed; 
+  -webkit-background-size: cover; /* pour Chrome et Safari */
+  -moz-background-size: cover; /* pour Firefox */
+  -o-background-size: cover; /* pour Opera */
+  background-size: cover; /* version standardisée */
+}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Vollkorn', serif;
 }
@@ -73,12 +85,94 @@ p:first-letter {
 .navbar-default {
   background-color: white;
 }
+
+.navbar-brand {
+  background-color: #febd17;
+  font-family: 'Vollkorn', serif;
+}
+.navbar-default a.navbar-brand   {
+  color: white;
+  font-size: 2.2em;
+  padding: 20px 20px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  padding: 20px 20px;
+  font-size: 1.2em;
+
+}
+
+/* HEAD */
+
+#head-home {
+  margin-top: 45px;
+}
+
 /*Input Auteur*/
+.search-author-open, .search-livre-open{
+  margin-top: 20%;
+}
+
+.search-author-close, .search-livre-close {
+  margin-top: 55px;
+}
+
+form.search-book {
+  border-bottom: 1px solid white;
+}
+form.search-author {
+  border-bottom: 1px solid #b5b5b5;
+}
+.search-author ::-webkit-input-placeholder  { /* WebKit browsers */
+  color: #a9a9a9;
+}
+.search-author :-moz-placeholder {
+  color: #a9a9a9;
+}
+.search-author ::-moz-placeholder {
+  color: #a9a9a9;
+} 
+.search-author :-ms-input-placeholder {
+  color: #a9a9a9;
+}
+
+.search-book ::-webkit-input-placeholder  { /* WebKit browsers */
+  color: white;
+}
+.search-book :-moz-placeholder {
+  color: white;
+}
+.search-book ::-moz-placeholder {
+  color: white;
+} 
+.search-book :-ms-input-placeholder {
+  color: white;
+}
+
+
+/*
+.search-author-open form ::-webkit-input-placeholder  { 
+  color: white;
+}
+.search-author-open form :-moz-placeholder {
+  color: white;
+}
+.search-author-open form ::-moz-placeholder {
+  color: white;
+} 
+.search-author-open form :-ms-input-placeholder {
+  color: white;
+}*/
+
+.search-button {
+  float: right;
+  margin-top: 10px;
+}
 
 input {
     font-weight: 200;
-        color: #febd17;
-
+    color: #febd17;
+    width: 80%;
     font-family: 'Vollkorn', serif;
     color: #febd17;
     font-size: 4em;
@@ -122,9 +216,9 @@ input {
 }
 
 .dropdown-menu {
-  width: 580px;
   -webkit-box-shadow: none;
   box-shadow: none;
+  background-color: rgba(255,255,255,.9);
 }
 
 .dropdown-menu > li > a {
@@ -188,9 +282,7 @@ input {
     height: 250px;
 }
 .bookWarp {
-
   padding-top: 15px;
-
 }
 .bookWarp:hover {
   background-color: white;
@@ -230,9 +322,6 @@ input {
 
 /* ISSUES PAGES */
 
-body {
-  background-color: #f7f7f7;
-}
 
 
 

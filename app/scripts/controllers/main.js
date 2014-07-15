@@ -1,6 +1,7 @@
 'use strict';
 //http://stackoverflow.com/questions/14748449/angular-js-using-bootstrap-and-dynamically-creating-rows
-angular.module('prevuApp').controller('MainCtrl', function($scope, $filter, prevuAPIservice) {
+angular.module('prevuApp').controller('MainCtrl', function($scope, $rootScope, $filter, prevuAPIservice) {
+    $rootScope.bodyClass = "viewMain";
     $scope.listUfr = {
     "AESECOGES" : "UFR AES, ÉCONOMIE ET GESTION",
     "ARTS" : "UFR ARTS, PHILOSOHIE, ESTHÉTIQUE",
