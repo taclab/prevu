@@ -405,7 +405,7 @@ z-index: 999;
   padding: 0px 10px;
 }
 
-footer {
+footer.viz-footer {
   font-family: 'Droid', sans-serif;
   border-top: 1px solid #dfe1e8;
   background-color: #f9fafa;
@@ -480,7 +480,7 @@ nvd3-pie-chart.width-400 svg {
   display: inline;
 }
 
-ul
+ul.chart-legende
 {
     list-style-type: none;
     padding: 0px;
@@ -497,7 +497,7 @@ ul.chart-legende {
   overflow: hidden;
 }
 
-img {
+.figure img {
   opacity: 0.9;
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
@@ -505,8 +505,26 @@ img {
   transform: scale(1);
 }
 
-img:hover {
+.figure img:hover {
   opacity: 1;
   -webkit-transform: scale(1.02);
   transform: scale(1.02);  
+}
+
+
+/*FOOTER */
+footer.footer-end {
+  background-color: #262626;
+  color: white;
+
+}
+.footer-end a {
+  color:white;
+}
+.footer-end ul {
+    font-size: 1.3em;
+    list-style-type: none;
+    padding: 10px;
+    margin: 0px;
+    text-transform: uppercase;
 }
