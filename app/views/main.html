@@ -1,20 +1,21 @@
 <!-- ng-controller="MainCtrl" -->
-<div class="">
+<div class="container">
+    <!-- HEADER  -->
     <div id="head-home" class="row head-line">
         <div class="col-md-12 text-center">
-            <h1>Circulation des livres - P8</h1>
+            <h1>Geatan Circulation des livres de la BU Paris P8</h1>
         </div>
         <div class="col-md-6">
             <p>Soutenu et financé par le Labex Arts-H2H et la Bibliothèque
             Universitaire de Paris 8, le projet Prévu (« prêts vus ») vise
             à ouvrir l’accès aux données de la BU de Paris 8 de manière à
             favoriser l’émergence de nouvelles pratiques de recherche,
-            qu’elles soient liées à l’accès aux documents (recherche de
+            qu’elles soient liées<span class="value-text">2 janvier 2012</span>au<span class="value-text">1 mai 2014</span> à l’accès aux documents (recherche de
             monographie, recherche des ouvrages d’un auteur…) ou à la
             recherche scientifique.</p>
         </div>
         <div class="col-md-6">
-            <p>Le projet Prévu se situe à la croisée de trois mutations
+            <p>Le projet Prévu se situe à la croisée de trois <span class="value-text">mutations</span>
             actuelles de la recherche en SHS: il prend place au sein du
             champ d’expérimentations des humanités numériques, il
             accompagne l’évolution de la place des bibliothèques par
@@ -23,7 +24,10 @@
             leur valorisation.</p>
         </div>
     </div>
-    <hr>
+    <!-- END HEADER  -->
+
+    <hr />
+    <!-- CORPUS -->
     <div class="row">
         <div class="col-md-12 text-center">
             <h1>Corpus de données</h1>
@@ -32,8 +36,7 @@
             <div class="cartouche abstract">
                 <h3>Livres empruntés</h3>
                 <span>au moins une fois</span>
-                <h4><span class="value">153 331</span>
-                </h4>
+                <h4><span class="value">153 331</span></h4>
                 <div ng-controller="LinechartCtrl">
                     <nvd3-line-chart
                     data="books_count_graph"
@@ -59,8 +62,7 @@
             <div class="cartouche abstract">
                 <h3>Nombre de Prêts</h3>
                 <span>sur l'ensemble de la période</span>
-                <h4><span class="value">324 401</span>
-                </h4>
+                <h4><span class="value">324 401</span></h4>
                 <div ng-controller="LinechartCtrl">
                         <nvd3-line-chart
                         data="issues_count_graph"
@@ -76,105 +78,92 @@
                         >
                         <svg></svg>
                         </nvd3-line-chart>
-                    </div>
                 </div>
-
-
-                <footer>
-                    <span class="legend">Période :</span> <span class=
-                    "period">2012-02-01 - 2014-02-01</span>
-                </footer>
             </div>
-
-
-            <div class="col-md-4">
-                <p>Consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat.</p>
-
-
-                <p><strong>Définition du prêts</strong> : Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est
-                laborum.</p>
-            </div>
+            <footer>
+                <span class="legend">Période :</span> <span class=
+                "period">2012-02-01 - 2014-02-01</span>
+            </footer>
         </div>
+        <div class="col-md-4">
+            <p>Consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.</p>
 
 
-        <div class="row">
-            <div class="col-md-4">
-                <p>Consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat.</p>
-
-
-                <p>Les lecteurs actifs ont un âge moyen de <span class=
-                "value-text">{{borrowers_age}}</span> ans.</p>
-            </div>
-
-
-            <div class="col-md-4 text-center">
-                <div class="cartouche abstract">
-                    <h3 style="margin-top:0px;">Lecteurs Actifs</h3>
-                    <span>ayant pris au moins un livre</span>
-                    <h4><span class="value">32 449</span>
-                    </h4>
-                    <div ng-controller="LinechartCtrl">
-                        <nvd3-line-chart
-                        data="borrowers_count_graph"
-                        height="130"
-                        y="yFunction()"
-                        x="xFunction()"
-                        margin="{left:7,top:5,bottom:0,right:7}"
-                        interactive="true"
-                        forcey="[9300,10500]"
-                        tooltips="true"
-                        tooltipcontent="toolTipContentFunction()"
-                        color="colorFunction()"
-                        >
-                        <svg></svg>
-                        </nvd3-line-chart>
-                    </div>
+            <p><strong>Définition du prêts</strong> : Duis aute irure dolor
+            in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>Consectetur adipisicing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.</p>
+            <p>Les lecteurs actifs ont un âge moyen de <span class=
+            "value-text">{{borrowers_age}}</span> ans.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="cartouche abstract">
+                <h3 style="margin-top:0px;">Lecteurs Actifs</h3>
+                <span>ayant pris au moins un livre</span>
+                <h4><span class="value">32 449</span></h4>
+                <div ng-controller="LinechartCtrl">
+                    <nvd3-line-chart
+                    data="borrowers_count_graph"
+                    height="130"
+                    y="yFunction()"
+                    x="xFunction()"
+                    margin="{left:7,top:5,bottom:0,right:7}"
+                    interactive="true"
+                    forcey="[9300,10500]"
+                    tooltips="true"
+                    tooltipcontent="toolTipContentFunction()"
+                    color="colorFunction()"
+                    >
+                    <svg></svg>
+                    </nvd3-line-chart>
                 </div>
-                <footer>
-                    <span class="legend">Période :</span> <span class="period">2012-02-01 - 2014-02-01</span>
-                </footer>
             </div>
-
-
-            <div ng-controller="PiechartCtrl" class="col-md-4 text-center cartouche abstract">
-                <h3>Répartition des prêts par sexe</h3>
-                <nvd3-pie-chart
-                class="width-home"
-                data="borrowers_sex"
-                margin="{left:0,top:10,bottom:10,right:0}"
-                x="xFunction()"
-                y="yFunctionBorrowersUfr()"
-                width="200"
-                tooltips="true"
-                showValues="true"
-                showLabels="true"
-                donut="true"
-                interactive="true"
-                donutLabelsOutside="false"
-                color="color_schem()"
-                >
-                <svg></svg>
-                </nvd3-pie-chart>
-
-                <ul class="chart-legende">
-                    <li ng-repeat="borrower_sex in borrowers_sex"><object data="images/profile.svg" type="image/svg+xml">
-                        <img alt="profile" src="images/profile.svg">
-                    </object> {{borrower_sex.sex}} :
-                    {{borrower_sex.value}}</li>
-                </ul>
-            </div>
+            <footer>
+                <span class="legend">Période :</span> <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
         </div>
+        <div ng-controller="PiechartCtrl" class="col-md-4 text-center cartouche abstract">
+            <h3>Répartition des prêts par sexe</h3>
+            <nvd3-pie-chart
+            class="width-home"
+            data="borrowers_sex"
+            margin="{left:0,top:10,bottom:10,right:0}"
+            x="xFunction()"
+            y="yFunctionBorrowersUfr()"
+            width="200"
+            tooltips="true"
+            showValues="true"
+            showLabels="true"
+            donut="true"
+            interactive="true"
+            donutLabelsOutside="false"
+            color="color_schem()"
+            >
+            <svg></svg>
+            </nvd3-pie-chart>
 
-        <hr>
+            <ul class="chart-legende">
+                <li ng-repeat="borrower_sex in borrowers_sex"><object data="images/profile.svg" type="image/svg+xml">
+                    <img alt="profile" src="images/profile.svg">
+                </object> {{borrower_sex.sex}} :
+                {{borrower_sex.value}}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- END CORPUS -->
+    <hr />
 
     <!-- HISTORIQUE PRET -->
     <div class="row head-line col-md-12">
@@ -214,7 +203,7 @@
     </div>
     <!-- HISTORIQUE PRET END -->
 
-
+    <!-- TWO PIE -->
     <div class="row">
         <div ng-controller="PiechartCtrl" class="col-md-6 text-center">
             <div class="cartouche abstract">
@@ -274,50 +263,50 @@
             .</p>            
         </div>
     </div>
+    <!-- END TWO PIE -->
 
-
-<div class="row">
-<div class="col-md-12 cartouche">
-<head>
-<div class="col-md-10">
-<h3>Répartitions des Niveaux par Mois</h3>
-</div>
-<div class="col-md-2">
-                    <ui-select ng-model="selectedSemestre" theme="selectize"  ng-change="setSemestre_issues_niveau_light(selectedSemestre)" style="width: 150px;"> 
-                      <ui-select-match placeholder="Choisir un semestre...">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="semestre in semestres| filter: $select.search">
-                        <span ng-bind-html="semestre.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select> 
-</div>
-</head>
-<div ng-controller="StackedareachartCtrl" class="col-md-12">
-<nvd3-multi-bar-chart
-data="issues_niveau_light"
-showXAxis="true"
-showYAxis="true"
-y="yFunction()"
-x="xFunction()"
-height="400"
-margin="{left:80,top:50,bottom:50,right:50}"
-interactive="true"
-yAxisTickFormat="yAxisTickFormatFunction()"
-xAxisTickFormat="xAxisTickFormatFunction()"
-tooltips="true"
-showLegend="true"
-showControls="true"
-color="color_viz()"
-legendColor="color_viz()"
->
-<svg></svg>
-</nvd3-multi-bar-chart>
-</div>
-</div>
-<footer class="col-md-12">
-<span class="legend">Période : </span>
-<span class="period">2012-02-01 - 2014-02-01</span>
-</footer>
-</div>
+    <div class="row">
+        <div class="col-md-12 cartouche">
+        <head>
+            <div class="col-md-10">
+                <h3>Répartitions des Niveaux par Mois</h3>
+                </div>
+                <div class="col-md-2">
+                                    <ui-select ng-model="selectedSemestre" theme="selectize"  ng-change="setSemestre_issues_niveau_light(selectedSemestre)" style="width: 150px;"> 
+                                      <ui-select-match placeholder="Choisir un semestre...">{{$select.selected.name}}</ui-select-match>
+                                      <ui-select-choices repeat="semestre in semestres| filter: $select.search">
+                                        <span ng-bind-html="semestre.name | highlight: $select.search"></span>
+                                      </ui-select-choices>
+                                    </ui-select> 
+                </div>
+        </head>
+        <div ng-controller="StackedareachartCtrl" class="col-md-12">
+            <nvd3-multi-bar-chart
+            data="issues_niveau_light"
+            showXAxis="true"
+            showYAxis="true"
+            y="yFunction()"
+            x="xFunction()"
+            height="400"
+            margin="{left:80,top:50,bottom:50,right:50}"
+            interactive="true"
+            yAxisTickFormat="yAxisTickFormatFunction()"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            tooltips="true"
+            showLegend="true"
+            showControls="true"
+            color="color_viz()"
+            legendColor="color_viz()"
+            >
+            <svg></svg>
+            </nvd3-multi-bar-chart>
+        </div>
+        </div>
+        <footer class="col-md-12">
+            <span class="legend">Période : </span>
+            <span class="period">2012-02-01 - 2014-02-01</span>
+        </footer>
+    </div>
 <hr/>
 
 

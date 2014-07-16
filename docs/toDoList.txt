@@ -1,4 +1,5 @@
-
+http://localhost:8888/prevu/application/app/#/auteur?nom=Garfinkel&prenom=Harold 
+incorrect value '' of type string passed to column 'dewey' with type number 
 
 - Comprendre comment angular charge les éléments
 - Traduction des charts 
