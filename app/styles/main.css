@@ -104,6 +104,19 @@ p:first-letter {
 
 /* HEAD */
 
+
+header {
+  color :white;
+  height: 600px;
+  background: url(../images/covers/bu-site-web-autres.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover; /* pour Chrome et Safari */
+  -moz-background-size: cover; /* pour Firefox */
+  -o-background-size: cover; /* pour Opera */
+  background-size: cover; /* version standardisée */
+
+}
+
+
 #head-home {
   margin-top: 45px;
 }
