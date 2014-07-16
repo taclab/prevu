@@ -521,6 +521,11 @@ footer.footer-end {
 .footer-end a {
   color:white;
 }
+
+.footer-end a:hover {
+  color:#febd17;
+}
+
 .footer-end ul {
     font-size: 1.3em;
     list-style-type: none;
