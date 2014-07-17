@@ -33,51 +33,41 @@
 		<div  class="row statAuthor result">
 			<div class="col-md-6">{{info.author_date}}</div>		
 		</div>
-
-
-		<div  class="row stat result">
-		  <div class="col-md-3">
-		    <h3>Documents</h3>
-		    <span class="value">{{stats.docs}}</span>
+		<div class="row stat result cartouche">
+		  <div class="col-md-2">
+			    <h3>Documents</h3>
+			    <span class="value">{{stats.docs}}</span>
 		  </div> 
-		  <div class="col-md-3">
-		    <h3>Prêt Total</h3>
-		    <span class="value">{{stats.issues}}</span>
+		  <div class="col-md-2">
+			    <h3>Prêt Total</h3>
+			    <span class="value">{{stats.issues}}</span>
 		  </div>  
-		  <div class="col-md-3">
-		    <h3>Prêt Max</h3>
-		    <span class="value">{{stats.issuesMax}}</span>
+		  <div class="col-md-2">
+		    	<h3>Prêt Max</h3>
+		    	<span class="value">{{stats.issuesMax}}</span>
 		  </div>
-		  <div class="col-md-3">
-		    <h3>Prêt Min</h3>
-		    <span class="value">{{stats.issuesMin}}</span>
-		  </div>   
-		</div>
-		<div class="row stat result">
-		    <div class="col-md-3">
-		    <h3>Renouvèlement‎</h3>
-		    <span class="value">{{stats.renewals}}</span>
-		  </div>           
-		   <div class="col-md-3">
-		    <h3>Prêt Homme</h3>
-		    <span class="value">{{stats.male}}</span>
-		  </div>           
-		   <div class="col-md-3">
-		    <h3>Prêt Femme</h3>
-		    <span class="value">{{stats.female}}</span>
-		  </div>                  
-		   <div class="col-md-3">
-		    <h3>Moyenne Années de publication</h3>
-		    <span class="value">{{stats.years}}</span>
-		  </div>           
-		</div>
+		  <div class="col-md-2">
+			    <h3>Prêt Min</h3>
+			    <span class="value">{{stats.issuesMin}}</span>
+		  </div>
+		  <div class="col-md-2">
+			    	<h3>Renouvèlement‎</h3>
+			    	<span class="value">{{stats.renewals}}</span>
+		  </div> 
+		   <div class="col-md-2">
+		    		<h3>Moyenne Années de publication</h3>
+		    		<span class="value">{{stats.years}}</span>
+		  </div>   		   
+		</div><br/>
+		<hr />
 		<div class="row stat result">
 			<div class="col-md-4">
-				<h3>Sexe</h3>
-				<div ng-controller="PiechartCtrl">
+				<div ng-controller="PiechartCtrl" class="cartouche abstract">
+					<h3>Sexe</h3>
 					<nvd3-pie-chart
 						data="sexPie"
 					    id="exampleId"
+					    class="width-300"
 						margin="{left:0,top:10,bottom:0,right:0}"
 					    x="xFunction()"
 					    y="yFunction()"
@@ -87,17 +77,19 @@
 					    showValues="true"
 					    showLabels="true"
 					    donut="true"
+					    color="color_schem()"
 					    donutLabelsOutside="false">
 					    <svg></svg>
 					</nvd3-pie-chart>
 				</div>
 			</div>
 			<div class="col-md-4">
-				<h3>Langue</h3>
-				<div ng-controller="PiechartlangueCtrl">
+				<div ng-controller="PiechartlangueCtrl" class="cartouche abstract">
+					<h3>Langue</h3>
 					<nvd3-pie-chart
 						data="stats.langue"
 					    id="langue"
+					    class="width-300"
 					    margin="{left:0,top:10,bottom:0,right:0}"
 					    x="xFunction()"
 					    y="yFunction()"
@@ -107,17 +99,19 @@
 					    showValues="true"
 					    showLabels="true"
 					    donut="true"
+					    color="color_viz()"
 					    donutLabelsOutside="false">
 					    <svg></svg>
 					</nvd3-pie-chart>
 				</div>
 			</div>
 			<div class="col-md-4">
-				<h3>Pays</h3>
-				<div ng-controller="PiechartpaysCtrl">
+				<div ng-controller="PiechartpaysCtrl" class="cartouche abstract">
+					<h3>Pays</h3>
 					<nvd3-pie-chart
 						data="stats.pays"
 					    id="pays"
+					    class="width-300"
 					    margin="{left:0,top:10,bottom:0,right:0}"
 					    x="xFunction()"
 					    y="yFunction()"
@@ -127,82 +121,62 @@
 					    showValues="true"
 					    showLabels="true"
 					    donut="true"
+					    color="color_viz()"
+
 					    donutLabelsOutside="false">
 					    <svg></svg>
 					</nvd3-pie-chart>
 				</div>
 			</div>		
 		</div>
+		<br/>
+		<hr />
 		<div class="row">
-		<h3>Livres</h3>
+		<h3>Livres les plus populaires</h3>
+        <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in books | filter:{ccode: selecteds} | limitTo : 8">
+            <a href="#/livre?biblionumber={{book.biblionumber}}">
+            <h4>{{book.title}}</h4>
+            <div class="bookFront center-block" style=
+            "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{booksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+            </div>
+            <p><span>Date de publication : {{book.publicationyear}}</span><br/>
+            <span>Prêts : {{book.issues}}</span><br/>
+            <span>ccode : {{book.ccode}}</span>
+            </p></a>
+        </div>
 
-			<div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="bookCover in booksCovers | orderBy: 'item.issues':true">
-			<a href="#/livre?biblionumber={{bookCover.item.biblionumber}}">
-				<div class="bookFront center-block" style="background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{bookCover.cover.LargeImage}}) center, #febd17; background-size:cover;">
-				</div>
-				<h4>{{bookCover.item.title}}</h4>
-
-				Prêts : {{bookCover.item.issues}}
-				<h6>({{bookCover.item.publicationyear}})</h6>
-	<!-- 			<p>{{bookCover.item.biblionumber}} | {{bookCover.item.isbn}}, {{bookCover.item.itemcallnumber}}, {{bookCover.item.pages}}</p> -->
-			</a>
-			</div>
 		</div>
 
 
 
-		<table class="table table-bordered table-striped table-condensed result" stupid-table>
+		<table class="table table-bordered table-striped table-condensed result col-md-12" stupid-table>
 			<thead>
-				<tr>
-					<th data-sort='int' >biblionumber</th>
-					<th data-sort='string'>title</th>
-					<th data-sort='string'>author</th>
-					<th data-sort='string'>author_nom</th>
-					<th data-sort='string'>author_prenom</th>
-					<th data-sort='int'>publicationyear</th>
-					<th data-sort='string'>ccode</th>
-					<th data-sort='string'>isbn</th>
-					<th data-sort='string'>itype</th>
-					<th data-sort='string'>itemtype</th>
-					<th data-sort='string'>itemcallnumber</th>
-					<th data-sort='string'>collectiontitle</th>
-					<th data-sort='string'>collectionvolume</th>
-					<th data-sort='string'>pages</th>
-					<th data-sort='string'>size</th>
-					<th data-sort='string'>vedette_matiere</th>
-					<th data-sort='string'>dewey</th>
-					<th data-sort='string'>langue</th>
-					<th data-sort='string'>pays</th>
-					<th data-sort='int' data-sort-default='desc'>issues</th>
-					<th data-sort='int'>renewals</th>
-					<th data-sort='int'>Male</th>
-					<th data-sort='int'>Female</th>
+				<tr style='vertical-align:middle;'>
+					<th data-sort='string'>Titre</th>
+					<th data-sort='int'>Année de publication</th>
+					<th data-sort='string'>Titre de la collection</th>
+					<th data-sort='string'>Pages</th>
+					<th data-sort='string'>Tailles</th>
+					<th data-sort='string'>Vedette Matière</th>
+					<th data-sort='int' data-sort-default='desc'>Prêts</th>
+					<th data-sort='int'>Renouvelement</th>
+					<th data-sort='int'>Homme</th>
+					<th data-sort='int'>Femme</th>
 				</tr>
 			</thead>
 			<tr ng-repeat="book in books">
-				<td>{{book.biblionumber}}</td>
-				<td>{{book.title}}</td>
-				<td>{{book.author}}</td>
-				<td>{{book.author_nom}}</td>
-				<td>{{book.author_prenom}}</td>
+				<td>
+					<a href="#/livre?biblionumber={{book.biblionumber}}">{{book.title}}</a>
+				</td>
 				<td>{{book.publicationyear}}</td>
-				<td>{{book.ccode}}</td>
-				<td>{{book.isbn}}</td>
-				<td>{{book.itype}}</td>
-				<td>{{book.itemtype}}</td>
-				<td>{{book.itemcallnumber}}</td>
 				<td>{{book.collectiontitle}}</td>
-				<td>{{book.collectionvolume}}</td>
 				<td>{{book.pages}}</td>
 				<td>{{book.size}}</td>
 				<td>{{book.vedette_matiere}}</td>
-				<td>{{book.dewey}}</td>
-				<td>{{book.langue}}</td>
-				<td>{{book.pays}}</td>
 				<td>{{book.issues}}</td>
 				<td>{{book.renewals}}</td>
 				<td>{{book.Male}}</td>
-				<td>{{book.Female}}</td><td>
+				<td>{{book.Female}}</td>
 			</tr>
 		</table>
 	</div>

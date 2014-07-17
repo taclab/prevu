@@ -10,9 +10,16 @@ body {
 }
 
 /*.view-livre */
-.viewLivre{
-  background-color: red;
+body.viewLivre{
   background: url(../images/covers/all_opacity.png) no-repeat center fixed; 
+  -webkit-background-size: cover; /* pour Chrome et Safari */
+  -moz-background-size: cover; /* pour Firefox */
+  -o-background-size: cover; /* pour Opera */
+  background-size: cover; /* version standardisée */
+}
+
+body.viewBook{
+  background: url(../images/covers/deleuze.jpg) no-repeat center fixed; 
   -webkit-background-size: cover; /* pour Chrome et Safari */
   -moz-background-size: cover; /* pour Firefox */
   -o-background-size: cover; /* pour Opera */
@@ -134,19 +141,24 @@ form.search-book {
   border-bottom: 1px solid white;
 }
 form.search-author {
-  border-bottom: 1px solid #b5b5b5;
+  border-bottom: 1px solid white;
 }
+.search-author-close form.search-author, .search-livre-close form.search-book {
+  border-bottom: 1px solid #a9a9a9;
+}
+
+
 .search-author ::-webkit-input-placeholder  { /* WebKit browsers */
-  color: #a9a9a9;
+  color: white;
 }
 .search-author :-moz-placeholder {
-  color: #a9a9a9;
+  color: white;
 }
 .search-author ::-moz-placeholder {
-  color: #a9a9a9;
+  color: white;
 } 
 .search-author :-ms-input-placeholder {
-  color: #a9a9a9;
+  color: white;
 }
 
 .search-book ::-webkit-input-placeholder  { /* WebKit browsers */
@@ -294,6 +306,11 @@ input {
     width: 155px;
     height: 250px;
 }
+.bookFront-large {
+  width: 350px;
+  height: 510px;
+  margin-bottom:20px;
+}
 .bookWarp {
   padding-top: 15px;
 }
@@ -358,20 +375,18 @@ input {
 }
 .headBibli h4 {
   font-weight: 200;
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .infoBibli {
-  border: 1px solid #dfe1e8;
   background-color: white;
   margin: 15px 0px;
   padding: 10px 0px;
-  font-size: 1.3em;
+  font-size: 1.5em;
 
 }
 
 .statsBibli {
-  border: 1px solid #dfe1e8;
   margin: 15px 0px;
   background-color: white;
 
@@ -480,6 +495,18 @@ nvd3-pie-chart.width-400 svg {
   display: inline;
 }
 
+nvd3-pie-chart.width-300 svg {
+  width: 300px;
+  height: 300px;
+  display: inline;
+}
+
+nvd3-pie-chart.width-350 svg {
+  width: 350px;
+  height: 350px;
+  display: inline;
+}
+
 ul.chart-legende
 {
     list-style-type: none;
@@ -514,6 +541,7 @@ ul.chart-legende {
 
 /*FOOTER */
 footer.footer-end {
+  margin-top: 90px;
   background-color: #262626;
   color: white;
 
@@ -532,4 +560,11 @@ footer.footer-end {
     padding: 10px;
     margin: 0px;
     text-transform: uppercase;
+}
+table {
+  background-color: white;
+}
+
+th {
+  vertical-align: middle;
 }

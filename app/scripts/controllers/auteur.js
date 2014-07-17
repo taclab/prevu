@@ -41,17 +41,22 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
       $scope.books = response.search;
       // Génération des stats
       getStats(response.search);
+      getCoverBooks(response.search);
     });
   }
   /*== GET COVER ==*/
   var booksCovers = [];
   var getCoverBooks = function(books) {
     $scope.booksCovers = [];
-    angular.forEach(books, function(item) {
-      prevuAPIservice.getCoverBookAmazon(item.biblionumber).success(function(response) {
-        $scope.booksCovers.push({biblionumber : item.biblionumber, item : item, cover : response});
-      });
+    console.log(books);
+    prevuAPIservice.getMultipleCoverBook(books).success(function(responseCovers) {
+      $scope.booksCovers = responseCovers;
     });
+    // angular.forEach(books, function(item) {
+    //   prevuAPIservice.getCoverBookAmazon(item.biblionumber).success(function(response) {
+    //     $scope.booksCovers.push({biblionumber : item.biblionumber, item : item, cover : response});
+    //   });
+    // });
   }
   // Recherche des livres par auteur 
   $scope.search = function() {
@@ -66,6 +71,8 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
     // Insertion de l'auteur
     $scope.queryTerm = $scope.queryTerm.author_nom+' '+$scope.queryTerm.author_prenom;
     $scope.searchAuthorClass = "search-author-close"; // Ajout de la classe 
+    $rootScope.bodyClass = null;
+
   };
   /*==  Suggestion des authors ==*/
   $scope.suggestAuthors = function(val) {
@@ -94,6 +101,8 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
     $scope.searchAuthorClass = "search-author-close"; // Ajout de la classe 
     $scope.queryTerm = authorUrl.nom+' '+authorUrl.prenom;
     $scope.isFocus = false;
+    $rootScope.bodyClass = null;
+
   }
 });
 

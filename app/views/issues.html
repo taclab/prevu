@@ -29,11 +29,11 @@
 		<div class="col-md-8">
 			<div class="headBibli row">
 				<div class="col-md-12">
-					<h2><span>({{info.publicationyear}})</span></h2>
 					<h4><i>{{info.author_nom}}, {{info.author_prenom}} - <span>({{info.author_date}})</span></i></h4>
+					<h2><span>({{info.publicationyear}})</span></h2>
 				</div>
 			</div>
-			<div class="infoBibli row">
+			<div class="infoBibli row cartouche">
 				<div class="col-md-12">
 					<span>Collection : {{info.collectiontitle}}</span></br>
 					<span>Pages : {{info.pages}}</span></br>
@@ -41,7 +41,7 @@
 					<span>Classement CDU : {{info.itemcallnumber}}</span></br>
 				</div>
 			</div>
-			<div class="statsBibli row">
+			<div class="statsBibli row cartouche">
 				<div class="col-md-6 text-center">
 					<h3>Nombre d'emprunt</h3>
 					<span class="value">{{stats.issues}}</span>
@@ -51,163 +51,121 @@
 					<span class="value">{{stats.renewals}}</span>
 				</div>		
 			</div>
+			<div class="col-md-12 cartouche">
+				<div ng-controller="PiechartCtrl" class="col-md-6">
+					<div class=" abstract">
+						<h3>Type de prêts</h3>
+						<nvd3-pie-chart
+							data="stats.description"
+						    id="pieCateogrycode"
+						    class="width-350"
+							margin="{left:0,top:10,bottom:10,right:0}"
+						    x="xFunctionCatCode()"
+						    y="yFunction()"
+						    width="350"
+						    height="350"
+						    tooltips="true"
+						    showValues="true"
+						    showLabels="true"
+						    donut="true"
+			                interactive="true"
+						    donutLabelsOutside="false"
+						    >
+						    <svg></svg>
+						</nvd3-pie-chart>					
+					</div>
+				</div>
+				<div ng-controller="PiechartCtrl" class="col-md-6">
+					<div class="abstract">
+						<h3>Sexe</h3>
+						<nvd3-pie-chart
+							data="stats.sex"
+						    id="pieSex"
+						    class="width-350"
+							margin="{left:0,top:10,bottom:0,right:0}"
+						    x="xFunction()"
+						    y="yFunction()"
+						    width="350"
+						    height="350"
+						    tooltips="true"
+						    showValues="true"
+						    showLabels="true"
+						    donut="true"
+			                interactive="true"
+						    donutLabelsOutside="false">
+						    <svg></svg>
+						</nvd3-pie-chart>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="col-md-4">
-			<img src="{{covers.LargeImage}}">	
+	        <div class="bookFront-large center-block" style=
+	        "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{covers.LargeImage}}) center, #febd17; background-size:cover;">
+	        </div>
 		</div>
+					<div class="col-md-4 cartouche">
+			<h3>Moyenne d'âge des lecteurs</h3>
+					<span class="value">{{averageAge}}</span>		
+			</div>
 	</div>
 
 
 		<div class="row stat result">
 		<div class="row">
-			<div ng-controller="PiechartCtrl" class="cartouche col-md-4">
-				<h3>Type de prêts</h3>
 
-				<nvd3-pie-chart
-					data="stats.description"
-				    id="pieCateogrycode"
-					margin="{left:0,top:10,bottom:10,right:0}"
-				    x="xFunctionCatCode()"
-				    y="yFunction()"
-				    width="350"
-				    height="350"
-				    tooltips="true"
-				    showValues="true"
-				    showLabels="true"
-				    donut="true"
-	                interactive="true"
-				    donutLabelsOutside="false"
-				    >
-				    <svg></svg>
-				</nvd3-pie-chart>
-			</div>
-			<div ng-controller="PiechartCtrl" class="cartouche col-md-4">
-				<h3>Sexe</h3>
 
-				<nvd3-pie-chart
-					data="stats.sex"
-				    id="pieSex"
-					margin="{left:0,top:10,bottom:0,right:0}"
-				    x="xFunction()"
-				    y="yFunction()"
-				    width="350"
-				    height="350"
-				    tooltips="true"
-				    showValues="true"
-				    showLabels="true"
-				    donut="true"
-	                interactive="true"
-				    donutLabelsOutside="false">
-				    <svg></svg>
-				</nvd3-pie-chart>
-			</div>
-			<div class="col-md-4 cartouche">
-			<h3>Moyenne d'âge des lecteurs</h3>
-					<span class="value">{{averageAge}}</span>		
-			</div>
 		</div>	
-	<!-- 
-			<div ng-controller="MultibarhorizchartCtrl">
-				<nvd3-multi-bar-horizontal-chart
-			    	data="statsIssueUfr"
-			        id="ufrBarChart"
-			        width="550"
-			        height="300"
-			        x="xFunction()"
-				    y="yFunction()"
-			        xAxisTickFormat="xAxisTickFormatFunction()"
-			        yAxisTickFormat="yAxisTickFormatFunction()"
-			        showValues="true">
-			        	<svg></svg>
-			    </nvd3-multi-bar-horizontal-chart>
-			</div> -->
-		<div ng-controller="DiscretebarchartCtrl" class="cartouche col-md-6">
-			<h3>UFR</h3>
-		    <nvd3-discrete-bar-chart 
-		          data="statsIssueUfr"
-		          id="statsIssueUfr"
-		          margin="{left:80,top:20,bottom:40,right:50}"
-		          showXAxis="true"
-		          showYAxis="true"
-		          showValues="true"
-		          staggerLabels="true"
-		          height="300"
-		          tooltips="true"
-		          y="yFunctionUfr()"
-		          x="xFunctionUfr()"
-		          yAxisTickFormat="yAxisTickFormatFunction()"
-		          useInteractiveGuideLine="true">
-		            <svg ></svg>
-		    </nvd3-discrete-bar-chart>
-		</div>
-		<div ng-controller="DiscretebarchartCtrl" class="cartouche col-md-6">
-			<h3>Niveau</h3>
-		    <nvd3-discrete-bar-chart 
-		          data="statsIssueNiveau"
-		          id="statsIssueNiveau"
-		          margin="{left:80,top:20,bottom:40,right:50}"
-		          showXAxis="true"
-		          showYAxis="true"
-		          showValues="true"
-		          staggerLabels="true"
-		          height="300"
-		          tooltips="true"
-		          y="yFunctionNiveau()"
-		          x="xFunctionNiveau()"
-		          yAxisTickFormat="yAxisTickFormatFunction()"
-		          useInteractiveGuideLine="true">
-		            <svg ></svg>
-		    </nvd3-discrete-bar-chart>
-		</div>
 
-
-	<!-- 		<div class="col-md-2">
-				<h3>Sexe</h3>
-				<table class="table table-bordered table-striped table-condensed result" stupid-table>
-					<thead>
-						<tr>
-							<th data-sort='string'>sex</th>
-							<th data-sort='int'>count</th>
-						</tr>
-					</thead>
-					<tr ng-repeat="sex in stats.sex">
-						<td>{{sex.sex}}</td>
-						<td>{{sex.count}}</td>
-					</tr>
-				</table>
-			</div> -->
-	<!-- 		<div class="col-md-2">
+		<div ng-controller="DiscretebarchartCtrl" class="col-md-6">
+			<div class="cartouche abstract">
+				<h3>Par Ufr</h3>
+			    <nvd3-discrete-bar-chart 
+			          data="statsIssueUfr"
+			          id="statsIssueUfr"
+			          margin="{left:80,top:20,bottom:40,right:50}"
+			          showXAxis="true"
+			          showYAxis="true"
+			          showValues="true"
+			          staggerLabels="true"
+			          height="300"
+			          tooltips="true"
+			          y="yFunctionUfr()"
+			          x="xFunctionUfr()"
+			          yAxisTickFormat="yAxisTickFormatFunction()"
+			          useInteractiveGuideLine="true">
+			            <svg ></svg>
+			    </nvd3-discrete-bar-chart>
+			    <footer class="col-md-12 viz-footer">
+			    	-
+			    </footer>			    
+		    </div>
+		</div>
+		<div ng-controller="DiscretebarchartCtrl" class="col-md-6">
+			<div class="cartouche abstract">
 				<h3>Niveau</h3>
-				<table class="table table-bordered table-striped table-condensed result" stupid-table>
-					<thead>
-						<tr>
-							<th data-sort='string'>Niveau</th>
-							<th data-sort='int'>count</th>
-						</tr>
-					</thead>
-					<tr ng-repeat="niveau in stats.niveau">
-						<td>{{niveau.Niveau}}</td>
-						<td>{{niveau.count}}</td>
-					</tr>
-				</table>			
-			</div>
-			<div class="col-md-2">
-				<h3>UFR</h3>
-				<table class="table table-bordered table-striped table-condensed result" stupid-table>
-					<thead>
-						<tr>
-							<th data-sort='string'>Ufr</th>
-							<th data-sort='int'>count</th>
-						</tr>
-					</thead>
-					<tr ng-repeat="ufr in stats.ufr">
-						<td>{{ufr.Ufr}}</td>
-						<td>{{ufr.count}}</td>
-					</tr>
-				</table>			
-			</div> -->
+			    <nvd3-discrete-bar-chart 
+			          data="statsIssueNiveau"
+			          id="statsIssueNiveau"
+			          margin="{left:80,top:20,bottom:40,right:50}"
+			          showXAxis="true"
+			          showYAxis="true"
+			          showValues="true"
+			          staggerLabels="true"
+			          height="300"
+			          tooltips="true"
+			          y="yFunctionNiveau()"
+			          x="xFunctionNiveau()"
+			          yAxisTickFormat="yAxisTickFormatFunction()"
+			          useInteractiveGuideLine="true">
+			            <svg ></svg>
+			    </nvd3-discrete-bar-chart>
+		    </div>
+		    <footer class="col-md-12 viz-footer">
+		    	-
+		    </footer>
+		</div>
 
-		
 		</div>
 		<div class="row result cartouche timelineWarp text-center">
 			<h3>Historique des prêts</h3>		{{itemsTimeline.id}}
@@ -222,60 +180,11 @@
 		</div>
 			<div class="col-md-12">
 				<h3>Etape</h3>
-				<div >
+				<div>
 						<span ng-repeat="etape in stats.etape">{{etape.Etape}} ({{etape.count}}) | </span>
 				</div>
-	<!-- 			<table class="table table-bordered table-striped table-condensed result" stupid-table>
-					<thead>
-						<tr>
-							<th data-sort='string'>Etape</th>
-							<th data-sort='int'>count</th>
-						</tr>
-					</thead>
-					<tr ng-repeat="etape in stats.etape">
-						<td>{{etape.Etape}}</td>
-						<td>{{etape.count}}</td>
-					</tr>
-				</table> -->			
+
 			</div>
 
-		
-	<!-- 	<h3>Liste des prêts</h3>
-		<table class="table table-bordered table-striped table-condensed result" stupid-table>
-			<thead>
-				<tr>
-					<th data-sort='int'>biblionumber</th>
-					<th data-sort='string'>timestamp</th>
-					<th data-sort='string'>issuedate</th>
-					<th data-sort='string'>returndate</th>
-					<th data-sort='string'>lastreneweddate</th>
-					<th data-sort='int'>renewals</th>
-					<th data-sort='int'>borrowernumber</th>
-					<th data-sort='string'>sex</th>
-					<th data-sort='int'>barcode</th>
-					<th data-sort='string'>title</th>
-					<th data-sort='string'>description</th>
-					<th data-sort='string'>Ufr</th>
-					<th data-sort='string'>Niveau</th>
-					<th data-sort='string'>Etape</th>
-				</tr>
-			</thead>
-			<tr ng-repeat="issue in issues">
-				<td>{{issue.biblionumber}}</td>
-				<td>{{issue.timestamp}}</td>
-				<td>{{issue.issuedate}}</td>
-				<td>{{issue.returndate}}</td>
-				<td>{{issue.lastreneweddate}}</td>
-				<td>{{issue.renewals}}</td>
-				<td>{{issue.borrowernumber}}</td>
-				<td>{{issue.sex}}</td>
-				<td>{{issue.barcode}}</td>
-				<td>{{issue.title}}</td>
-				<td>{{issue.description}}</td>
-				<td>{{issue.Ufr}}</td>
-				<td>{{issue.Niveau}}</td>
-				<td>{{issue.Etape}}</td>
-			</tr>
-		</table> -->
 	</div>
 </div>

@@ -58,6 +58,8 @@ angular.module('prevuApp').directive('visTimeline', function() {
             max: new Date(2014, 6, 1),
             orientation: 'top',
             align: 'center',
+            moveable : false,
+            zoomable : false,
             zoomMin: 1000 * 60 * 60 * 144
           };
 
@@ -68,8 +70,6 @@ angular.module('prevuApp').directive('visTimeline', function() {
           timeline.setItems(items);
 
           timeline.on('select', function (properties) {
-            console.log(properties.items[0]);
-            console.log(items.data[properties.items[0]]);
             // var dateStartD = new Date(items.data[properties.items[0]].start);
             // var dateStartF = dateStartD.toDateString();
             // var dateEndD = new Date(items.data[properties.items[0]].end);
