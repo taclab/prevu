@@ -83,6 +83,7 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $rootScope,
   $scope.search = function() {
     getIssuesBook($scope.queryTerm.biblionumber); // GET ISSUES BOOKS
     getInfoBook($scope.queryTerm.biblionumber); // GET INFO BOOKS
+    $scope.queryTerm = $scope.queryTerm.title;
     $scope.searchLivreClass = "search-livre-close";
     $rootScope.bodyClass = null;
   };

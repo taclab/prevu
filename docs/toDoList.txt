@@ -1,7 +1,12 @@
-http://localhost:8888/prevu/application/app/#/auteur?nom=Garfinkel&prenom=Harold 
+- reparer bug auteru http://localhost:8888/prevu/application/app/#/auteur?nom=Garfinkel&prenom=Harold 
 incorrect value '' of type string passed to column 'dewey' with type number 
 
 - Ajouter un minimun de lettre à taper
+- changer la couleur de la loupe
+- Traduction des charts 
+- page about
+
+
 - Comprendre comment angular charge les éléments
 - Traduction des charts 
 - Ratio lecteurs/prêts -> stats par UFR

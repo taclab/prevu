@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row {{searchLivreClass}}">
 		<form name="searchForm" class="col-md-12 search-book">
-			<input name="searchBook" type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" typeahead="books as books.title  for books in suggestBooks($viewValue) | filter:{title:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultBookTemplate.html"  typeahead-min-length='3' typeahead-on-select="search()" focus-me="isFocus">
+			<input name="searchBook" type="text" ng-model="queryTerm" placeholder="Recherche d'un Livre" typeahead="books as books.title  for books in suggestBooks($viewValue) | filter:{title:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultBookTemplate.html"  typeahead-min-length='3' ng-minlength='3' typeahead-on-select="search()" focus-me="isFocus">
 			<span class="search-button">
 				<img ng-hide="isLoading" ng-click="clearInput()"  width="50" height="50" class="loop" alt="search" src="images/search.svg">
 				<img ng-show="isLoading" width="50" height="50" alt="search" src="images/load.svg">
@@ -9,7 +9,7 @@
 		</form>
 
 
-		<p ng-show="searchForm.searchBook.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
+		<p ng-show="searchForm.$error.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
 	</div>
 
 

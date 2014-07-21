@@ -2,7 +2,7 @@
 	<div class="row {{searchAuthorClass}}">
 	{{isBlur}}
 		<form name="searchForm" class="col-md-12 search-author">
-			<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in suggestAuthors($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html" focus-me="isFocus" typeahead-min-length='3' typeahead-on-select="search()">
+			<input name="searchAuthor" type="text" ng-model="queryTerm" placeholder="Recherche d'un Auteur" typeahead="authors as authors.author_nom  for authors in suggestAuthors($viewValue) | filter:{author_nom:$viewValue}" typeahead-loading="isLoading" ng-class="{loadingSearch: isLoading}" typeahead-template-url="resultAuthorTemplate.html" focus-me="isFocus" typeahead-min-length='3' ng-minlength='3' typeahead-on-select="search()">
 			<span class="search-button">
 				<img ng-hide="isLoading" ng-click="clearInput()"  width="50" height="50" class="loop" alt="search" src="images/search.svg">
 				<img ng-show="isLoading" width="50" height="50" alt="search" src="images/load.svg">
@@ -15,9 +15,7 @@
 			    </object>-->	
 			</span>
 		</form>
-
-
-		<p ng-show="searchForm.searchAuthor.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
+		<p ng-show="searchForm.$error.minlength" class="help-block">Veuillez entrer au moins 3 caractères.</p>
 	</div>
 
 	<script type="text/ng-template" id="resultAuthorTemplate.html">
