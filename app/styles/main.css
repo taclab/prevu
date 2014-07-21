@@ -106,9 +106,11 @@ p.content:first-letter {
 .navbar-default .navbar-nav > li > a {
   padding: 20px 20px;
   font-size: 1.2em;
-
 }
 
+#about {
+  margin-top: 50px;
+}
 
 .spinner {
   width: 350px;

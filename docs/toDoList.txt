@@ -1,10 +1,11 @@
 - reparer bug auteru http://localhost:8888/prevu/application/app/#/auteur?nom=Garfinkel&prenom=Harold 
-incorrect value '' of type string passed to column 'dewey' with type number 
+incorrect value '' of type string passed to column 'dewey' with type number corriger en pa
 
-- Ajouter un minimun de lettre à taper
+- Ajouter un minimun de lettre à taper // OK
 - changer la couleur de la loupe
 - Traduction des charts 
 - page about
+- ajout des classe responsive desgin pour ipad
 
 
 - Comprendre comment angular charge les éléments
