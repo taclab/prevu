@@ -109,6 +109,19 @@ p:first-letter {
 
 }
 
+
+.spinner {
+  width: 350px;
+  height: 220px;
+  text-align: center;
+  margin: auto;
+  margin-top: 15%;
+  background-color: white;
+}
+
+.spinner h3 {
+  padding-top: 20px;
+}
 /* HEAD */
 
 

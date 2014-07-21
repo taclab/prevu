@@ -32,6 +32,11 @@ angular
         controller: 'ExperimentCtrl',
         reloadOnSearch: false
       })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',       
+        reloadOnSearch: false
+      })      
       .otherwise({
         redirectTo: '/'
       });
