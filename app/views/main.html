@@ -231,124 +231,128 @@
 </section>
 <!-- END GENRE -->
 
-<section class="container">
+<section>
+    <div class="container">
         <!-- TWO PIE -->
-    <div class="row">
-        <head class="head-line col-md-12">
-            <h2 class='text-center'>Connaître les lecteurs</h2>
-        </head>
-        <div class="col-md-6">
-            <p>Depuis février 2012, <span class='value-text'>32449</span> lecteurs ont emprunté au moins un ouvrage à la BU de Paris 8. Qui sont ses lecteurs : sont-il étudiants?  de quels UFR et départements proviennent-ils? quel est leur niveau d'étude? quand empruntent-ils?</p>
-        </div>
-        <div class="col-md-6">
-            <p>Tout en respectant l'anonymat des utilisateurs, nous proposons plusieurs représentations graphiques et corrélations visant à montrer les potentiels informationnels de la plateforme concernant les emprunteurs de bibliothèque universitaire.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div ng-controller="PiechartCtrl" class="col-md-6 text-center">
-            <div class="cartouche abstract">
-                <h3>Répartition des prêts par type de prêts</h3>
-                <nvd3-pie-chart
-                class="width-400"
-                data="issues_categoryCode"
-                margin="{left:0,top:10,bottom:10,right:0}"
-                x="xFunctionLabel()"
-                y="yFunctionBorrowersUfr()"
-                width="400"
-                tooltips="true"
-                showValues="true"
-                showLabels="true"
-                donut="true"
-                interactive="true"
-                donutLabelsOutside="true"
-                color="color_viz()"
-                >
-                <svg></svg>
-                </nvd3-pie-chart>
+        <div class="row">
+            <head class="head-line col-md-12">
+                <h2 class='text-center'>Connaître les lecteurs</h2>
+            </head>
+            <div class="col-md-6">
+                <p>Depuis février 2012, <span class='value-text'>32449</span> lecteurs ont emprunté au moins un ouvrage à la BU de Paris 8. Qui sont ses lecteurs : sont-il étudiants?  de quels UFR et départements proviennent-ils? quel est leur niveau d'étude? quand empruntent-ils?</p>
             </div>
-            <footer class="viz-footer">
-                <span class="legend">Période :</span> <span class=
-                "period">2012-02-01 - 2014-02-01</span>
-            </footer>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            .</p>
+            <div class="col-md-6">
+                <p>Tout en respectant l'anonymat des utilisateurs, nous proposons plusieurs représentations graphiques et corrélations visant à montrer les potentiels informationnels de la plateforme concernant les emprunteurs de bibliothèque universitaire.</p>
+            </div>
         </div>
-        <div class="col-md-6 text-center">
-            <div class="cartouche abstract">
-                <h3>Nombre de prêts par Ufr</h3>
-                <div ng-controller="MultibarhorizchartCtrl" >
-                    <nvd3-multi-bar-horizontal-chart
-                    data="issues_UfrRepartition"
-                    height="400"
-                    margin="{left:300,top:5,bottom:50,right:15}"
-                    y="yFunction()"
-                    x="xFunctionUfr()"
-                    showXAxis="true"
+        <div class="row">
+            <div ng-controller="PiechartCtrl" class="col-md-6 text-center">
+                <div class="cartouche abstract">
+                    <h3>Répartition des prêts par type de prêts</h3>
+                    <nvd3-pie-chart
+                    class="width-400"
+                    data="issues_categoryCode"
+                    margin="{left:0,top:10,bottom:10,right:0}"
+                    x="xFunctionLabel()"
+                    y="yFunctionBorrowersUfr()"
+                    width="400"
+                    tooltips="true"
                     showValues="true"
-                    color="color_schem()"
+                    showLabels="true"
+                    donut="true"
+                    interactive="true"
+                    donutLabelsOutside="true"
+                    color="color_viz()"
                     >
                     <svg></svg>
-                    </nvd3-multi-bar-horizontal-chart>
+                    </nvd3-pie-chart>
                 </div>
+                <footer class="viz-footer">
+                    <span class="legend">Période :</span> <span class=
+                    "period">2012-02-01 - 2014-02-01</span>
+                </footer>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                .</p>
             </div>
-            <footer class="viz-footer">
-                <span class="legend">Période :</span> <span class=
-                "period">2012-02-01 - 2014-02-01</span>
-            </footer>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            .</p>            
+            <div class="col-md-6 text-center">
+                <div class="cartouche abstract">
+                    <h3>Nombre de prêts par Ufr</h3>
+                    <div ng-controller="MultibarhorizchartCtrl" >
+                        <nvd3-multi-bar-horizontal-chart
+                        data="issues_UfrRepartition"
+                        height="400"
+                        margin="{left:300,top:5,bottom:50,right:15}"
+                        y="yFunction()"
+                        x="xFunctionUfr()"
+                        showXAxis="true"
+                        showValues="true"
+                        color="color_schem()"
+                        >
+                        <svg></svg>
+                        </nvd3-multi-bar-horizontal-chart>
+                    </div>
+                </div>
+                <footer class="viz-footer">
+                    <span class="legend">Période :</span> <span class=
+                    "period">2012-02-01 - 2014-02-01</span>
+                </footer>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                .</p>            
+            </div>
         </div>
-    </div>
-    <!-- END TWO PIE -->
+        <!-- END TWO PIE -->
 
-    <!-- REPARTION NIVEAU -->
-    <div class="row">
-        <div class="col-md-12 cartouche">
-            <head>
-                <div class="col-md-10">
-                    <h3>Répartitions des Niveaux par Mois</h3>
+        <!-- REPARTION NIVEAU -->
+        <div class="row">
+            <div class="col-md-12 cartouche">
+                <head>
+                    <div class="col-md-10">
+                        <h3>Répartitions des Niveaux par Mois</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <ui-select ng-model="selectedSemestre" theme="selectize"  ng-change="setSemestre_issues_niveau_light(selectedSemestre)" style="width: 150px;"> 
+                          <ui-select-match placeholder="Choisir un semestre...">{{$select.selected.name}}</ui-select-match>
+                          <ui-select-choices repeat="semestre in semestres| filter: $select.search">
+                            <span ng-bind-html="semestre.name | highlight: $select.search"></span>
+                          </ui-select-choices>
+                        </ui-select> 
+                    </div>
+                </head>
+                <div ng-controller="StackedareachartCtrl" class="col-md-12">
+                    <nvd3-multi-bar-chart
+                    data="issues_niveau_light"
+                    showXAxis="true"
+                    showYAxis="true"
+                    y="yFunction()"
+                    x="xFunction()"
+                    height="400"
+                    margin="{left:80,top:50,bottom:50,right:50}"
+                    interactive="true"
+                    yAxisTickFormat="yAxisTickFormatFunction()"
+                    xAxisTickFormat="xAxisTickFormatFunction()"
+                    tooltips="true"
+                    showLegend="true"
+                    showControls="true"
+                    color="color_viz()"
+                    legendColor="color_viz()"
+                    >
+                    <svg></svg>
+                    </nvd3-multi-bar-chart>
                 </div>
-                <div class="col-md-2">
-                    <ui-select ng-model="selectedSemestre" theme="selectize"  ng-change="setSemestre_issues_niveau_light(selectedSemestre)" style="width: 150px;"> 
-                      <ui-select-match placeholder="Choisir un semestre...">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="semestre in semestres| filter: $select.search">
-                        <span ng-bind-html="semestre.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select> 
-                </div>
-            </head>
-            <div ng-controller="StackedareachartCtrl" class="col-md-12">
-                <nvd3-multi-bar-chart
-                data="issues_niveau_light"
-                showXAxis="true"
-                showYAxis="true"
-                y="yFunction()"
-                x="xFunction()"
-                height="400"
-                margin="{left:80,top:50,bottom:50,right:50}"
-                interactive="true"
-                yAxisTickFormat="yAxisTickFormatFunction()"
-                xAxisTickFormat="xAxisTickFormatFunction()"
-                tooltips="true"
-                showLegend="true"
-                showControls="true"
-                color="color_viz()"
-                legendColor="color_viz()"
-                >
-                <svg></svg>
-                </nvd3-multi-bar-chart>
             </div>
+            <footer class="col-md-12 viz-footer">
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
         </div>
-        <footer class="col-md-12 viz-footer">
-            <span class="legend">Période : </span>
-            <span class="period">2012-02-01 - 2014-02-01</span>
-        </footer>
+        <!-- END REPARTION NIVEAU -->
+        <h3>Carte</h3>
     </div>
-    <!-- END REPARTION NIVEAU -->
+    <img src="images/heatmap.jpg" class="img-responsive" />
 </section>
     <hr/>
 <section class="container">
@@ -507,20 +511,6 @@
     </div>
     <!-- END TOP PRETS  -->
 </section>
-<!-- MAP -->
-<section id='map' >
-    <div class="container">
-        <!-- CARTE -->
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Carte</h1>
-                <img src="images/heatmap.png" class="img-responsive" />
-            </div>
-        </div>
-        <!-- END CARTE -->
-    </div>
-</section>
-<!-- END MAP -->
 <hr/>
 <section class="container">
     <!-- AUTEURS -->
