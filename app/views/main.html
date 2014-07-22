@@ -4,17 +4,16 @@
     <div class="container">
         <div id="head-home" class="row head-line">
             <div class="col-md-12 text-center">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <span class="value">Suivre la vie des livres de la Bibliothèque Universitaire de Paris 8</span><br/>
-                <div class="col-md-6">
-                    <p class="content">La plateforme Prévu (« prêts vus ») vise à mettre à la disposition du public les données de la bibliothèque universitaire de Paris 8 par le biais de visualisations.</p>
+                <h1>Visualiser les données de prêts d'une bibliothèque universitaire</h1><br/>
+                <div class="col-md-offset-2 col-md-8">
+                    <p class='content'>La plateforme <span class='value-text'>Prévu</span> (« prêts vus ») vise à ouvrir l'acccès aux données de la <a href='http://www.bu.univ-paris8.fr/' target='_blank'>bibliothèque universitaire de Paris 8 (BU)</a> par le biais de visualisations tout en respectant la confidentialité des utilisateurs.</p>
+                    <p class='content'>La BU de Paris 8 à Saint-Denis compte plus de 400 000 documents. Située à Saint-Denis, au coeur de l’université, elle est accessible à tout étudiant ou à toute personne majeure.</p>
                 </div>
-
-                <p>La bibliothèque universitaire (BU) de Paris 8 à Saint-Denis compte plus de 400 000 documents. Située à Saint-Denis, au cœur de l’université, elle est accessible à tout étudiant ou à toute personne majeure.</p>
+                <div class="col-md-12">
+                <!-- mettre une fonction onclick surles boutons pour emmener aux ancres concernées -->
+                    <button type='button' class="btn btn-default" onclick='presentation();'>Présentation du projet</button>
+                    <button type='button' class="btn btn-default">Accéder au service</button>
+                </div>                
             </div>
 
             </div>
@@ -22,13 +21,55 @@
     </div>
 </header>    
     <!-- END HEADER  -->
-<div class="container">
-    <hr />
+<section  id="general" class="container">
     <!-- CORPUS -->
     <div class="row">
+
         <div class="col-md-12 text-center">
-            <h1>Corpus de données</h1>
+            <h2>La bibliothèque par ses données</h2>
         </div>
+        <div class='col-md-6'>
+            <p class="content">Les données globales de la bibliothèque, c'est à dire les données qui concernent des informations générales se situant à un niveau très macro (par exemples : l'ensemble des emprunteurs, l'ensemble des prêts effectués, la répartition des genres pour l'ensemble des prêts effectués) permettent de rendre compte des grands phénomènes qui marquent la vie de la bibliothèque mais aussi par ricochet de l'université.</p>
+        </div>
+        <div class='col-md-6 info'>
+            <h3>Rythmes universitaires</h3>
+            <p>Chaque année, la vie universitaire est marquée par le changement de semestre et par les périodes d'examen. Les prêts de la BU de Paris 8 mettent immédiatement en évidence les reprises de semestre (mois d'octobre et de février). Les prêts suivent les mêmes tendances.</p>
+        </div>
+
+        <!-- HISTORIQUE PRET -->
+        <div class="head-line col-md-12">
+            <head>
+                <h3 class="text-center">Historique des prêts</h3>
+            </head>
+            <div class="cartouche" ng-controller="DiscretebarchartCtrl">
+                <nvd3-line-chart
+                data="statsIssuesAllByMonth"
+                height="300"
+                y="yFunctionIssues()"
+                x="xFunctionIssues()"
+                margin="{left:80,top:15,bottom:30,right:80}"
+                interactive="true"
+                tooltips="true"
+                showXAxis="true"
+                showYAxis="true"
+                xAxisTickFormat="xAxisTickFormatFunction()"
+                tooltipcontent="toolTipContentFunction()"
+                color="colorFunction()"
+                >
+                <svg></svg>
+                </nvd3-line-chart>
+            </div>
+            <footer class="col-md-12 viz-footer">
+                <span class="legend">Période :</span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
+        </div>
+        <!-- HISTORIQUE PRET END -->
+</section>
+
+<!-- Biblio -->
+<section id="biblio" class="container">
+    <div class="row">
         <div class="col-md-4 text-center">
             <div class="cartouche abstract">
                 <h3>Livres empruntés</h3>
@@ -82,28 +123,16 @@
                 "period">2012-02-01 - 2014-02-01</span>
             </footer>
         </div>
-        <div class="col-md-4">
-            <p>Consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.</p>
-
-
-            <p><strong>Définition du prêts</strong> : Duis aute irure dolor
-            in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.</p>
+        <div class="col-md-4 info">
+            <h3 class='text-center'>Moins d'emprunteurs mais plus d'emprunts</h3>
+            <p>Bien que le nombre de lecteurs et de prêts aient diminué entre les semestres de l’année universitaire 2012-2013, le nombre total de prêts total a progressé passant de <span class='value-text'>81257</span> à <span class='value-text'>82 762</span>.</p>
+            <p>Il y a donc moins d'emprunteurs, mais dans l'ensemble, ils empruntent plus de documents.</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <p>Consectetur adipisicing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.</p>
-            <p>Les lecteurs actifs ont un âge moyen de <span class=
-            "value-text">{{borrowers_age}}</span> ans.</p>
+            <h3>Les prêts seulement</h3>
+            <p>Prévu ne prend en compte tous les documents que possèdent la bibliothèque universitaire, il ne considère que les documents qui ont été empruntés au moins une fois. Ce choix à la fois éditorial et technique nous permet d'optimiser nos requêtes tout en resserant notre corpus sur les prêts.</p>
         </div>
         <div class="col-md-4 text-center">
             <div class="cartouche abstract">
@@ -131,76 +160,90 @@
                 <span class="legend">Période :</span> <span class="period">2012-02-01 - 2014-02-01</span>
             </footer>
         </div>
-        <div ng-controller="PiechartCtrl" class="col-md-4 text-center cartouche abstract">
-            <h3>Répartition des prêts par sexe</h3>
-            <nvd3-pie-chart
-            class="width-home"
-            data="borrowers_sex"
-            margin="{left:0,top:10,bottom:10,right:0}"
-            x="xFunction()"
-            y="yFunctionBorrowersUfr()"
-            width="200"
-            tooltips="true"
-            showValues="true"
-            showLabels="true"
-            donut="true"
-            interactive="true"
-            donutLabelsOutside="false"
-            color="color_schem()"
-            >
-            <svg></svg>
-            </nvd3-pie-chart>
-
-            <ul class="chart-legende">
-                <li ng-repeat="borrower_sex in borrowers_sex"><object data="images/profile.svg" type="image/svg+xml">
-                    <img alt="profile" src="images/profile.svg">
-                </object> {{borrower_sex.sex}} :
-                {{borrower_sex.value}}</li>
-            </ul>
+        <div class="col-md-4">
+            <h3>Incongruités & Créativité</h3>
+            <p>Parfois, la plateforme permet de faire remonter des informations qui semblent intéressantes mais dont nous ne savons pas encore quoi faire, par exemple, nous savons que la moyenne d'âge des emprunteurs est de <span class=
+            "value-text">{{borrowers_age}}</span> ans. Ces informations permettent d'imaginer de nouveaux scénarios.</p>
         </div>
     </div>
     <!-- END CORPUS -->
-    <hr />
+</section>
+<!-- END Biblio -->
 
-    <!-- HISTORIQUE PRET -->
-    <div class="row head-line col-md-12">
-        <head>
-            <h2>Historique des prêts</h2>
-        </head>
-        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Le mois d'octobre 2012 cumule
-        <span class="value-text">22 030</span> prêts Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-        officia deserunt mollit anim id est laborum.</p>
-        <div class="cartouche" ng-controller="DiscretebarchartCtrl">
-            <nvd3-line-chart
-            data="statsIssuesAllByMonth"
-            height="300"
-            y="yFunctionIssues()"
-            x="xFunctionIssues()"
-            margin="{left:80,top:15,bottom:30,right:80}"
-            interactive="true"
-            tooltips="true"
-            showXAxis="true"
-            showYAxis="true"
-            xAxisTickFormat="xAxisTickFormatFunction()"
-            tooltipcontent="toolTipContentFunction()"
-            color="colorFunction()"
-            >
-            <svg></svg>
-            </nvd3-line-chart>
+<!-- GENRE -->
+<section id="genre">
+    <div class="container">
+         <div class='col-md-12 text-center' id='IF_sex'>
+            <h2>Genre et bibliothèque</h2>
+            <p>Pensez-vous qu'il soit normal de prendre en compte le sexe des lecteurs pour une bibliothèque?</p>
+            <button class='btn' onclick="clearViz('#viz_sex2');launchViz('#viz_sex');">Oui</button>
+            <button class='btn' onclick="clearViz('#viz_sex');launchViz('#viz_sex2')">Non</button>
         </div>
-        <footer class="col-md-12 viz-footer">
-            <span class="legend">Période :</span>
-            <span class="period">2012-02-01 - 2014-02-01</span>
-        </footer>
-    </div>
-    <!-- HISTORIQUE PRET END -->
+        <div class='col-md-12'>
+            <div id='viz_sex'>
+                <div class='col-md-8'>
+                    <p>La grande majorité des lecteurs actifs de la BU de Paris 8 sont des femmes. Il est à noter que cela ne signifie pas que la répartition homme femme de tous les lecteurs potentiels (c'est à dire ceux qui remplissent les conditions d'inscription à la bibliothèque) soient le même. Les lecteurs actifs représentent tous les lecteurs qui ont déjà empruntés au moins un ouvrage.</p>
+                    <p>Il est possible de manifester ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons par exemple, pour l'instant choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
+                    <p>Pour continuer notre présentation, nous vous proposons de continuer en nous intéressant justement aux lecteurs qui en empruntant contribuent à faire vivre la bibliothèque et génèrent les données.</p>
+                </div>
+                <div ng-controller="PiechartCtrl" class="col-md-4 text-center cartouche abstract" >
+                    <h3>Répartition des prêts par sexe</h3>
+                    <nvd3-pie-chart
+                    class="width-home"
+                    data="borrowers_sex"
+                    margin="{left:0,top:10,bottom:10,right:0}"
+                    x="xFunction()"
+                    y="yFunctionBorrowersUfr()"
+                    width="200"
+                    tooltips="true"
+                    showValues="true"
+                    showLabels="true"
+                    donut="true"
+                    interactive="true"
+                    donutLabelsOutside="false"
+                    color="color_schem()"
+                    >
+                    <svg></svg>
+                    </nvd3-pie-chart>
 
-    <!-- TWO PIE -->
+                    <ul class="chart-legende">
+                        <li ng-repeat="borrower_sex in borrowers_sex"><object data="images/profile.svg" type="image/svg+xml">
+                            <img alt="profile" src="images/profile.svg">
+                        </object> {{borrower_sex.sex}} :
+                        {{borrower_sex.value}}</li>
+                    </ul>    
+                </div>
+            </div>
+            <div id='viz_sex2'>
+                <div class='col-md-4'>
+                    <h3>La question du genre</h3>
+                    <p>La bibliothèque prend compte deux genres : hommes et femmes. Il est intéressant de se servir d'une plateforme commme Prévu pour se demander à quel point la distinction homme/ femme est importante ou non à relever. Certains détracteurs pourront, à juste titre, reprocher de ne pas proposer de catégorie transgenre par exemple.</p>
+                </div>
+                <div class='col-md-4'><h3>Que doit-on montrer?</h3>
+                    <p>Mettre en avant des inégalités est un premier moyen de les combattre, mais en même temps, trop insister sur des différences favorise les discriminations. Techniquement, il est à noté que les données propres au genre sont relativement faciles à exploiter, doit-on pour autant toujours les mettre en avant?</p> 
+                </div>
+                <div class='col-md-4'>
+                    <p>A travers ce premier volet du projet, nous cherchons à mettre en avant les pistes de réflexion que peut susciter Prévu, nous espérons pouvoir, avec le travail autour de l'exploitation des données de genre, favoriser l'essor de visualisations originales et utiles et en même temps, dans le cadre des digital humanities et  de leur interdisciplinarité lancer des pistes de réfléxion notamment avec les <i>Gender Studies</i>. </p>
+                </div>
+            </div>
+        </div>   
+    </div>
+</section>
+<!-- END GENRE -->
+
+<section class="container">
+        <!-- TWO PIE -->
+    <div class="row">
+        <head class="head-line col-md-12">
+            <h2 class='text-center'>Connaître les lecteurs</h2>
+        </head>
+        <div class="col-md-6">
+            <p>Depuis février 2012, <span class='value-text'>32449</span> lecteurs ont emprunté au moins un ouvrage à la BU de Paris 8. Qui sont ses lecteurs : sont-il étudiants?  de quels UFR et départements proviennent-ils? quel est leur niveau d'étude? quand empruntent-ils?</p>
+        </div>
+        <div class="col-md-6">
+            <p>Tout en respectant l'anonymat des utilisateurs, nous proposons plusieurs représentations graphiques et corrélations visant à montrer les potentiels informationnels de la plateforme concernant les emprunteurs de bibliothèque universitaire.</p>
+        </div>
+    </div>
     <div class="row">
         <div ng-controller="PiechartCtrl" class="col-md-6 text-center">
             <div class="cartouche abstract">
@@ -306,9 +349,10 @@
         </footer>
     </div>
     <!-- END REPARTION NIVEAU -->
-
+</section>
     <hr/>
-
+<section class="container">
+    <h2 class="text-center">Focus par UFR</h2>
     <!-- LIVRES PLUS POPULAIRES -->
     <div class="row">
         <div class="col-md-12 cartouche">
@@ -429,8 +473,9 @@
         </footer>
     </div>
     <!-- END STATS PAR UFR -->
-
+</section>
     <hr />
+<section class="container">
 
     <!-- TOP PRETS  -->
     <div class="row col-md-12 cartouche">
@@ -461,18 +506,23 @@
         </div>
     </div>
     <!-- END TOP PRETS  -->
-
-    <!-- CARTE -->
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Carte</h1>
-            <img src="images/heatmap.png" class="img-responsive" />
+</section>
+<!-- MAP -->
+<section id='map' >
+    <div class="container">
+        <!-- CARTE -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Carte</h1>
+                <img src="images/heatmap.png" class="img-responsive" />
+            </div>
         </div>
+        <!-- END CARTE -->
     </div>
-    <!-- END CARTE -->
-
-    <hr/>
-
+</section>
+<!-- END MAP -->
+<hr/>
+<section class="container">
     <!-- AUTEURS -->
     <div class="row col-md-12 text-center">
         <h1>Auteurs</h1>
@@ -520,9 +570,9 @@
         </div>
     </div>
     <!-- END AUTEURS -->
-
+</section>
     <hr/>
-
+<section class="container">
     <!-- EXPLORER -->
     <div class="row text-center">
         <div class="col-md-12">
@@ -542,7 +592,7 @@
         </div>
     </div>
     <!-- EXPLORER -->    
-</div>
+</section>
 <footer class="footer-end">
     <div class="container">
         <div class="col-md-5">
@@ -581,3 +631,28 @@
         </div>
     </div>    
 </footer>
+
+<script>
+function presentation(){
+    url='#presentation'
+    window.location = url;
+}
+
+function init(){
+    $("#viz_sex").hide();
+    $("#viz_sex2").hide();
+    $("#viz_sex3").hide();          
+}
+
+function launchViz(_nameId){
+    $(_nameId).fadeIn(1000);
+}
+
+function clearViz(_nameId){
+    $(_nameId).hide();
+}
+
+init();
+
+</script>
+

@@ -29,6 +29,12 @@ body.viewBook{
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Vollkorn', serif;
 }
+
+h2 {
+  font-size: 2.9em;
+  margin-top: 1em;
+  margin-bottom: 0.7em;
+}
 svg text {
   font-family: 'Droid', sans-serif;
 }
@@ -51,7 +57,10 @@ p {
 
 p.content:first-letter {
   font-size: 2em;
+}
 
+p.content {
+    word-wrap: break-word;
 }
 
 /* General button style (reset) */
@@ -128,19 +137,60 @@ p.content:first-letter {
 
 
 header {
-  color :white;
-  height: 600px;
+  color: white;
+  background-color:#262626;
   background: url(../images/covers/bu-site-web-autres.jpg) no-repeat center fixed; 
   -webkit-background-size: cover; /* pour Chrome et Safari */
   -moz-background-size: cover; /* pour Firefox */
   -o-background-size: cover; /* pour Opera */
   background-size: cover; /* version standardisée */
+}
 
+header h1 {
+    margin-top: 5px;
+    color: #febd17;
+    font-size: 2.8em;
 }
 
 
 #head-home {
   margin-top: 45px;
+}
+
+
+/* CUSTOM Gaétan */
+
+#head-home {
+  font-size:1.2em;
+  padding-top:10px;
+}
+#head-home .btn { 
+  margin-bottom: 1.5em;
+  background: white; 
+  color: black;
+  opacity: 0.7;
+}
+#head-home .btn:hover{opacity: 0.9;}
+#head-home a {
+  color: #febd17;
+  font-weight: bold;
+}
+#head-home a:hover {
+  text-decoration: underline;
+}
+#head-home p:first-child {
+  margin-bottom: 15px;
+}
+/* END CUSTOM Gaétan */
+
+#genre {
+  background-color: #262626;
+  color: white;
+}
+
+#map {
+  background-color: #262626;
+  color: white;
 }
 
 /*Input Auteur*/
@@ -311,12 +361,7 @@ input {
 
 }
 
-/* Home page*/
-.head-line {
-}
-.head-line h1 {
-  font-size: 3.5em;
-}
+
 
 /* AUTHOR PAGES */
 
@@ -585,4 +630,28 @@ table {
 
 th {
   vertical-align: middle;
+}
+
+
+
+#head-home .value-text{font-size:1.3em;}
+
+.cache{display :none;}
+
+#biblio .value-text{font-size:1em;}
+
+.info { 
+  /*background-color:rgba(255,255, 153, 0.8);*/
+  background-color: white;
+  border-radius: 2px; 
+  border: 1px solid #febd17;
+  /*margin-bottom:1em;*/
+}
+.info .value-text{color:#993300;}
+
+
+#IF_sex p, button{font-size:1.6em;}
+#IF_sex button{font-size:1.6em;border: black solid 2px;opacity:1;}
+#IF_sex button:hover{
+  background-color:white;
 }
