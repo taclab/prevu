@@ -1,5 +1,6 @@
 - reparer bug auteru http://localhost:8888/prevu/application/app/#/auteur?nom=Garfinkel&prenom=Harold 
 incorrect value '' of type string passed to column 'dewey' with type number corriger en pa
+- Remettre la dennière base
 
 - Ajouter un minimun de lettre à taper // OK
 - changer la couleur de la loupe
