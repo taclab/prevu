@@ -365,10 +365,23 @@
     <h2 class="text-center">Focus par UFR</h2>
     <!-- LIVRES PLUS POPULAIRES -->
     <div class="row">
+
+        <div class='col-md-12'>
+            <div class='col-md-6'>
+                <h4></h4>
+                <p>Dans cette partie,... </p>
+            </div>
+            <div class='col-md-6'>
+                <h4></h4>
+            </div>
+        </div>
+
         <div class="col-md-12 cartouche">
+
             <div class="col-md-8">
                 <h3>Livres les plus populaires par Ufr</h3>
             </div>
+
             <div class="col-md-4">
                 <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
                   <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
