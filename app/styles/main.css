@@ -186,6 +186,7 @@ header h1 {
 #genre {
   background-color: #262626;
   color: white;
+  padding-bottom: 2.5em;
 }
 
 
@@ -656,3 +657,4 @@ th {
 #IF_sex button:hover{
   background-color:white;
 }
+
