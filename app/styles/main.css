@@ -188,9 +188,10 @@ header h1 {
   color: white;
 }
 
-#map {
-  background-color: #262626;
-  color: white;
+
+img.map {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
 }
 
 /*Input Auteur*/
