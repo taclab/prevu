@@ -412,7 +412,7 @@
     <div class="row">
         <div class="col-md-12 cartouche">
             <div class="col-md-8">
-                <h3>Stats par Ufr</h3>
+                <h3>Statistiques par UFR</h3>
             </div>
             <div class="col-md-4">
                 <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
@@ -463,8 +463,10 @@
                 </div>
                 <div ng-controller="PiechartCtrl" class="col-md-6">
                         <h4>Profil lecteurs</h4>
-                        <h5>Ratio bouquin/lecteur</h5>
-    
+                        <h5>Nombre de prêts par lecteur</h5>
+                        <span class="value">
+                        {{(ByUfr_issues_numbers/ByUfr_borrowers_numbers)| number:2}}
+                        </span>
                         <h5>Nombre de lecteurs</h5>
                         <span class="value">{{ByUfr_borrowers_numbers}}</span>
                         <nvd3-pie-chart
