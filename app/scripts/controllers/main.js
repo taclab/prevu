@@ -1,6 +1,6 @@
 'use strict';
 //http://stackoverflow.com/questions/14748449/angular-js-using-bootstrap-and-dynamically-creating-rows
-angular.module('prevuApp').controller('MainCtrl', function($scope, $rootScope, $filter, prevuAPIservice) {
+angular.module('prevuApp').controller('MainCtrl', function($scope, $rootScope, $filter, $location, $anchorScroll, prevuAPIservice) {
     $rootScope.bodyClass = "viewMain";
     $scope.listUfr = {
     "AESECOGES" : "UFR AES, ÉCONOMIE ET GESTION",
@@ -192,8 +192,18 @@ angular.module('prevuApp').controller('MainCtrl', function($scope, $rootScope, $
       $scope.ByUfr_borrowers_age = response[0].ByUfr.borrowers_age[ufr.key];
       $scope.ByUfr_issues_numbers = response[0].ByUfr.issues_numbers[ufr.key];
       $scope.ByUfr_borrowers_numbers = response[0].ByUfr.borrowers_numbers[ufr.key];
-
     }
+
+    // ANCHOR
+    $scope.gotoExplorer = function() {
+      $location.hash('explorer-scroll');
+      $anchorScroll();
+    };
+    $scope.gotoBegin = function() {
+      $location.hash('general-scroll');
+      $anchorScroll();
+    };
+
   });
 });
 // filtre

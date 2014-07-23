@@ -9,10 +9,10 @@
                     <p class='content'>La plateforme <span class='value-text'>Prévu</span> (« prêts vus ») vise à ouvrir l'accès aux données de la <a href='http://www.bu.univ-paris8.fr/' target='_blank'>bibliothèque universitaire de Paris 8 (BU)</a> par le biais de visualisations tout en respectant la confidentialité des utilisateurs.</p>
                     <p class='content'>La BU de Paris 8 à Saint-Denis compte plus de 400 000 documents. Située à Saint-Denis, au coeur de l’université, elle est accessible à tout étudiant ou à toute personne majeure.</p>
                 </div>
-                <div class="col-md-12">
+                <div  class="col-md-12">
                 <!-- mettre une fonction onclick surles boutons pour emmener aux ancres concernées -->
-                    <button type='button' class="btn btn-default" onclick='presentation();'>Présentation du projet</button>
-                    <button type='button' class="btn btn-default">Accéder au service</button>
+                    <button type='button' id="general-scroll" class="btn btn-default" ng-click="gotoBegin()">Présentation des données</button>
+                    <button type='button' class="btn btn-default" ng-click="gotoExplorer()">Explorer les données</button>
                 </div>                
             </div>
 
@@ -24,7 +24,7 @@
 <section  id="general" class="container">
     <!-- CORPUS -->
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div  class="col-md-12 text-center">
             <h2>La bibliothèque par ses données</h2>
         </div>
         <div class='col-md-6'>
@@ -611,7 +611,7 @@
     <div class="container">
         <!-- EXPLORER -->
         <div class="row text-center">
-            <div class="col-md-12">
+            <div id="explorer-scroll" class="col-md-12">
                 <h1>Explorer</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua.</p>
