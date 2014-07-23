@@ -201,6 +201,25 @@ header h1 {
 #explorer {
   position: relative;
   height: 600px;
+  color: white;
+}
+
+#explorer h1 {
+  margin-top: 100px;
+}
+
+#explorer .btn-1 {
+  background-color: white;
+  border: 3px solid white;
+  color: white;
+}
+
+#explorer .btn-1 a {
+  color: black;
+}
+
+#explorer .btn-1 a:hover {
+    color: #febd17;
 }
 
 .video-container {
