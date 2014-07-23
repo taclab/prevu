@@ -189,11 +189,39 @@ header h1 {
   padding-bottom: 2.5em;
 }
 
+#map {
+  background-color: #1d242e;
+}
+
+#top {
+    background-color: #1d242e;
+    padding: 30px 0px;
+}
+
+#explorer {
+  position: relative;
+  height: 600px;
+}
+
+.video-container {
+  position: absolute;
+  top:0%;
+  left:0%;
+  height:100%;
+  width:100%;
+  overflow: hidden;
+}
+video {
+  position:absolute;
+  z-index:0;
+}
+video.fillWidth {
+  width: 100%;
+}
 
 img.map {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   margin:auto;
-
 }
 
 /*Input Auteur*/
