@@ -122,10 +122,12 @@
                 "period">2012-02-01 - 2014-02-01</span>
             </footer>
         </div>
-        <div class="col-md-4 info">
-            <h3 class='text-center'>Moins d'emprunteurs mais plus d'emprunts</h3>
-            <p>Bien que le nombre de lecteurs et de prêts aient diminué entre les semestres de l’année universitaire 2012-2013, le nombre total de prêts total a progressé passant de <span class='value-text'>81257</span> à <span class='value-text'>82 762</span>.</p>
-            <p>Il y a donc moins d'emprunteurs, mais dans l'ensemble, ils empruntent plus de documents.</p>
+        <div class="col-md-4 info" style="margin-top:20px;">
+            <div>
+                <h3 class='text-center'>Moins d'emprunteurs mais plus d'emprunts</h3>
+                <p>Bien que le nombre de lecteurs et de prêts aient diminué entre les semestres de l’année universitaire 2012-2013, le nombre total de prêts total a progressé passant de <span class='value-text'>81257</span> à <span class='value-text'>82 762</span>.</p>
+                <p>Il y a donc moins d'emprunteurs, mais dans l'ensemble, ils empruntent plus de documents.</p>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -185,7 +187,7 @@
                     <p>Il est possible de manifester ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons par exemple, pour l'instant choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
                     <p>Pour continuer notre présentation, nous vous proposons de continuer en nous intéressant justement aux lecteurs qui en empruntant contribuent à faire vivre la bibliothèque et génèrent les données.</p>
                 </div>
-                <div ng-controller="PiechartCtrl" class="col-md-4 text-center cartouche abstract" >
+                <div ng-controller="PiechartCtrl" class="col-md-4 text-center abstract" >
                     <h3>Répartition des prêts par sexe</h3>
                     <nvd3-pie-chart
                     class="width-home"
@@ -206,9 +208,7 @@
                     </nvd3-pie-chart>
 
                     <ul class="chart-legende">
-                        <li ng-repeat="borrower_sex in borrowers_sex"><object data="images/profile.svg" type="image/svg+xml">
-                            <img alt="profile" src="images/profile.svg">
-                        </object> {{borrower_sex.sex}} :
+                        <li ng-repeat="borrower_sex in borrowers_sex">{{borrower_sex.sex}} :
                         {{borrower_sex.value}}</li>
                     </ul>    
                 </div>
@@ -467,32 +467,38 @@
                     </div>
                     <div ng-controller="PiechartCtrl" class="col-md-6">
                             <h4>Profil lecteurs</h4>
-                            <h5>Nombre de prêts par lecteur</h5>
-                            <span class="value">
+                            <div class="col-md-6">
+                                <h5>Nombre de lecteurs</h5>
+                                <span class="value">{{ByUfr_borrowers_numbers}}</span>
+                                <h5>Répartition par sexe</h5>
+                                <nvd3-pie-chart
+                                data="ByUfr_borrowers_sex"
+                                id="ByUfr_borrowers_sex"
+                                margin="{left:0,top:10,bottom:10,right:0}"
+                                class="width-150"
+                                x="xFunction()"
+                                y="yFunctionBorrowersUfr()"
+                                width="150"
+                                tooltips="true"
+                                showValues="true"
+                                showLabels="true"
+                                donut="true"
+                                interactive="true"
+                                donutLabelsOutside="false"
+                                color="color_schem()"
+                                legend="true"
+                                >
+                                <svg></svg>
+                                </nvd3-pie-chart>                                    
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Nombre de prêts par lecteur</h5>
+                                <span class="value">
                             {{(ByUfr_issues_numbers/ByUfr_borrowers_numbers)| number:2}}
-                            </span>
-                            <h5>Nombre de lecteurs</h5>
-                            <span class="value">{{ByUfr_borrowers_numbers}}</span>
-                            <nvd3-pie-chart
-                            data="ByUfr_borrowers_sex"
-                            id="ByUfr_borrowers_sex"
-                            margin="{left:0,top:10,bottom:10,right:0}"
-                            x="xFunction()"
-                            y="yFunctionBorrowersUfr()"
-                            width="300"
-                            tooltips="true"
-                            showValues="true"
-                            showLabels="true"
-                            donut="true"
-                            interactive="true"
-                            donutLabelsOutside="false"
-                            color="color_schem()"
-                            legend="true"
-                            >
-                            <svg></svg>
-                            </nvd3-pie-chart>
-                            <h5>âge moyen du lecteurs</h5>
-                            <span class="value">{{ByUfr_borrowers_age}}</span>
+                                </span>
+                                <h5>âge moyen du lecteurs</h5>
+                                <span class="value">{{ByUfr_borrowers_age}}</span>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -549,7 +555,7 @@
         <!-- END TOP PRETS  -->
     </div>
 </section>
-<section class="container">
+<section id="personnalite" class="container">
     <!-- AUTEURS -->
     <div class="row col-md-12 text-center">
         <h3>Personnalités marquantes de Paris 8</h3>

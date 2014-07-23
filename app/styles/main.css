@@ -189,6 +189,10 @@ header h1 {
   padding-bottom: 2.5em;
 }
 
+#personnalite {
+  padding: 60px 0px;
+}
+
 #map {
   background-color: #1d242e;
 }
@@ -200,7 +204,7 @@ header h1 {
 
 #explorer {
   position: relative;
-  height: 600px;
+  padding-bottom: 100px;
   color: white;
 }
 
@@ -220,6 +224,19 @@ header h1 {
 
 #explorer .btn-1 a:hover {
     color: #febd17;
+}
+
+#explorer p {
+  background-color: white;
+  color:black;
+  font-size: 1.4em;
+  padding: 20px 10px;
+}
+
+#explorer h1 {
+  color:white;
+  font-size: 3.6em;
+  padding-bottom: 15px;
 }
 
 .video-container {
@@ -629,6 +646,12 @@ nvd3-pie-chart.width-400 svg {
   display: inline;
 }
 
+nvd3-pie-chart.width-150 svg {
+  width: 150px;
+  height: 150px;
+  display: inline;
+}
+
 nvd3-pie-chart.width-300 svg {
   width: 300px;
   height: 300px;
@@ -675,11 +698,10 @@ ul.chart-legende {
 
 /*FOOTER */
 footer.footer-end {
-  margin-top: 90px;
   background-color: #262626;
   color: white;
-
 }
+
 .footer-end a {
   color:white;
 }
