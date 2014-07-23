@@ -432,6 +432,26 @@ input {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
+.bookWarp .header {
+  height: 50px;
+  width: 100%;
+  display: table;
+}
+
+.bookWarp .header h4 {
+    display: table-cell;
+    vertical-align: middle;
+    text-align:center;
+}
+
+.bookWarp span {
+  font-size: 0.8em;
+}
+.bookWarp span .value-text {
+  font-size: 1.3em;
+}
+
+
 
 /*.bookFront:hover {
     -webkit-transition: -webkit-transform 0.3s;
