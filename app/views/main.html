@@ -339,7 +339,7 @@
                     </nvd3-multi-bar-chart>
                 </div>
             </div>
-            <footer class="col-md-12 viz-footer">
+            <footer class="col-md-12 viz-footer text-center">
                 <span class="legend">Période : </span>
                 <span class="period">2012-02-01 - 2014-02-01</span>
             </footer>
@@ -404,7 +404,7 @@
                 </div>
                 <!-- END LIVRE -->
             </div>
-            <footer class="col-md-12 viz-footer">
+            <footer class="col-md-12 viz-footer text-center">
                 <span class="legend">Période :</span> <span class=
                 "period">2012-02-01 - 2014-02-01</span>
             </footer>
@@ -495,7 +495,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="col-md-12 viz-footer">
+            <footer class="col-md-12 viz-footer text-center">
                 <span class="legend">Période :</span> <span class=
                 "period">2012-02-01 - 2014-02-01</span>
             </footer>
@@ -511,32 +511,33 @@
                 <h2>Livre les plus empruntés</h2>
             </div>
             <div class="col-md-2">
-                Filtrer par discipline : <select>
+<!--                 Filtrer par discipline : <select>
                     <option value="{{ccode.ccode}}">
                         {{ccode.ccode}}
                     </option>
-                </select>
+                </select> -->
             </div>
 
-            <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
+            <div style="height:400px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
                 <!-- http://jsfiddle.net/JefClaes/HPu9n/9/ -->
                 <a href="#/livre?biblionumber={{book.biblionumber}}">
-                <h4>#{{book.top}} - {{book.title}}</h4>
-                <h6>{{book.author_nom}}, {{book.author_prenom}} -
-                {{book.author_date}}</h6>
+                <div class="header">
+                    <h4>{{book.title}}</h4>    
+                </div>
+                
                 <div class="bookFront center-block" style=
                 "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
                 </div>
-                <p><span>Date de publication : {{book.publicationyear}}</span><br/>
-                <span>Prêts : {{book.issues}}</span><br/>
-                <span>ccode : {{book.ccode}}</span>
+                <p>
+                    <span>Date de publication : {{book.publicationyear}}</span><br/>
+                    <span>Prêts : <span class="value-text">{{book.issues}}</span> </span><br/>
+                    <span>Catégorie : {{book.ccode}}</span>
                 </p></a>
             </div>
         </div>
         <!-- END TOP PRETS  -->
     </div>
 </section>
-<hr/>
 <section class="container">
     <!-- AUTEURS -->
     <div class="row col-md-12 text-center">
@@ -585,12 +586,11 @@
     </div>
     <!-- END AUTEURS -->
 </section>
-    <hr/>
 <section id="explorer">
     <div class="video-container">
         <video id="video"  poster="http://localhost:8888/prevu/application/app/images/video_cover.jpg" style="width:100%;" autoplay loop>
-            <source id="mp4" src="http://localhost:8888/prevu/application/app/video/bu.mp4" type="video/mp4">
-<!--             <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+<!--             <source id="mp4" src="http://localhost:8888/prevu/application/app/video/bu.mp4" type="video/mp4">
+ --><!--             <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
              <source id="webm" src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
              <source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg"> -->
             <p>Your user agent does not support the HTML5 Video element.</p>
