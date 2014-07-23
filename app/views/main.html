@@ -356,168 +356,176 @@
             </div>
         </div>
         <!-- END REPARTION NIVEAU -->
-        <h3 class="text-center">Répartion géographique des lecteurs actifs</h3>
+
     </div>
-    <img src="images/heatmap.jpg" class="img-responsive map" />
+    <div>
+        <div class="container">        
+            <h3 class="text-center">Répartion géographique des lecteurs actifs</h3>
+        </div>   
+        <div id="map">
+            <img src="images/heatmap.jpg" class="img-responsive map" />
+        </div>
+    </div>
 </section>
-    <hr/>
-<section class="container">
-    <h2 class="text-center">Focus par UFR</h2>
-    <!-- LIVRES PLUS POPULAIRES -->
-    <div class="row">
-        <div class="col-md-12 cartouche">
-            <div class="col-md-8">
-                <h3>Livres les plus populaires par Ufr</h3>
+<section id="ufr">
+    <div class="container">
+        <h2 class="text-center">Focus par UFR</h2>
+        <!-- LIVRES PLUS POPULAIRES -->
+        <div class="row">
+            <div class="col-md-12 cartouche">
+                <div class="col-md-8">
+                    <h3>Livres les plus populaires par Ufr</h3>
+                </div>
+                <div class="col-md-4">
+                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
+                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
+                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select> 
+                </div>
+                <!-- LIVRE -->
+                <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="topBookByUfr in ByUfr_books.values | limitTo:4">
+                    <a href="#/livre?biblionumber={{topBookByUfr.biblionumber}}">
+                    <div class="bookFront center-block" style=
+                    "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{ByUfr_booksCover[topBookByUfr.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+                    </div>
+                    <h4>{{topBookByUfr.title}}</h4>
+                    Prêts : {{topBookByUfr.issuesTotal}}</a>
+                </div>
+                <!-- END LIVRE -->
             </div>
-            <div class="col-md-4">
-                <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
-                  <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
-                  <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
-                    <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
-                  </ui-select-choices>
-                </ui-select> 
+            <footer class="col-md-12 viz-footer">
+                <span class="legend">Période :</span> <span class=
+                "period">2012-02-01 - 2014-02-01</span>
+            </footer>
+        </div>
+        <!-- LIVRES PLUS POPULAIRES -->
+
+        <!-- STATS PAR UFR -->
+        <div class="row">
+            <div class="col-md-12 cartouche">
+                <div class="col-md-8">
+                    <h3>Statistiques par UFR</h3>
+                </div>
+                <div class="col-md-4">
+                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
+                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
+                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>                     
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                            <h5>Nombre de prêts</h5>
+                            <span class="value">{{ByUfr_issues_numbers}}</span>
+                    </div>
+                    <div ng-controller="LinechartCtrl" class="col-md-10">
+                            <nvd3-line-chart
+                            data="issues_ufrOnlyUfr"
+                            height="150"
+                            y="yFunctionUFR()"
+                            x="xFunctionUFR()"
+                            margin="{left:80,top:15,bottom:30,right:80}"
+                            interactive="true"
+                            tooltips="true"
+                            showXAxis="true"
+                            showYAxis="true"
+                            xAxisTickFormat="xAxisTickFormatFunction()"
+                            tooltipcontent="toolTipContentFunctionUFR()"
+                            color="colorFunction()"
+                            >
+                            <svg></svg>
+                            </nvd3-line-chart>
+                    </div>
+                    <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
+                            <h4>Nombre de prêts par secteur</h4>
+                            <nvd3-multi-bar-horizontal-chart
+                            data="ByUfr_ccode"
+                            id="ByUfr_ccode"
+                            height="400"
+                            margin="{left:120,top:5,bottom:50,right:50}"
+                            y="yFunction()"
+                            x="xFunction()"
+                            showXAxis="true"
+                            showValues="true"
+                            color="color_schem()"
+                            >
+                            <svg></svg>
+                            </nvd3-multi-bar-horizontal-chart>
+                    </div>
+                    <div ng-controller="PiechartCtrl" class="col-md-6">
+                            <h4>Profil lecteurs</h4>
+                            <h5>Nombre de prêts par lecteur</h5>
+                            <span class="value">
+                            {{(ByUfr_issues_numbers/ByUfr_borrowers_numbers)| number:2}}
+                            </span>
+                            <h5>Nombre de lecteurs</h5>
+                            <span class="value">{{ByUfr_borrowers_numbers}}</span>
+                            <nvd3-pie-chart
+                            data="ByUfr_borrowers_sex"
+                            id="ByUfr_borrowers_sex"
+                            margin="{left:0,top:10,bottom:10,right:0}"
+                            x="xFunction()"
+                            y="yFunctionBorrowersUfr()"
+                            width="300"
+                            tooltips="true"
+                            showValues="true"
+                            showLabels="true"
+                            donut="true"
+                            interactive="true"
+                            donutLabelsOutside="false"
+                            color="color_schem()"
+                            legend="true"
+                            >
+                            <svg></svg>
+                            </nvd3-pie-chart>
+                            <h5>âge moyen du lecteurs</h5>
+                            <span class="value">{{ByUfr_borrowers_age}}</span>
+                    </div>
+                </div>
             </div>
-            <!-- LIVRE -->
-            <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="topBookByUfr in ByUfr_books.values | limitTo:4">
-                <a href="#/livre?biblionumber={{topBookByUfr.biblionumber}}">
+            <footer class="col-md-12 viz-footer">
+                <span class="legend">Période :</span> <span class=
+                "period">2012-02-01 - 2014-02-01</span>
+            </footer>
+        </div>
+        <!-- END STATS PAR UFR -->
+    </div>
+</section>
+<section id='top'>
+    <div class="container">
+        <!-- TOP PRETS  -->
+        <div class="row col-md-12 cartouche">
+            <div class="col-md-10">
+                <h2>Livre les plus empruntés</h2>
+            </div>
+            <div class="col-md-2">
+                Filtrer par discipline : <select>
+                    <option value="{{ccode.ccode}}">
+                        {{ccode.ccode}}
+                    </option>
+                </select>
+            </div>
+
+            <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
+                <!-- http://jsfiddle.net/JefClaes/HPu9n/9/ -->
+                <a href="#/livre?biblionumber={{book.biblionumber}}">
+                <h4>#{{book.top}} - {{book.title}}</h4>
+                <h6>{{book.author_nom}}, {{book.author_prenom}} -
+                {{book.author_date}}</h6>
                 <div class="bookFront center-block" style=
-                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{ByUfr_booksCover[topBookByUfr.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
                 </div>
-                <h4>{{topBookByUfr.title}}</h4>
-                Prêts : {{topBookByUfr.issuesTotal}}</a>
+                <p><span>Date de publication : {{book.publicationyear}}</span><br/>
+                <span>Prêts : {{book.issues}}</span><br/>
+                <span>ccode : {{book.ccode}}</span>
+                </p></a>
             </div>
-            <!-- END LIVRE -->
         </div>
-        <footer class="col-md-12 viz-footer">
-            <span class="legend">Période :</span> <span class=
-            "period">2012-02-01 - 2014-02-01</span>
-        </footer>
+        <!-- END TOP PRETS  -->
     </div>
-    <!-- LIVRES PLUS POPULAIRES -->
-
-    <!-- STATS PAR UFR -->
-    <div class="row">
-        <div class="col-md-12 cartouche">
-            <div class="col-md-8">
-                <h3>Statistiques par UFR</h3>
-            </div>
-            <div class="col-md-4">
-                <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
-                  <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
-                  <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
-                    <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
-                  </ui-select-choices>
-                </ui-select>                     
-            </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
-                        <h5>Nombre de prêts</h5>
-                        <span class="value">{{ByUfr_issues_numbers}}</span>
-                </div>
-                <div ng-controller="LinechartCtrl" class="col-md-10">
-                        <nvd3-line-chart
-                        data="issues_ufrOnlyUfr"
-                        height="150"
-                        y="yFunctionUFR()"
-                        x="xFunctionUFR()"
-                        margin="{left:80,top:15,bottom:30,right:80}"
-                        interactive="true"
-                        tooltips="true"
-                        showXAxis="true"
-                        showYAxis="true"
-                        xAxisTickFormat="xAxisTickFormatFunction()"
-                        tooltipcontent="toolTipContentFunctionUFR()"
-                        color="colorFunction()"
-                        >
-                        <svg></svg>
-                        </nvd3-line-chart>
-                </div>
-                <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
-                        <h4>Nombre de prêts par secteur</h4>
-                        <nvd3-multi-bar-horizontal-chart
-                        data="ByUfr_ccode"
-                        id="ByUfr_ccode"
-                        height="400"
-                        margin="{left:120,top:5,bottom:50,right:50}"
-                        y="yFunction()"
-                        x="xFunction()"
-                        showXAxis="true"
-                        showValues="true"
-                        color="color_schem()"
-                        >
-                        <svg></svg>
-                        </nvd3-multi-bar-horizontal-chart>
-                </div>
-                <div ng-controller="PiechartCtrl" class="col-md-6">
-                        <h4>Profil lecteurs</h4>
-                        <h5>Nombre de prêts par lecteur</h5>
-                        <span class="value">
-                        {{(ByUfr_issues_numbers/ByUfr_borrowers_numbers)| number:2}}
-                        </span>
-                        <h5>Nombre de lecteurs</h5>
-                        <span class="value">{{ByUfr_borrowers_numbers}}</span>
-                        <nvd3-pie-chart
-                        data="ByUfr_borrowers_sex"
-                        id="ByUfr_borrowers_sex"
-                        margin="{left:0,top:10,bottom:10,right:0}"
-                        x="xFunction()"
-                        y="yFunctionBorrowersUfr()"
-                        width="300"
-                        tooltips="true"
-                        showValues="true"
-                        showLabels="true"
-                        donut="true"
-                        interactive="true"
-                        donutLabelsOutside="false"
-                        color="color_schem()"
-                        legend="true"
-                        >
-                        <svg></svg>
-                        </nvd3-pie-chart>
-                        <h5>âge moyen du lecteurs</h5>
-                        <span class="value">{{ByUfr_borrowers_age}}</span>
-                </div>
-            </div>
-        </div>
-        <footer class="col-md-12 viz-footer">
-            <span class="legend">Période :</span> <span class=
-            "period">2012-02-01 - 2014-02-01</span>
-        </footer>
-    </div>
-    <!-- END STATS PAR UFR -->
-</section>
-    <hr />
-<section class="container">
-
-    <!-- TOP PRETS  -->
-    <div class="row col-md-12 cartouche">
-        <div class="col-md-10">
-            <h2>Livre les plus empruntés</h2>
-        </div>
-        <div class="col-md-2">
-            Filtrer par discipline : <select>
-                <option value="{{ccode.ccode}}">
-                    {{ccode.ccode}}
-                </option>
-            </select>
-        </div>
-
-        <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
-            <!-- http://jsfiddle.net/JefClaes/HPu9n/9/ -->
-            <a href="#/livre?biblionumber={{book.biblionumber}}">
-            <h4>#{{book.top}} - {{book.title}}</h4>
-            <h6>{{book.author_nom}}, {{book.author_prenom}} -
-            {{book.author_date}}</h6>
-            <div class="bookFront center-block" style=
-            "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
-            </div>
-            <p><span>Date de publication : {{book.publicationyear}}</span><br/>
-            <span>Prêts : {{book.issues}}</span><br/>
-            <span>ccode : {{book.ccode}}</span>
-            </p></a>
-        </div>
-    </div>
-    <!-- END TOP PRETS  -->
 </section>
 <hr/>
 <section class="container">
