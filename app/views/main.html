@@ -6,7 +6,7 @@
             <div class="col-md-12 text-center">
                 <h1>Visualiser les données de prêts d'une bibliothèque universitaire</h1><br/>
                 <div class="col-md-offset-2 col-md-8">
-                    <p class='content'>La plateforme <span class='value-text'>Prévu</span> (« prêts vus ») vise à ouvrir l'accès aux données de la <a href='http://www.bu.univ-paris8.fr/' target='_blank'>bibliothèque universitaire de Paris 8 (BU)</a> par le biais de visualisations tout en respectant la confidentialité des utilisateurs.</p>
+                    <p class='content'>La plateforme <span class='value-text'>Prévu</span> (« prêts vus ») vise à ouvrir l'accès aux données de la <a href='http://www.bu.univ-paris8.fr/' target='_blank'>bibliothèque universitaire de Paris 8 (BU)</a> par le biais de visualisations.</p>
                     <p class='content'>La BU de Paris 8 à Saint-Denis compte plus de 400 000 documents. Située à Saint-Denis, au coeur de l’université, elle est accessible à tout étudiant ou à toute personne majeure.</p>
                 </div>
                 <div  class="col-md-12">
@@ -28,7 +28,7 @@
             <h2>La bibliothèque par ses données</h2>
         </div>
         <div class='col-md-6'>
-            <p class="content">Les données globales de la bibliothèque, c'est à dire les données qui concernent des informations générales se situant à un niveau très macro (par exemples : l'ensemble des emprunteurs, l'ensemble des prêts effectués, la répartition des genres pour l'ensemble des prêts effectués) permettent de rendre compte des grands phénomènes qui marquent la vie de la bibliothèque mais aussi par ricochet de l'université.</p>
+            <p class="content">Les données générales propres à la bibliothèque : l'ensemble des emprunteurs, l'ensemble des prêts effectués, la répartition des genres pour l'ensemble des prêts effectués... permettent de rendre compte des grands phénomènes qui marquent la vie de la bibliothèque mais aussi par ricochet de l'université.</p>
         </div>
         <div class='col-md-6 info'>
             <h3>Rythmes universitaires</h3>
@@ -125,7 +125,7 @@
         <div class="col-md-4 info" style="margin-top:20px;">
             <div>
                 <h3 class='text-center'>Moins d'emprunteurs mais plus d'emprunts</h3>
-                <p>Bien que le nombre de lecteurs et de prêts aient diminué entre les semestres de l’année universitaire 2012-2013, le nombre total de prêts total a progressé passant de <span class='value-text'>81257</span> à <span class='value-text'>82 762</span>.</p>
+                <p>Bien que le nombre de lecteurs et de prêts aient diminués entre les semestres de l’année universitaire 2012-2013, le nombre total de prêts total a progressé passant de <span class='value-text'>81257</span> à <span class='value-text'>82 762</span>.</p>
                 <p>Il y a donc moins d'emprunteurs, mais dans l'ensemble, ils empruntent plus de documents.</p>
             </div>
         </div>
@@ -133,7 +133,7 @@
     <div class="row">
         <div class="col-md-4">
             <h3>Les prêts seulement</h3>
-            <p>Prévu ne prend en compte tous les documents que possèdent la bibliothèque universitaire, il ne considère que les documents qui ont été empruntés au moins une fois. Ce choix à la fois éditorial et technique nous permet d'optimiser nos requêtes tout en resserant notre corpus sur les prêts.</p>
+            <p>Prévu ne prend en compte tous les documents que possède la bibliothèque universitaire, il ne considère que les documents qui ont été empruntés au moins une fois. Ce choix à la fois éditorial et technique nous permet d'optimiser nos requêtes tout en resserant notre corpus sur les prêts.</p>
         </div>
         <div class="col-md-4 text-center">
             <div class="cartouche abstract">
@@ -162,9 +162,9 @@
             </footer>
         </div>
         <div class="col-md-4">
-            <h3>Incongruités & Créativité</h3>
-            <p>Parfois, la plateforme permet de faire remonter des informations qui semblent intéressantes mais dont nous ne savons pas encore quoi faire, par exemple, nous savons que la moyenne d'âge des emprunteurs est de <span class=
-            "value-text">{{borrowers_age}}</span> ans. Ces informations permettent d'imaginer de nouveaux scénarios.</p>
+            <h3>Autres perspectives</h3>
+            <p>En plus des visualisations que nous choisissons de présenter dans le cadre de ce premier démonstrateur, il est à noter que nous pouvons dors et déjà accéder à de nombreuses autres informations dont l'exploitation pourrait faire, elle aussi, l'objet de développements et d'analyses, c'est le cas, pour n'en donner qu'un exemple, de la moyenne d'âge des emprunteurs dont nous savons qu'elle est de <span class=
+            "value-text">{{borrowers_age}}</span> ans. De nombreux scénarios restent à imaginer.</p>
         </div>
     </div>
     <!-- END CORPUS -->
@@ -183,9 +183,9 @@
         <div class='col-md-12'>
             <div id='viz_sex'>
                 <div class='col-md-8'>
-                    <p>La grande majorité des lecteurs actifs de la BU de Paris 8 sont des femmes. Il est à noter que cela ne signifie pas que la répartition homme femme de tous les lecteurs potentiels (c'est à dire ceux qui remplissent les conditions d'inscription à la bibliothèque) soient le même. Les lecteurs actifs représentent tous les lecteurs qui ont déjà empruntés au moins un ouvrage.</p>
-                    <p>Il est possible de manifester ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons par exemple, pour l'instant choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
-                    <p>Pour continuer notre présentation, nous vous proposons de continuer en nous intéressant justement aux lecteurs qui en empruntant contribuent à faire vivre la bibliothèque et génèrent les données.</p>
+                    <p>La grande majorité des lecteurs actifs de la BU de Paris 8 sont des femmes. Il est à noter que cela ne signifie pas que la répartition homme - femme de tous les lecteurs potentiels (c'est à dire ceux qui remplissent les conditions d'inscription à la bibliothèque) soit exactement la même. Les lecteurs actifs représentent seulement les lecteurs qui ont déjà empruntés au moins un ouvrage.</p>
+                    <p>Il est possible d'utiliser ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons par exemple, pour l'instant choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
+                    <p>Pour continuer notre présentation, nous proposons de nous intéresser justement aux lecteurs qui, en empruntant, contribuent à faire vivre la bibliothèque et génèrent les données.</p>
                 </div>
                 <div ng-controller="PiechartCtrl" class="col-md-4 text-center abstract" >
                     <h3>Répartition des prêts par sexe</h3>
@@ -215,14 +215,15 @@
             </div>
             <div id='viz_sex2'>
                 <div class='col-md-4'>
-                    <h3>La question du genre</h3>
-                    <p>La bibliothèque prend compte deux genres : hommes et femmes. Il est intéressant de se servir d'une plateforme commme Prévu pour se demander à quel point la distinction homme/ femme est importante ou non à relever. Certains détracteurs pourront, à juste titre, reprocher de ne pas proposer de catégorie transgenre par exemple.</p>
+                    <h3>Articuler la pensée avec un corpus de données</h3>
+                    <p>Nous espérons, à terme, faire de Prévu un outil  permettant non seulement de susciter de la réflexion à partir du contenu informationnel généré par les données mais aussi par le biais des enjeux liés à la composition du corpus. Cette question relative au genre nous permet de donner un exemple de ces problématiques.</p>
+                    </p>
                 </div>
                 <div class='col-md-4'><h3>Que doit-on montrer?</h3>
-                    <p>Mettre en avant des inégalités est un premier moyen de les combattre, mais en même temps, trop insister sur des différences favorise les discriminations. Techniquement, il est à noté que les données propres au genre sont relativement faciles à exploiter, doit-on pour autant toujours les mettre en avant?</p> 
+                    <p>Mettre en avant des inégalités est un premier moyen de les combattre, mais en même temps, trop insister sur des différences favorise les discriminations. Techniquement, il est à noter que les données propres au genre sont relativement faciles à exploiter, doit-on pour autant toujours les mettre en avant?</p> 
                 </div>
                 <div class='col-md-4'>
-                    <p>A travers ce premier volet du projet, nous cherchons à mettre en avant les pistes de réflexion que peut susciter Prévu, nous espérons pouvoir, avec le travail autour de l'exploitation des données de genre, favoriser l'essor de visualisations originales et utiles et en même temps, dans le cadre des digital humanities et  de leur interdisciplinarité lancer des pistes de réfléxion notamment avec les <i>Gender Studies</i>. </p>
+                    <p>A travers ce premier volet du projet, nous cherchons à définir les pistes de réflexion que peut susciter Prévu, nous espérons pouvoir, avec le travail autour de l'exploitation des données de genre, favoriser l'essor de visualisations originales et utiles et en même temps, dans le cadre des <i>digital humanities</i> et  de leur interdisciplinarité lancer des pistes de réfléxion notamment avec les <i>Gender Studies</i>. </p>
                 </div>
             </div>
         </div>   
@@ -296,7 +297,7 @@
                     "period">2012-02-01 - 2014-02-01</span>
                 </footer>
                 <h4>Les unités de formation et de recherche (UFR)</h4>
-                <p>Avec Prévu, il est également possible de connaître l'UFR d'origine des emprunteurs. La représentation graphique ci-dessus montre la domination de l'UFR Arts, Philosophie, Esthétique en terme de nombre d'emprunts. Toutefois ces données sont à relativisées car elles mériteraient d'être mise en lien avec le nombre total d'étudiants inscrit dans chaque UFR. </p>            
+                <p>Avec Prévu, il est également possible de connaître l'UFR d'origine des emprunteurs. La représentation graphique ci-dessus montre la domination de l'<i>UFR Arts, Philosophie, Esthétique</i> en terme de nombre d'emprunts. Toutefois ces données sont à relativiser car elles mériteraient d'être mise en lien avec le nombre total d'étudiants inscrit dans chaque UFR. </p>            
             </div>
         </div>
         <!-- END TWO PIE -->
@@ -346,13 +347,12 @@
             <div class='col-md-6'>
                 <h4>Licences, Masters, doctorat : qui emprunte le plus?</h4>
                 <p>L'infographie interactive ci-dessus permet de voir le nombre d'emprunts effectués chaque mois par les étudiants selon leur niveau d'étude.</p>
-                <p>Ces données mériteraient d'être, par la suite, pondérées en fonction du nombre de lecteurs pour chaque niveau d'étude : il y a beaucoup plus d'étudiants inscrits en licence qu'en doctorat, donc pour un nombre de prêts égal par un utilisateur, le total serait beaucoup plus élevé chez les étudiants de licence 1 par exemple.</p>
-                <p>Pourtant force est de constater, dès à présent, que ce sont surtout les étudiants de master qui empruntent le plus.</p>
+                <p>Ces données mériteraient d'être, par la suite, pondérées en fonction du nombre de lecteurs pour chaque niveau d'étude :  nous observons que ce sont les étudiants de master qui empruntent le plus.</p>
             </div>
             <div class='col-md-6'>
                 <h4>Provenance géographique des lecteurs</h4>
                 <p>La <i>heat map</i> ci-dessous montre la provenance des lecteurs pour chaque emprunt effectué. Plus il y a de lecteurs originaires d'une zone et plus la zone se colore, mais en même temps, un même lecteur qui effectue beaucoup d'emprunts peut avoir un impact fort puisque chaque prêt compte.</p>
-                <p>La carte montre que la plupart des lecteurs actifs résident près de l'université et dans le nord est de Paris ainsi que dans le sud autour du quartier Montparnasse.</p>
+                <p>La carte montre que la plupart des lecteurs actifs résident près de l'université et dans le nord-est de Paris ainsi que dans le sud autour du quartier Montparnasse.</p>
             </div>
         </div>
         <!-- END REPARTION NIVEAU -->
@@ -610,7 +610,7 @@
 <!--             <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
              <source id="webm" src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
              <source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg"> -->
-            <p>Your user agent does not support the HTML5 Video element.</p>
+            <p>Attention votre matériel ne permet pas l'utilisation de l'élément video HTML5.</p>
         </video>
     </div>
 
