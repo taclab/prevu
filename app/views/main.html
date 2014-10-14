@@ -11,8 +11,8 @@
                 </div>
                 <div  class="col-md-12">
                 <!-- mettre une fonction onclick surles boutons pour emmener aux ancres concernées -->
-                    <button type='button' id="general-scroll" class="btn btn-default" ng-click="gotoBegin()">Présentation des données</button>
-                    <button type='button' class="btn btn-default" ng-click="gotoExplorer()">Explorer les données</button>
+                    <a href="#/auteur"><button type='button' class="btn btn-default">Recherche par auteur</button></a>
+                    <a href="#/livre"><button type='button' class="btn btn-default">Recherche par livre</button></a>
                 </div>                
             </div>
 
@@ -28,7 +28,7 @@
             <h2>La bibliothèque par ses données</h2>
         </div>
         <div class='col-md-6'>
-            <p class="content">Les données générales propres à la bibliothèque : l'ensemble des emprunteurs, l'ensemble des prêts effectués, la répartition des genres pour l'ensemble des prêts effectués... permettent de rendre compte des grands phénomènes qui marquent la vie de la bibliothèque mais aussi de l'université.</p>
+            <p class="content">Les données générales propres à la bibliothèque : l'ensemble des emprunteurs, l'ensemble des prêts effectués, la répartition des genres pour l'ensemble des prêts effectués, etc. permettent de rendre compte des grands phénomènes qui marquent la vie de la bibliothèque mais aussi de l'université.</p>
         </div>
         <div class='col-md-6 info'>
             <h3>Rythmes universitaires</h3>
@@ -163,7 +163,7 @@
         </div>
         <div class="col-md-4">
             <h3>Autres perspectives</h3>
-            <p>En plus des visualisations que nous choisissons de présenter dans le cadre de ce premier démonstrateur, il est à noter que nous pouvons dors et déjà accéder à de nombreuses autres informations dont l'exploitation pourrait faire, elle aussi, l'objet de développements et d'analyses, c'est le cas, pour n'en donner qu'un exemple, de la moyenne d'âge des emprunteurs dont nous savons qu'elle est de <span class=
+            <p>En plus des visualisations que nous choisissons de présenter dans le cadre de ce premier démonstrateur, nous pouvons dors et déjà accéder à de nombreuses autres informations dont l'exploitation pourrait faire, elle aussi, l'objet de développements et d'analyses, c'est le cas, pour n'en donner qu'un exemple, de la moyenne d'âge des emprunteurs dont nous savons qu'elle est de <span class=
             "value-text">{{borrowers_age}}</span> ans. De nombreux scénarios restent à imaginer.</p>
         </div>
     </div>
@@ -176,15 +176,15 @@
     <div class="container">
          <div class='col-md-12 text-center' id='IF_sex'>
             <h2>Genre et bibliothèque</h2>
-            <p>Pensez-vous qu'il soit normal de prendre en compte le sexe des lecteurs pour une bibliothèque?</p>
+            <p>Pensez-vous qu'il soit nécessaire pour une bibliothèque de prendre en compte le sexe des lecteurs ?</p>
             <button class='btn' onclick="clearViz('#viz_sex2');launchViz('#viz_sex');">Oui</button>
             <button class='btn' onclick="clearViz('#viz_sex');launchViz('#viz_sex2')">Non</button>
         </div>
         <div class='col-md-12'>
             <div id='viz_sex'>
                 <div class='col-md-8'>
-                    <p>La grande majorité des lecteurs actifs de la BU de Paris 8 sont des femmes. Il est à noter que cela ne signifie pas que la répartition homme - femme de tous les lecteurs potentiels (c'est à dire ceux qui remplissent les conditions d'inscription à la bibliothèque) soit exactement la même. Les lecteurs actifs représentent seulement les lecteurs qui ont déjà empruntés au moins un ouvrage.</p>
-                    <p>Il est possible d'utiliser ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons par exemple, pour l'instant choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
+                    <p>La grande majorité des lecteurs actifs de la BU de Paris 8 sont des femmes. Il est à noter que cela ne signifie pas que la répartition homme - femme de tous les lecteurs potentiels (c'est à dire ceux qui remplissent les conditions d'inscription à la bibliothèque) soit exactement la même que celle donnée par Prévu. Les lecteurs actifs que nous visualisons représentent seulement les lecteurs qui ont déjà empruntés au moins un ouvrage.</p>
+                    <p>Il est possible d'utiliser ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons, par exemple, choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
                     <p>Pour continuer notre présentation, nous proposons de nous intéresser justement aux lecteurs qui, en empruntant, contribuent à faire vivre la bibliothèque et génèrent les données.</p>
                 </div>
                 <div ng-controller="PiechartCtrl" class="col-md-4 text-center abstract" >
@@ -216,7 +216,7 @@
             <div id='viz_sex2'>
                 <div class='col-md-4'>
                     <h3>Articuler la pensée avec un corpus de données</h3>
-                    <p>Nous espérons, à terme, faire de Prévu un outil  permettant non seulement de susciter de la réflexion à partir du contenu informationnel généré par les données mais aussi par le biais des enjeux liés à la composition du corpus. Cette question relative au genre nous permet de donner un exemple de ces problématiques.</p>
+                    <p>Nous espérons, à terme, faire de Prévu un outil permettant non seulement de susciter de la réflexion à partir du contenu informationnel généré par les données mais aussi par le biais des enjeux liés à la composition du corpus. Cette question relative au genre nous permet de donner un exemple de ces problématiques.</p>
                     </p>
                 </div>
                 <div class='col-md-4'><h3>Que doit-on montrer?</h3>
@@ -297,7 +297,7 @@
                     "period">2012-02-01 - 2014-02-01</span>
                 </footer>
                 <h4>Les unités de formation et de recherche (UFR)</h4>
-                <p>Avec Prévu, il est également possible de connaître l'UFR d'origine des emprunteurs. La représentation graphique ci-dessus montre la domination de l'<i>UFR Arts, Philosophie, Esthétique</i> en terme de nombre d'emprunts. Toutefois ces données sont à relativiser car elles mériteraient d'être mise en lien avec le nombre total d'étudiants inscrit dans chaque UFR. </p>            
+                <p>Avec Prévu, il est également possible de connaître l'UFR d'origine des emprunteurs. La représentation graphique ci-dessus montre la domination de l'<i>UFR Arts, Philosophie, Esthétique</i> en terme de nombre d'emprunts. Toutefois ces données sont à relativiser car elles mériteraient d'être mise en lien avec le nombre total d'étudiants inscrits dans chaque UFR. </p>            
             </div>
         </div>
         <!-- END TWO PIE -->
@@ -345,7 +345,7 @@
                 <span class="period">2012-02-01 - 2014-02-01</span>
             </footer>
             <div class='col-md-6'>
-                <h4>Licences, Masters, doctorat : qui emprunte le plus?</h4>
+                <h4>Licence, Master, doctorat : qui emprunte le plus?</h4>
                 <p>L'infographie interactive ci-dessus permet de voir le nombre d'emprunts effectués chaque mois par les étudiants selon leur niveau d'étude.</p>
                 <p>Ces données mériteraient d'être, par la suite, pondérées en fonction du nombre de lecteurs pour chaque niveau d'étude :  nous observons que ce sont les étudiants de master qui empruntent le plus.</p>
             </div>
@@ -377,7 +377,7 @@
                 <p>En plus des informations d'ordre générique relatives à l'ensemble de la bibliothèque et de ses publics, il peut être particulièrement intéressant de mettre en avant des informations propres à certains UFR (unités de formation et de recherche) ou départements.</p></div>
             <div class='col-md-6'>
                 <p>Un doctorant peut se demander par exemple quels sont les livres les plus empruntés dans son école doctorale, il est possible de suivre mois après l'évolution des prêts d'un UFR, de savoir en quels secteurs les livres sont les plus empruntés, de voir à quel point, l'UFR est tourné vers une discipline ou au contraire favorise l'interdisciplinarité.</p>
-                <p>Nous pouvons connaître la moyenne d'âge des emprunteurs de chaque UFR, le ratio homme/ femme, le nombre d'emprunteurs et le nombre de prêts.</p>
+                <p>Nous pouvons connaître la moyenne d'âge des emprunteurs de chaque UFR, le ratio homme-femme, le nombre d'emprunteurs et le nombre de prêts.</p>
             </div>
         </div>
 
