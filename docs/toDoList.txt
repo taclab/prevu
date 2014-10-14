@@ -1,3 +1,8 @@
+- Documentation de l'architecture
+- Liste des possibles
+- Listes de bugs
+- Bug livres auteur
+
 - reparer bug auteru http://localhost:8888/prevu/application/app/#/auteur?nom=Garfinkel&prenom=Harold 
 incorrect value '' of type string passed to column 'dewey' with type number corriger en pa
 - Remettre la dennière base en ligne
