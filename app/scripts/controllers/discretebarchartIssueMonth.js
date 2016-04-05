@@ -6,47 +6,7 @@ angular.module('prevuApp').controller('DiscretebarchartCtrl', function($scope) {
       return colorArray[i];
     };
   }
-  $scope.xFunction = function() {
-    return function(d) {
-      return d.month + '/' + d.year;
-    };
-  }
-  $scope.yFunction = function(t) {
-    return function(d) {
-      return d3.round(d.issues);
-    };
-  }
-  $scope.xFunctionUfr = function() {
-    return function(d) {
-      return d.Ufr;
-    };
-  }
-  $scope.yFunctionUfr = function(t) {
-    return function(d) {
-      return d3.round(d.issues);
-    };
-  }
-  $scope.xFunctionIssues = function() {
-    return function(d) {
-      return parseInt(d.issuesdate);
-    };
-  }
-  $scope.yFunctionIssues = function(t) {
-    return function(d) {
-      return parseInt(d.issues);
-    };
-  }
 
-  $scope.xFunctionNiveau = function() {
-    return function(d) {
-      return d.Niveau;
-    };
-  }
-  $scope.yFunctionNiveau = function(t) {
-    return function(d) {
-      return d3.round(d.issues);
-    };
-  }  
   $scope.xAxisTickFormatFunction = function() {
     return function(d) {
       return d3.time.format('%b-%y')(new Date(d * 1000));

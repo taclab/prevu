@@ -11,16 +11,17 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $rootScope,
     ds.fetch({
       success: function() {
         $scope.stats = {
-          issues: this.length,
-          renewals : this.sum('renewals'),
-          sex: this.countBy('sex').toJSON(),
-          ufr: this.countBy('Ufr').toJSON(),
-          niveau: this.countBy('Niveau').toJSON(),
+          issues: this.sum('issues'),
+         renewals : this.sum('renewals'),
+         // sex: this.countBy('sex').toJSON(),
+          //ufr: this.countBy('Ufr').toJSON(),
+         //niveau: this.countBy('Niveau').toJSON(),
           etape: this.countBy('Etape').toJSON(),
-          description: this.countBy('categorycode').toJSON()
+          //description: this.countBy('categorycode').toJSON()
         };
 
-        $scope.statsIssueUfr = [{
+       
+      /* $scope.statsIssueUfr = [{
           key: "Ufr",
           values : $scope.stats.ufr
         }]
@@ -28,7 +29,7 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $rootScope,
         $scope.statsIssueNiveau = [{
           key: "Niveau",
           values : $scope.stats.niveau
-        }]
+        }]*/
 
       }
     });
@@ -37,8 +38,22 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $rootScope,
   /*== GET ISSUES BOOK FCT ==*/
   var getIssuesBook = function(biblionumber) {
     // GET issues
+    
     prevuAPIservice.searchIssuesByBiblionumber(biblionumber).success(function(response) {
-      $scope.issues = response;
+    $scope.issues = response;
+    $scope.issuesUfrNiveau = 
+    [{
+      key: "Prêts",
+      values: response
+    }];
+      getStats(response);
+      $location.search('biblionumber', biblionumber);
+    });
+
+    //get issue sex category
+      prevuAPIservice.searchIssuesByBiblionumbersexcategorie(biblionumber).success(function(response) {
+      $scope.issuessexcategorie = response ;
+   
       getStats(response);
       $location.search('biblionumber', biblionumber);
     });
@@ -46,7 +61,7 @@ angular.module('prevuApp').controller('IssuesCtrl', function($scope, $rootScope,
     prevuAPIservice.getCoverBookAmazon(biblionumber).success(function(response) {
       $scope.covers = response;
     });
-    // GET Average Age
+    //GET Average Age
     prevuAPIservice.getAverageByBiblionumber(biblionumber).success(function(response) {
       $scope.averageAge = response[0].averageAge;
     });

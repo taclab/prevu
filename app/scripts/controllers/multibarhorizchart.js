@@ -95,6 +95,7 @@ angular.module('prevuApp').controller('MultibarhorizchartCtrl', function($scope)
       return d3.round(d.value);
     };
   }
+
   $scope.yAxisTickFormatFunction = function() {
     return function(d) {
       return d.ufr;

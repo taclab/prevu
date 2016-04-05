@@ -21,7 +21,7 @@ angular.module('prevuApp')
   }
   $scope.yFunction = function(t) {
     return function(d) {
-      return d.count;
+      return d.issues;
     };
   }
 });

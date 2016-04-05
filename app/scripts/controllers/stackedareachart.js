@@ -1,6 +1,7 @@
 'use strict';
 angular.module('prevuApp').controller('StackedareachartCtrl', function($scope) {
-  var colorViz = ['#8dd3c7','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f'];
+  
+   var colorViz = ['#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f','#8dd3c7','#bebada','#fb8072'];   
 
   $scope.color_viz = function() {
   return function(d, i) {
@@ -15,6 +16,16 @@ angular.module('prevuApp').controller('StackedareachartCtrl', function($scope) {
   $scope.yFunction = function() {
     return function(d) {
       return d.issues;
+    };
+  }
+  $scope.xFunctionMonthIssues = function() {
+    return function(d) {
+      return d.month;
+    };
+  }
+  $scope.yFunctionMonthIssues = function() {
+    return function(d) {
+      return d3.round(d.issues);
     };
   }
   $scope.xAxisTickFormatFunction = function() {

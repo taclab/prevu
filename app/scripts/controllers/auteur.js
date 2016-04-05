@@ -1,5 +1,5 @@
 'use strict';
-angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope, $routeParams, $location, $http, Books, prevuAPIservice, ENV) {
+angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope, $routeParams, $location, $http, prevuAPIservice, ENV) {
   $rootScope.bodyClass = "viewBook";
   $scope.searchAuthorClass = "search-author-open";
   $scope.isFocus = true; // Focus de l'input
@@ -11,31 +11,44 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
     });
     ds.fetch({
       success: function() {
+
         $scope.stats = {
           docs: this.length,
           issues: this.sum('issues'),
           issuesMax: this.max('issues'),
           issuesMin: this.min('issues'),
           renewals: this.sum('renewals'),
-          male: this.sum('Male'),
-          female: this.sum('Female'),
-          years: this.mean('publicationyear').toFixed(2),
-          pays: this.countBy('pays').toJSON(),
-          langue: this.countBy('langue').toJSON()
+          //male: this.sum('Male'),
+          //female: this.sum('Female'),
+             
+         years: this.mean('publicationyear').toFixed(0),
+          //pays: this.countBy('pays').toJSON(),
+          //langue: this.countBy('langue').toJSON(),
+          
+
         };
-        $scope.sexPie = [{
+        /*$scope.sexPie = [{
           sex: "Femme",
           count: $scope.stats.female
         }, {
           sex: "Homme",
           count: $scope.stats.male
-        }]
+        }]*/
+        // $scope.sexPie = [{
+          
+          //count: $scope.stats.sex
+        //}]
       }
     });
   };
   /*== GET BOOK AUTHOR ==*/
   var getBookAuthor = function(authorQuery) {
     $scope.info = authorQuery;
+    prevuAPIservice.getIssuesBySex().success(function(response) {
+      $scope.statsIssuesBySex = response
+    
+    
+ });
     prevuAPIservice.getBookByAuthor(authorQuery).success(function(response) {
       // Recupération des livres
       $scope.books = response.search;
@@ -43,7 +56,46 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
       getStats(response.search);
       getCoverBooks(response.search);
     });
+
+     prevuAPIservice.getBookByAuthorCover(authorQuery).success(function(response) {
+      // Recupération des livres
+      $scope.bookscovers = response.search;
+      // Génération des stats
+     ;
+      getCoverBooks(response.search);
+    });
+    
+    
+
+    prevuAPIservice.getBookByAuthorIssuesSex(authorQuery).success(function(response) {
+      // Recupération des livres
+      $scope.sexissues = response.search;
+     
+      // Génération des stats
+      //getStats(response.search);
+      //getCoverBooks(response.search);
+    });
+    
+     prevuAPIservice.getBookByAuthorIssuesLangue(authorQuery).success(function(response) {
+      // Recupération des livres
+      $scope.langueissues = response.search;
+     
+      // Génération des stats
+      //getStats(response.search);
+      //getCoverBooks(response.search);
+    });
+       prevuAPIservice.getBookByAuthorIssuesPays(authorQuery).success(function(response) {
+      // Recupération des livres
+      $scope.paysissues = response.search;
+     
+      // Génération des stats
+      //getStats(response.search);
+      //getCoverBooks(response.search);
+    });
   }
+ // prevuAPIservice.getSexIssueAuthor().success(function(response) {
+    //$scope.sexIssuesByAuteur = response
+  //});
   /*== GET COVER ==*/
   var booksCovers = [];
   var getCoverBooks = function(books) {
@@ -52,11 +104,11 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
     prevuAPIservice.getMultipleCoverBook(books).success(function(responseCovers) {
       $scope.booksCovers = responseCovers;
     });
-    // angular.forEach(books, function(item) {
-    //   prevuAPIservice.getCoverBookAmazon(item.biblionumber).success(function(response) {
-    //     $scope.booksCovers.push({biblionumber : item.biblionumber, item : item, cover : response});
-    //   });
-    // });
+     angular.forEach(books, function(item) {
+     prevuAPIservice.getCoverBookAmazon(item.biblionumber).success(function(response) {
+        $scope.booksCovers.push({biblionumber : item.biblionumber, item : item, cover : response});
+       });
+     });
   }
   // Recherche des livres par auteur 
   $scope.search = function() {
@@ -75,7 +127,7 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
 
   };
   /*==  Suggestion des authors ==*/
-  $scope.suggestAuthors = function(val) {
+ $scope.suggestAuthors = function(val) {
     return $http.get(ENV.apiEndpoint+'api/author/search/' + val).then(function(res) {
       var authors = [];
       angular.forEach(res.data.search, function(item) {
@@ -85,14 +137,14 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
     });
   };
 
-  $scope.clearInput = function() {
+ /* $scope.clearInput = function() {
     $scope.queryTerm = null;
     $scope.stats = null;
     $scope.isFocus = true;
   }
 
   // URL
-  var authorUrl = $location.search();
+ var authorUrl = $location.search();
   if (authorUrl.nom) {
     getBookAuthor({
       author_nom: authorUrl.nom,
@@ -103,7 +155,7 @@ angular.module('prevuApp').controller('AuteurCtrl', function($scope, $rootScope,
     $scope.isFocus = false;
     $rootScope.bodyClass = null;
 
-  }
+  }*/
 });
 
 // A intégrer Angular
