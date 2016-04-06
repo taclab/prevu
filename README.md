@@ -7,28 +7,30 @@ La plateforme Prévu (« prêts vus ») vise à ouvrir l'accès aux données de 
 
 http://prevu.labex-arts-h2h.fr/
 
-Installation
------------
+## Installation
 
 ```
 npm install
 ```
 
-Usage
------
+## Build & development
 
-```
-grunt serve
-```
-```
-grunt build
-```
+Run `grunt` for building and `grunt serve` for preview.
+
+## Testing
+
+Running `grunt test` will run the unit tests with karma.
 
 
-Screenshot 
-----------
+## Screenshot 
 
 
 ![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/home.jpg)
 ![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/livre.jpg)
-![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/auteur.jpg)
+![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/auteur.png)
+
+
+## Crédits
+Mehdi Bourgeois, Gaétan Darquié, Zouba Ouerdia
+
+Ce projet est soutenu par le [Labex Arts-H2H](http://www.labex-arts-h2h.fr/) et la bibliothèque universitaire de Paris 8 et bénéficie d’une aide de l’ANR au titre du programme Investissements d’avenir (ANR-10-LABX-80-01).
