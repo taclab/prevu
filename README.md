@@ -23,3 +23,12 @@ grunt serve
 ```
 grunt build
 ```
+
+
+Screenshot 
+----------
+
+
+![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/home.jpg)
+![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/livre.jpg)
+![Accueil](https://raw.githubusercontent.com/taclab/prevu/master/screenshots/auteur.jpg)
