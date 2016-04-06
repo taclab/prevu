@@ -19,9 +19,11 @@
             </div>
         </div>
     </div>
+    
 </header>    
     <!-- END HEADER  -->
 <section  id="general" class="container">
+
     <!-- CORPUS -->
     <div class="row">
         <div  class="col-md-12 text-center">
@@ -64,27 +66,70 @@
             </footer>
         </div>
         <!-- HISTORIQUE PRET END -->
-</section>
+            <!-- HISTORIQUE PRET par mois selon annee -->
+        <div class="head-line col-md-12">
+            <head>
+                <h3 class="text-center">Nombre de prêts mensuels par année</h3>
+            </head>
+             
 
-<!-- Biblio -->
-<section id="biblio" class="container">
+            <div class="cartouche" ng-controller="StackedareachartCtrl">
+                 <div class="col-md-12 text-right">
+                <select class='ui-select-search ng-pristine ng-valid' ng-model="annee" ng-options="annee as (annee.year) for annee in annees" ng-change="setYearMois(annee.year)">
+                </select>
+            </div>
+            
+               <nvd3-multi-bar-chart
+                    data="issuesAllByMonthYear"
+                    showXAxis="true"
+                    showYAxis="true"
+                    y="yFunctionMonthIssues()"
+                    x="xFunctionMonthIssues()"
+                    height="400"
+
+                    margin="{left:80,top:50,bottom:50,right:50}"
+                    interactive="true"
+                    yAxisTickFormat="yAxisTickFormatFunction()"
+                   
+                    tooltips="true"
+                    showLegend="true"
+                    LegendFontSize=10
+                    >
+                    <svg></svg>
+                    </nvd3-multi-bar-chart>
+            </div>
+            <footer class="col-md-12 viz-footer">
+                <span class="legend">Période :</span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
+        </div>
+
+
+ 
+
+
+
+        <!-- HISTORIQUE PRET END par mois selon annee  -->
+        </section>
+      <!-- Biblio -->
+      <section id="biblio" class="container">
     <div class="row">
         <div class="col-md-4 text-center">
             <div class="cartouche abstract">
                 <h3>Livres empruntés</h3>
                 <span>au moins une fois</span>
-                <h4><span class="value">153 331</span></h4>
+                <h4><span class="value">{{totalbooks.totalbook}}</span></h4>
                 <div ng-controller="LinechartCtrl">
                     <nvd3-line-chart
-                    data="books_count_graph"
+                    data="statsIssuesBookBySemestre"
                     height="130"
-                    y="yFunction()"
-                    x="xFunction()"
+                    y="yFunctionSemestreBook()"
+                    x="xFunctionSemestreBook()"
                     margin="{left:7,top:5,bottom:0,right:7}"
                     interactive="true"
                     forcey="[41500,45000]"
                     tooltips="true"
-                    tooltipcontent="toolTipContentFunction()"
+                    tooltipcontent="toolTipContentFunctionSemestreBook()"
                     color="colorFunction()"
                     ><svg></svg>
                     </nvd3-line-chart>
@@ -99,24 +144,28 @@
             <div class="cartouche abstract">
                 <h3>Nombre de Prêts</h3>
                 <span>sur l'ensemble de la période</span>
-                <h4><span class="value">324 401</span></h4>
+                <h4><span class="value">{{totalissues.issues}}</span></h4>
                 <div ng-controller="LinechartCtrl">
                         <nvd3-line-chart
-                        data="issues_count_graph"
+                        data="statsIssuesBySemestre"
                         height="130"
-                        y="yFunction()"
-                        x="xFunction()"
+                        
+                         x="xFunctionSemestreIssues()"
+                        y="yFunctionSemestreIssues()"
+                       
                         margin="{left:7,top:5,bottom:0,right:7}"
                         interactive="true"
                         forcey="[75000,85000]"
                         tooltips="true"
-                        tooltipcontent="toolTipContentFunction()"
+                        tooltipcontent="toolTipContentFunctionSemestreIssues()"
                         color="colorFunction()"
                         >
                         <svg></svg>
                         </nvd3-line-chart>
                 </div>
             </div>
+
+               
             <footer class="viz-footer">
                 <span class="legend">Période :</span> <span class=
                 "period">2012-02-01 - 2014-02-01</span>
@@ -135,22 +184,24 @@
             <h3>Les prêts seulement</h3>
             <p>Prévu ne prend en compte tous les documents que possède la bibliothèque universitaire, il ne considère que les documents qui ont été empruntés au moins une fois. Ce choix à la fois éditorial et technique nous permet d'optimiser nos requêtes tout en resserant notre corpus sur les prêts.</p>
         </div>
+        
         <div class="col-md-4 text-center">
             <div class="cartouche abstract">
                 <h3 style="margin-top:0px;">Lecteurs Actifs</h3>
                 <span>ayant pris au moins un livre</span>
-                <h4><span class="value">32 449</span></h4>
+                <h4><span class="value" > {{totalBorrowers.borrowernumber}} 
+                       </span></h4>
                 <div ng-controller="LinechartCtrl">
                     <nvd3-line-chart
-                    data="borrowers_count_graph"
+                    data="statsIssuesBorrowerBySemestre"
                     height="130"
-                    y="yFunction()"
-                    x="xFunction()"
+                    y="yFunctionSemestreBorrower()"
+                    x="xFunctionSemestreBorrower()"
                     margin="{left:7,top:5,bottom:0,right:7}"
                     interactive="true"
                     forcey="[9300,10500]"
                     tooltips="true"
-                    tooltipcontent="toolTipContentFunction()"
+                    tooltipcontent="toolTipContentFunctionSemestreBorrower()"
                     color="colorFunction()"
                     >
                     <svg></svg>
@@ -162,15 +213,16 @@
             </footer>
         </div>
         <div class="col-md-4">
-            <h3>Autres perspectives</h3>
+           <h3>Autres perspectives</h3>
             <p>En plus des visualisations que nous choisissons de présenter dans le cadre de ce premier démonstrateur, nous pouvons dors et déjà accéder à de nombreuses autres informations dont l'exploitation pourrait faire, elle aussi, l'objet de développements et d'analyses, c'est le cas, pour n'en donner qu'un exemple, de la moyenne d'âge des emprunteurs dont nous savons qu'elle est de <span class=
-            "value-text">{{borrowers_age}}</span> ans. De nombreux scénarios restent à imaginer.</p>
+            "value-text">{{moyenneage.averageAge}}</span> ans. De nombreux scénarios restent à imaginer.</p>
+
+
         </div>
     </div>
     <!-- END CORPUS -->
 </section>
 <!-- END Biblio -->
-
 <!-- GENRE -->
 <section id="genre">
     <div class="container">
@@ -187,31 +239,45 @@
                     <p>Il est possible d'utiliser ce ratio à différents niveaux : pour les ouvrages, les secteurs, les niveaux d'étude... Nous avons, par exemple, choisi de montrer pour chaque ouvrage le sexe des emprunteurs.</p> 
                     <p>Pour continuer notre présentation, nous proposons de nous intéresser justement aux lecteurs qui, en empruntant, contribuent à faire vivre la bibliothèque et génèrent les données.</p>
                 </div>
-                <div ng-controller="PiechartCtrl" class="col-md-4 text-center abstract" >
+               
+                <div ng-controller="PiechartSexPretCtrl" class="col-md-4 text-center abstract" >
+                
                     <h3>Répartition des prêts par sexe</h3>
                     <nvd3-pie-chart
                     class="width-home"
-                    data="borrowers_sex"
-                    margin="{left:0,top:10,bottom:10,right:0}"
-                    x="xFunction()"
-                    y="yFunctionBorrowersUfr()"
-                    width="200"
+                    data="statsIssuesBySex"
+                   margin="{left:0,top:10,bottom:10,right:0}"
+                    x="xFunctionsex()"
+                    y="yFunctionsex()"
+                  width="200"
+                  showValues="true"
                     tooltips="true"
-                    showValues="true"
+                    
                     showLabels="true"
                     donut="true"
                     interactive="true"
                     donutLabelsOutside="false"
                     color="color_schem()"
-                    >
-                    <svg></svg>
-                    </nvd3-pie-chart>
+                    labelThreshold=0.05
+                    labelType="key"
+                    donutRatio=0.35
+                    
+                    showLegend="true"
+                  
+                  xFunctionLabel=xFunctionLabelTypePret
+                    
+                    legendColor="color_schem()"
 
-                    <ul class="chart-legende">
-                        <li ng-repeat="borrower_sex in borrowers_sex">{{borrower_sex.sex}} :
-                        {{borrower_sex.value}}</li>
-                    </ul>    
-                </div>
+        
+                    >
+                    <svg ></svg>
+                    </nvd3-pie-chart>
+           <ul class="chart-legende">
+                        <li ng-repeat="statIssuesBySex in statsIssuesBySex">{{statIssuesBySex.sex}} :
+                           {{ statIssuesBySex.issues}}</li>
+                    </ul>   
+               
+            </div>
             </div>
             <div id='viz_sex2'>
                 <div class='col-md-4'>
@@ -230,7 +296,6 @@
     </div>
 </section>
 <!-- END GENRE -->
-
 <section>
     <div class="container">
         <!-- TWO PIE -->
@@ -239,26 +304,31 @@
                 <h2 class='text-center'>Connaître les lecteurs</h2>
             </head>
             <div class="col-md-6">
-                <p>Depuis février 2012, <span class='value-text'>32449</span> lecteurs ont emprunté au moins un ouvrage à la BU de Paris 8. Qui sont ses lecteurs : sont-il étudiants?  de quels UFR et départements proviennent-ils? quel est leur niveau d'étude? quand empruntent-ils?</p>
+                <p>Depuis février 2012, <span class='value-text'>{{totalBorrowers.borrowernumber}}</span> lecteurs ont emprunté au moins un ouvrage à la BU de Paris 8. Qui sont ses lecteurs : sont-il étudiants?  de quels UFR et départements proviennent-ils? quel est leur niveau d'étude? quand empruntent-ils?</p>
             </div>
             <div class="col-md-6">
                 <p>Tout en respectant l'anonymat des utilisateurs, nous proposons plusieurs représentations graphiques et corrélations visant à montrer les potentiels informationnels de la plateforme qui concernent les emprunteurs de bibliothèque universitaire.</p>
             </div>
         </div>
         <div class="row">
-            <div ng-controller="PiechartCtrl" class="col-md-6 text-center">
+    
+            <div ng-controller="PiechartCategorieCtrl" class="col-md-6 text-center">
                 <div class="cartouche abstract">
                     <h3>Répartition des prêts par type de prêts</h3>
                     <nvd3-pie-chart
                     class="width-400"
-                    data="issues_categoryCode"
+                    data="statsIssuesByCategorie"
                     margin="{left:0,top:10,bottom:10,right:0}"
-                    x="xFunctionLabelTypePret()"
-                    y="yFunctionBorrowersUfr()"
+                    x="xFunction()"
+                    y="yFunction()"
                     width="400"
                     tooltips="true"
                     showValues="true"
                     showLabels="true"
+                    labelThreshold=0.05
+                    
+                    labelType="key"
+
                     donut="true"
                     interactive="true"
                     donutLabelsOutside="true"
@@ -269,7 +339,7 @@
                 </div>
                 <footer class="viz-footer">
                     <span class="legend">Période :</span> <span class=
-                    "period">2012-02-01 - 2014-02-01</span>
+                    "period">2012-02-01 - 2015-04-01</span>
                 </footer>
                 <h4>Les types de prêts</h4>
                 <p>Il existe plusieurs informations concernant l'orgine des lecteurs. La représentation ci-dessus permet de voir de quel type de prêt il est question. Les prêts "normaux" qui concernent principalement les étudiants de licence sont à distinguer des prêts longs généralement liés aux étudiants de Master, des prêts "doctorants", du prêt entre bibliothèque (PEB)...</p>
@@ -277,12 +347,13 @@
             <div class="col-md-6 text-center">
                 <div class="cartouche abstract">
                     <h3>Nombre de prêts par Ufr</h3>
-                    <div ng-controller="MultibarhorizchartCtrl" >
+                    <div ng-controller="MultibarhorizchartUfrCtrl" >
                         <nvd3-multi-bar-horizontal-chart
-                        data="issues_UfrRepartition"
-                        height="400"
-                        margin="{left:300,top:5,bottom:50,right:15}"
-                        y="yFunction()"
+                        data="statsIssuesUfr"
+                        height="357"
+                        width="400"
+                        margin="{left:100,top:5,bottom:10,right:15}"
+                        y="yFunctionUfrIssues()"
                         x="xFunctionUfr()"
                         showXAxis="true"
                         showValues="true"
@@ -294,15 +365,17 @@
                 </div>
                 <footer class="viz-footer">
                     <span class="legend">Période :</span> <span class=
-                    "period">2012-02-01 - 2014-02-01</span>
+                    "period">2012-02-01 - 2015-04-01</span>
                 </footer>
                 <h4>Les unités de formation et de recherche (UFR)</h4>
                 <p>Avec Prévu, il est également possible de connaître l'UFR d'origine des emprunteurs. La représentation graphique ci-dessus montre la domination de l'<i>UFR Arts, Philosophie, Esthétique</i> en terme de nombre d'emprunts. Toutefois ces données sont à relativiser car elles mériteraient d'être mise en lien avec le nombre total d'étudiants inscrits dans chaque UFR. </p>            
             </div>
+
+
+                 
         </div>
         <!-- END TWO PIE -->
-
-        <!-- REPARTION NIVEAU -->
+   <!-- REPARTION NIVEAU -->
         <div class="row">
             <div class="col-md-12 cartouche">
                 <head>
@@ -310,21 +383,15 @@
                         <h3>Répartitions des Niveaux par Mois</h3>
                     </div>
                     <div class="col-md-2">
-                        <ui-select ng-model="selectedSemestre" theme="selectize"  ng-change="setSemestre_issues_niveau_light(selectedSemestre)" style="width: 150px;"> 
-                          <ui-select-match placeholder="Choisir un semestre...">{{$select.selected.name}}</ui-select-match>
-                          <ui-select-choices repeat="semestre in semestres| filter: $select.search">
-                            <span ng-bind-html="semestre.name | highlight: $select.search"></span>
-                          </ui-select-choices>
-                        </ui-select> 
+                         <select ng-model="semestre" ng-options="semestre as (semestre.semestre) for semestre in semestres" ng-change="setSemestre(semestre.semestre)">
+                </select> 
                     </div>
                 </head>
                 <div ng-controller="StackedareachartCtrl" class="col-md-12">
                     <nvd3-multi-bar-chart
-                    data="issues_niveau_light"
+                    data="issuesMonthNiveau"
                     showXAxis="true"
                     showYAxis="true"
-                    y="yFunction()"
-                    x="xFunction()"
                     height="400"
                     margin="{left:80,top:50,bottom:50,right:50}"
                     interactive="true"
@@ -354,63 +421,145 @@
                 <p>La <i>heat map</i> ci-dessous montre la provenance des lecteurs pour chaque emprunt effectué. Plus il y a de lecteurs originaires d'une zone et plus la zone se colore, mais en même temps, un même lecteur qui effectue beaucoup d'emprunts peut avoir un impact fort puisque chaque prêt compte.</p>
                 <p>La carte montre que la plupart des lecteurs actifs résident près de l'université et dans le nord-est de Paris ainsi que dans le sud autour du quartier Montparnasse.</p>
             </div>
+
+
+
         </div>
         <!-- END REPARTION NIVEAU -->
-
-    </div>
-    <div>
-        <div class="container">        
-            <h3 class="text-center">Répartion géographique des lecteurs actifs</h3>
-        </div>   
-        <div id="map">
-            <img src="images/heatmap.jpg" class="img-responsive map" />
-        </div>
-    </div>
-</section>
-<section id="ufr">
-    <div class="container">
-        <h2 class="text-center">S'intéresser aux données d'un UFR</h2>
-        <!-- LIVRES PLUS POPULAIRES -->
-        <div class='row'>
-            <div class='col-md-6'>
-                <h3>Circonscrire les données</h3>
-                <p>En plus des informations d'ordre générique relatives à l'ensemble de la bibliothèque et de ses publics, il peut être particulièrement intéressant de mettre en avant des informations propres à certains UFR (unités de formation et de recherche) ou départements.</p></div>
-            <div class='col-md-6'>
-                <p>Un doctorant peut se demander par exemple quels sont les livres les plus empruntés dans son école doctorale, il est possible de suivre mois après l'évolution des prêts d'un UFR, de savoir en quels secteurs les livres sont les plus empruntés, de voir à quel point, l'UFR est tourné vers une discipline ou au contraire favorise l'interdisciplinarité.</p>
-                <p>Nous pouvons connaître la moyenne d'âge des emprunteurs de chaque UFR, le ratio homme-femme, le nombre d'emprunteurs et le nombre de prêts.</p>
-            </div>
-        </div>
-
+       
+<!-- REPARTION NIVEAU -->
         <div class="row">
             <div class="col-md-12 cartouche">
-                <div class="col-md-8">
-                    <h3>Livres les plus populaires par Ufr</h3>
-                </div>
-                <div class="col-md-4">
-                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
-                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
-                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select> 
-                </div>
-                <!-- LIVRE -->
-                <div style="height:370px;" class="col-md-3 text-center bookWarp"  ng-repeat="topBookByUfr in ByUfr_books.values | limitTo:4">
-                    <a href="#/livre?biblionumber={{topBookByUfr.biblionumber}}">
-                    <div class="bookFront center-block" style=
-                    "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{ByUfr_booksCover[topBookByUfr.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+                <head>
+                    <div class="col-md-10">
+                        <h3>Répartitions des vedette matières par Mois</h3>
                     </div>
-                    <h4>{{topBookByUfr.title}}</h4>
-                    Prêts : {{topBookByUfr.issuesTotal}}</a>
+                    <div class="col-md-2">
+                      <select class='ui-select-search ng-pristine ng-valid' ng-model="annee" ng-options="annee as (annee.year) for annee in annees" ng-change="setyearmatiere(annee.year)">
+                </select> 
+                    </div>
+                </head>
+                <div ng-controller="StackedareachartCtrl" class="col-md-12">
+                    <nvd3-stacked-area-chart
+                    data="issuesMonthMatiere"
+                    showXAxis="true"
+                    showYAxis="true"
+                    height="400"
+                    margin="{left:80,top:50,bottom:50,right:50}"
+                    interactive="true"
+                    yAxisTickFormat="yAxisTickFormatFunction()"
+                    xAxisTickFormat="xAxisTickFormatFunction()"
+                    tooltips="true"
+                    showLegend="true"
+                    showControls="true"
+                    color="color_viz()"
+                    legendColor="color_viz()"
+                    >
+                    <svg></svg>
+                    </nvd3-stacked-area-chart>
                 </div>
-                <!-- END LIVRE -->
             </div>
             <footer class="col-md-12 viz-footer text-center">
-                <span class="legend">Période :</span> <span class=
-                "period">2012-02-01 - 2014-02-01</span>
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
             </footer>
+         
+
+
+
         </div>
-        <!-- LIVRES PLUS POPULAIRES -->
+        <!-- END REPARTION NIVEAU -->
+ 
+<!-- 
+debuuuuuut
+
+-->
+        <div class="row">
+            <div class="col-md-12 cartouche">
+                <head>
+                    <div class="col-md-10">
+                        <h3>Les livres les plus empruntés par ufr</h3>
+                    </div>
+                    <div class="col-md-2">
+                      <select ng-model="ufr" ng-options="ufr as (ufr.ufr) for ufr in ufrs" ng-change="setUfr(ufr.ufr)">
+                </select> 
+                    </div>
+                </head>
+                <div style="height:400px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks |  limitTo :8 ">
+                <!-- http://jsfiddle.net/JefClaes/HPu9n/9/ -->
+                <a href="#/livre?biblionumber={{book.biblionumber}}">
+                <div class="header">
+                    <h4>{{book.title}}</h4>    
+                </div>
+                
+                <div class="bookFront center-block" style=
+                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+                </div>
+                <p>
+                    <span>Date de publication : {{book.publicationyear}}</span><br/>
+                    <span>Prêts : <span class="value-text">{{book.issues}}</span> </span><br/>
+                   
+                </p></a>
+            </div>
+            </div>
+            <footer class="col-md-12 viz-footer text-center">
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
+
+
+
+              <div class="row">
+            <div class="col-md-12 cartouche">
+                <head>
+                    <div class="col-md-10">
+                        <h3>les dix vedettes matieres les plus populaires par année</h3>
+                    </div>
+                    <div class="col-md-2">
+                    <select ng-model="annee" ng-options="annee as (annee.year) for annee in annees" ng-change="setYearVedette(annee.year)">
+                </select> 
+                    </div>
+                </head>
+                <div ng-controller="PiechartVedetteMatiereCtrl" class="col-md-12 text-center" >
+                
+                    <nvd3-pie-chart
+                    class="width-400"
+                    data="issuesMatieres"
+                    margin="{left:0,top:0,bottom:0,right:0}"
+                    x="xFunction()"
+                    y="yFunction()"
+                  
+                    tooltips="true"
+                    showLabels="true"
+                    donut="false"
+                    interactive="true"
+                    donutLabelsOutside="true"
+                    color="color_viz()"
+                    labelThreshold=0.05
+                    labelType="percent"
+                    donutRatio=0.35
+                    legendPosition = "right"
+                    showLegend="true"
+                    
+                    legendColor="color_viz()"
+        
+                    >
+                    <svg ></svg>
+                    </nvd3-pie-chart>
+                </div>
+            </div>
+            <footer class="col-md-12 viz-footer text-center">
+                <span class="legend">Période : </span>
+                <span class="period">2012-02-01 - 2014-02-01</span>
+            </footer>
+          
+
+
+            
+        </div>
+     
+      
+    
 
         <!-- STATS PAR UFR -->
         <div class="row">
@@ -419,65 +568,72 @@
                     <h3>Statistiques par UFR</h3>
                 </div>
                 <div class="col-md-4">
-                    <ui-select class="pull-right" ng-model="selectedUFR.selected" theme="selectize"   ng-change="setUfr(selectedUFR.selected)" style="width: 300px;"> 
-                      <ui-select-match placeholder="Choisir une UFR...">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="ufrKey in ufrKeys| filter: $select.search">
-                        <span ng-bind-html="ufrKey.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select>                     
+                <select ng-model="ufr" ng-options="ufr as (ufr.ufr) for ufr in ufrs" ng-change="setUfrStats(ufr.ufr)">
+                </select>                    
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-2">
                             <h5>Nombre de prêts</h5>
-                            <span class="value">{{ByUfr_issues_numbers}}</span>
+                            <span class="value">{{ufr.issues}}</span>
                     </div>
                     <div ng-controller="LinechartCtrl" class="col-md-10">
                             <nvd3-line-chart
-                            data="issues_ufrOnlyUfr"
+                            data="issuesMonthUfr"
                             height="150"
-                            y="yFunctionUFR()"
-                            x="xFunctionUFR()"
+                           
                             margin="{left:80,top:15,bottom:30,right:80}"
                             interactive="true"
                             tooltips="true"
                             showXAxis="true"
                             showYAxis="true"
                             xAxisTickFormat="xAxisTickFormatFunction()"
-                            tooltipcontent="toolTipContentFunctionUFR()"
+                           
                             color="colorFunction()"
                             >
                             <svg></svg>
                             </nvd3-line-chart>
                     </div>
-                    <div ng-controller="MultibarhorizchartCtrl" class="col-md-6">
+                    <div ng-controller="MultibarhorizchartCategorieCtrl" class="col-md-6">
                             <h4>Nombre de prêts par secteur</h4>
                             <nvd3-multi-bar-horizontal-chart
-                            data="ByUfr_ccode"
-                            id="ByUfr_ccode"
+                            data="issuesCcodeUfr"
+                            
                             height="400"
                             margin="{left:120,top:5,bottom:50,right:50}"
-                            y="yFunction()"
-                            x="xFunction()"
+                            y="yFunctionCcodeUfr()"
+                            x="xFunctionCcodeUfr()"
                             showXAxis="true"
                             showValues="true"
                             color="color_schem()"
+
+                             tooltips="true"
+                                
+                                showLabels="true"
+                               
+                                interactive="true"
+                                donutLabelsOutside="false"
+                               
+                                legend="true"
+
+
+
                             >
                             <svg></svg>
                             </nvd3-multi-bar-horizontal-chart>
                     </div>
-                    <div ng-controller="PiechartCtrl" class="col-md-6">
+                    <div ng-controller="PiechartCategorieCtrl" class="col-md-6">
                             <h4>Profil lecteurs</h4>
                             <div class="col-md-6">
                                 <h5>Nombre de lecteurs</h5>
-                                <span class="value">{{ByUfr_borrowers_numbers}}</span>
+                                <span class="value">{{ufr.borrowernumber}}</span>
                                 <h5>Répartition par sexe</h5>
                                 <nvd3-pie-chart
-                                data="ByUfr_borrowers_sex"
-                                id="ByUfr_borrowers_sex"
+                                data="issuesSexUfr"
+                               
                                 margin="{left:0,top:10,bottom:10,right:0}"
                                 class="width-150"
-                                x="xFunction()"
-                                y="yFunctionBorrowersUfr()"
+                                x="xFunctionsexufr()"
+                                y="yFunctionsexufr()"
                                 width="150"
                                 tooltips="true"
                                 showValues="true"
@@ -494,10 +650,10 @@
                             <div class="col-md-6">
                                 <h5>Nombre de prêts par lecteur</h5>
                                 <span class="value">
-                            {{(ByUfr_issues_numbers/ByUfr_borrowers_numbers)| number:2}}
+                            {{(ufr.issues/ufr.borrowernumber)| number:2}}
                                 </span>
                                 <h5>âge moyen du lecteurs</h5>
-                                <span class="value">{{ByUfr_borrowers_age}}</span>
+                                <span class="value">{{ufr.averageAge}}</span>
                             </div>
                     </div>
                 </div>
@@ -509,8 +665,7 @@
         </div>
         <!-- END STATS PAR UFR -->
     </div>
-</section>
-<section id='top'>
+
     <div class="container">
         <!-- TOP PRETS  -->
 
@@ -535,27 +690,29 @@
                 </select> -->
             </div>
 
-            <div style="height:400px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in topBooks | filter:{ccode: selecteds} | limitTo : 8">
+            <div style="height:400px;" class="col-md-3 text-center bookWarp"  ng-repeat="livre in bookpopulaires| limitTo : 8">
                 <!-- http://jsfiddle.net/JefClaes/HPu9n/9/ -->
-                <a href="#/livre?biblionumber={{book.biblionumber}}">
+                <a href="#/livre?biblionumber={{livre.biblionumber}}">
                 <div class="header">
-                    <h4>{{book.title}}</h4>    
+                    <h4>{{livre.title}}</h4>    
                 </div>
                 
                 <div class="bookFront center-block" style=
-                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+                "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{topBooksCover[livre.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
                 </div>
                 <p>
-                    <span>Date de publication : {{book.publicationyear}}</span><br/>
-                    <span>Prêts : <span class="value-text">{{book.issues}}</span> </span><br/>
-                    <span>Catégorie : {{book.ccode}}</span>
+                    <span>Date de publication : {{livre.publicationyear}}</span><br/>
+                    <span>Prêts : <span class="value-text">{{livre.issues}}</span> </span><br/>
+                    <span>Catégorie : {{livre.ccode}}</span>
                 </p></a>
             </div>
         </div>
         <!-- END TOP PRETS  -->
     </div>
 </section>
-<section id="personnalite" class="container">
+
+
+         <section id="personnalite" class="container">
     <!-- AUTEURS -->
     <div class="row col-md-12 text-center">
         <h3>Personnalités marquantes de Paris 8</h3>
@@ -605,8 +762,8 @@
 </section>
 <section id="explorer">
     <div class="video-container">
-        <video id="video"  poster="http://localhost:8888/prevu/application/app/images/video_cover.jpg" style="width:100%;" autoplay loop>
-            <source id="mp4" src="http://localhost:8888/prevu/application/app/video/bu.mp4" type="video/mp4">
+        <video id="video"  poster="http://localhost:8888/prevu/app/images/video_cover.jpg" style="width:100%;" autoplay loop>
+            <source id="mp4" src="http://localhost:8888/prevu/app/video/bu.mp4" type="video/mp4">
 <!--             <source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
              <source id="webm" src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
              <source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg"> -->
@@ -697,4 +854,15 @@ function clearViz(_nameId){
 init();
 
 </script>
+
+        
+
+            <!--vedette matiere-->
+
+
+           
+
+
+
+
 

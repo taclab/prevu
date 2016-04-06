@@ -36,19 +36,19 @@
 			<div class="infoBibli row cartouche">
 				<div class="col-md-12">
 					<span>Collection : {{info.collectiontitle}}</span></br>
-					<span>Pages : {{info.pages}}</span></br>
+					<!--<span>Pages : {{info.pages}}</span></br>-->
 					<span>CCode : {{info.ccode}}</span></br>
-					<span>Classement CDU : {{info.itemcallnumber}}</span></br>
+					<!--<span>Classement CDU : {{info.itemcallnumber}}</span></br>-->
 				</div>
 			</div>
 			<div class="statsBibli row cartouche">
 				<div class="col-md-6 text-center">
 					<h3>Nombre d'emprunt</h3>
-					<span class="value">{{stats.issues}}</span>
+					<span class="value">{{info.issues}}</span>
 				</div>
 				<div class="col-md-6 text-center">
 					<h3>Nombre de renouvèlement</h3>
-					<span class="value">{{stats.renewals}}</span>
+					<span class="value">{{info.renewals}}</span>
 				</div>		
 			</div>
 			<div class="col-md-12 cartouche">
@@ -56,8 +56,8 @@
 					<div class=" abstract">
 						<h3>Type de prêts</h3>
 						<nvd3-pie-chart
-							data="stats.description"
-						    id="pieCateogrycode"
+							data="issuessexcategorie"
+						    
 						    class="width-350"
 							margin="{left:0,top:10,bottom:10,right:0}"
 						    x="xFunctionCatCode()"
@@ -79,8 +79,8 @@
 					<div class="abstract">
 						<h3>Sexe</h3>
 						<nvd3-pie-chart
-							data="stats.sex"
-						    id="pieSex"
+							data="issuessexcategorie"
+						  
 						    class="width-350"
 							margin="{left:0,top:10,bottom:0,right:0}"
 						    x="xFunction()"
@@ -121,8 +121,8 @@
 			<div class="cartouche abstract">
 				<h3>Par Ufr</h3>
 			    <nvd3-discrete-bar-chart 
-			          data="statsIssueUfr"
-			          id="statsIssueUfr"
+			          data="issuesUfrNiveau"
+			          
 			          margin="{left:80,top:20,bottom:40,right:50}"
 			          showXAxis="true"
 			          showYAxis="true"
@@ -132,7 +132,7 @@
 			          tooltips="true"
 			          y="yFunctionUfr()"
 			          x="xFunctionUfr()"
-			          yAxisTickFormat="yAxisTickFormatFunction()"
+			         
 			          useInteractiveGuideLine="true">
 			            <svg ></svg>
 			    </nvd3-discrete-bar-chart>
@@ -145,7 +145,7 @@
 			<div class="cartouche abstract">
 				<h3>Niveau</h3>
 			    <nvd3-discrete-bar-chart 
-			          data="statsIssueNiveau"
+			          data="issuesUfrNiveau"
 			          id="statsIssueNiveau"
 			          margin="{left:80,top:20,bottom:40,right:50}"
 			          showXAxis="true"
@@ -154,9 +154,9 @@
 			          staggerLabels="true"
 			          height="300"
 			          tooltips="true"
+			           interactive="true"
 			          y="yFunctionNiveau()"
 			          x="xFunctionNiveau()"
-			          yAxisTickFormat="yAxisTickFormatFunction()"
 			          useInteractiveGuideLine="true">
 			            <svg ></svg>
 			    </nvd3-discrete-bar-chart>
@@ -171,8 +171,8 @@
 			<h3>Historique des prêts</h3>		{{itemsTimeline.id}}
 			<div id="visualization" vis-timeline value="issues"></div>
 			<div class="itemInfos">
-				<span class="dateStart"></span>
-				<span class="dateEnd"></span>
+				<!--<span class="dateStart"></span>
+				<span class="dateEnd"></span>-->
 				<span class="niveau"></span>
 				<span class="ufr"></span>
 				<span class="sex"></span>

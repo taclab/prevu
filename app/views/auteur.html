@@ -60,22 +60,22 @@
 		<hr />
 		<div class="row stat result">
 			<div class="col-md-4">
-				<div ng-controller="PiechartCtrl" class="cartouche abstract">
+				<div ng-controller="PiechartSexPretCtrl" class="cartouche abstract">
 					<h3>Sexe</h3>
 					<nvd3-pie-chart
-						data="sexPie"
-					    id="exampleId"
+						data="sexissues"
+					  
 					    class="width-300"
 						margin="{left:0,top:10,bottom:0,right:0}"
-					    x="xFunction()"
-					    y="yFunction()"
+					    x="xFunctionsex()"
+					    y="yFunctionsex()"
 					    width="300"
 					    height="300"
 					    tooltips="true"
 					    showValues="true"
 					    showLabels="true"
 					    donut="true"
-					    color="color_schem()"
+					    color="color_viz()"
 					    donutLabelsOutside="false">
 					    <svg></svg>
 					</nvd3-pie-chart>
@@ -85,8 +85,8 @@
 				<div ng-controller="PiechartlangueCtrl" class="cartouche abstract">
 					<h3>Langue</h3>
 					<nvd3-pie-chart
-						data="stats.langue"
-					    id="langue"
+						data="langueissues"
+					  
 					    class="width-300"
 					    margin="{left:0,top:10,bottom:0,right:0}"
 					    x="xFunction()"
@@ -107,8 +107,8 @@
 				<div ng-controller="PiechartpaysCtrl" class="cartouche abstract">
 					<h3>Pays</h3>
 					<nvd3-pie-chart
-						data="stats.pays"
-					    id="pays"
+						data="paysissues"
+					  
 					    class="width-300"
 					    margin="{left:0,top:10,bottom:0,right:0}"
 					    x="xFunction()"
@@ -131,15 +131,15 @@
 		<hr />
 		<div class="row">
 		<h3>Livres les plus populaires</h3>
-        <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="book in books | filter:{ccode: selecteds} | limitTo : 8">
-            <a href="#/livre?biblionumber={{book.biblionumber}}">
-            <h4>{{book.title}}</h4>
+        <div style="height:500px;" class="col-md-3 text-center bookWarp"  ng-repeat="bookscover in bookscovers | filter:{ccode: selecteds} | limitTo : 8">
+            <a href="#/livre?biblionumber={{bookscover.biblionumber}}">
+            <h4>{{bookscover.title}}</h4>
             <div class="bookFront center-block" style=
-            "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{booksCovers[book.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
+            "background:-webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%), url({{bookCover.cover.LargeImage}}) center, #febd17; background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url({{booksCovers[bookscover.biblionumber].LargeImage}}) center, #febd17; background-size:cover;">
             </div>
-            <p><span>Date de publication : {{book.publicationyear}}</span><br/>
-            <span>Prêts : {{book.issues}}</span><br/>
-            <span>ccode : {{book.ccode}}</span>
+            <p><span>Date de publication : {{bookscover.publicationyear}}</span><br/>
+            <span>Prêts : {{bookscover.issues}}</span><br/>
+            <span>ccode : {{bookscover.ccode}}</span>
             </p></a>
         </div>
 
@@ -153,28 +153,27 @@
 					<th data-sort='string'>Titre</th>
 					<th data-sort='int'>Année de publication</th>
 					<th data-sort='string'>Titre de la collection</th>
-					<th data-sort='string'>Pages</th>
-					<th data-sort='string'>Tailles</th>
+					
 					<th data-sort='string'>Vedette Matière</th>
 					<th data-sort='int' data-sort-default='desc'>Prêts</th>
+						<th data-sort='string'>pays</th>
 					<th data-sort='int'>Renouvelement</th>
-					<th data-sort='int'>Homme</th>
-					<th data-sort='int'>Femme</th>
+					
 				</tr>
 			</thead>
-			<tr ng-repeat="book in books">
+			<tr ng-repeat="bookscover in bookscovers">
 				<td>
-					<a href="#/livre?biblionumber={{book.biblionumber}}">{{book.title}}</a>
+					<a href="#/livre?biblionumber={{bookscover.biblionumber}}">{{bookscover.title}}</a>
 				</td>
-				<td>{{book.publicationyear}}</td>
-				<td>{{book.collectiontitle}}</td>
-				<td>{{book.pages}}</td>
-				<td>{{book.size}}</td>
-				<td>{{book.vedette_matiere}}</td>
-				<td>{{book.issues}}</td>
-				<td>{{book.renewals}}</td>
-				<td>{{book.Male}}</td>
-				<td>{{book.Female}}</td>
+				<td>{{bookscover.publicationyear}}</td>
+				<td>{{bookscover.collectiontitle}}</td>
+				
+				<td>{{bookscover.vedette_matiere}}</td>
+				<td>{{bookscover.issues}}</td>
+				
+				<td>{{bookscover.pays}}</td>
+				<td>{{bookscover.renewals}}</td>
+				
 			</tr>
 		</table>
 	</div>
