@@ -29,7 +29,7 @@ angular.module('prevuApp').directive('visTimeline', function() {
               content: 'Ex. #' + (g + 1)
             });
           }
-          console.log(groups);
+         // console.log(groups);
           var items = new vis.DataSet();
           var number = 0;
           var container = document.getElementById('visualization');
@@ -38,7 +38,7 @@ angular.module('prevuApp').directive('visTimeline', function() {
               id: number++,
               content: item.Niveau,
               niveau : item.Niveau,
-              sex : item.sex,
+              //sex : item.sex,
               start: new Date(item.issuedate),
               startDate : item.issuedate,
               end: new Date(item.returndate),
@@ -54,8 +54,8 @@ angular.module('prevuApp').directive('visTimeline', function() {
               item: 0, // minimal margin between items
               axis: 5 // minimal margin between items and the axis
             },
-            min: new Date(2011, 12, 1),
-            max: new Date(2014, 6, 1),
+            min: new Date(2012, 01, 1),
+            max: new Date(2015, 4, 1),
             orientation: 'top',
             align: 'center',
             moveable : false,
@@ -76,7 +76,7 @@ angular.module('prevuApp').directive('visTimeline', function() {
             // var dateF = dateStartD.toDateString()
             // console.log(dateStartF);
             $('.itemInfos .niveau').html('<strong>Niveau : </strong>'+items.data[properties.items[0]].niveau);
-            $('.itemInfos .sex').html('<strong>Sex : </strong>'+items.data[properties.items[0]].sex);
+            //$('.itemInfos .sex').html('<strong>Sex : </strong>'+items.data[properties.items[0]].sex);
             $('.itemInfos .ufr').html('<strong>Ufr : </strong>'+items.data[properties.items[0]].ufr);
             $('.itemInfos .dateStart').html('<strong>Date de début : </strong>'+items.data[properties.items[0]].startDate);
             $('.itemInfos .dateEnd').html('<strong>Date de fin : </strong>'+items.data[properties.items[0]].endDate);
